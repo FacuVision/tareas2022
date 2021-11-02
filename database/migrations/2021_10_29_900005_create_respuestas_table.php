@@ -16,11 +16,11 @@ class CreateRespuestasTable extends Migration
         Schema::create('respuestas', function (Blueprint $table) {
             $table->id();
             $table->text('descripcion');
-            $table->integer('puntaje');
+            $table->integer('puntaje')->nullable();
 
 
             $table->unsignedBigInteger('actividad_id');
-            // $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
 
             $table->timestamps();
 
@@ -30,11 +30,11 @@ class CreateRespuestasTable extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
-            // $table->foreign('user_id')
-            // ->references('id')
-            // ->on('users')
-            // ->onDelete('cascade')
-            // ->onUpdate('cascade');
+            $table->foreign('user_id')
+            ->references('user_id')
+            ->on('alumnos')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
         });
     }
 

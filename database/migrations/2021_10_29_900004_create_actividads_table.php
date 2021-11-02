@@ -16,7 +16,7 @@ class CreateActividadsTable extends Migration
         Schema::create('actividads', function (Blueprint $table) {
             $table->id();
             $table->text('descripcion');
-            $table->text('recurso');
+            $table->text('recurso')->nullable();
             $table->enum('tipo',[0,1,2,3]);
 
              /*

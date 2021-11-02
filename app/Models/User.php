@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Perfil;
+use App\Models\Docente;
+use App\Models\Alumno;
 
 class User extends Authenticatable
 {
@@ -58,4 +61,22 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    //un usuario tiene un solo perfil
+    public function perfil()
+    {
+        return $this->hasOne(Perfil::class);
+    }
+
+    //un usuario puede ser solo un docente o un alumno
+    public function docente()
+    {
+        return $this->hasOne(Docente::class);
+    }
+
+    public function alumno()
+    {
+        return $this->hasOne(Alumno::class);
+    }
+
 }

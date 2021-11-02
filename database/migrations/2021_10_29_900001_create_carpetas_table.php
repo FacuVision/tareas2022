@@ -23,8 +23,8 @@ class CreateCarpetasTable extends Migration
             $table->date('fecha_final');
             $table->enum('estado',[0,1]);
 
-            $table->unsignedBigInteger('materia_id');
-            //$table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('materia_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
 
 
             //0 = cerrado
@@ -32,16 +32,16 @@ class CreateCarpetasTable extends Migration
 
             $table->timestamps();
 
-            // $table->foreign('user_id')
-            // ->references('id')
-            // ->on('users')
-            // ->onDelete('cascade')
-            // ->onUpdate('cascade');
+            $table->foreign('user_id')
+            ->references('user_id')
+            ->on('docentes')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
 
             $table->foreign('materia_id')
             ->references('id')
             ->on('materias')
-            ->onDelete('cascade')
+            ->onDelete('set null')
             ->onUpdate('cascade');
 
         });
