@@ -26,7 +26,7 @@ class Docente extends Model
     //LOS DOCENTES PERTENECEN A MUCHAS SECCIONES
     public function secciones()
     {
-        return $this->belongsToMany(Seccion::class,'docente_seccion', 'user_id', 'id');
+        return $this->belongsToMany(Seccion::class,'docente_seccion', 'user_id', 'seccion_id');
     }
 
     //una respuesta le pertenece solo a un alumno
@@ -38,6 +38,6 @@ class Docente extends Model
     //LOS DOCENTES TIENEN MUCHAS MATERIAS
     public function materias()
     {
-        return $this->belongsToMany(Materia::class,'docente_materia', 'user_id', 'id');
+        return $this->belongsToMany(Materia::class,'docente_materia', 'user_id', 'materia_id');
     }
 }

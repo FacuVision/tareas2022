@@ -28,7 +28,7 @@ class Seccion extends Model
     //UNA SECCION TIENE MUCHOS DOCENTES
     public function docentes()
     {
-        return $this->belongsToMany(Docente::class,'docente_seccion', 'id', 'user_id');
+        return $this->belongsToMany(Docente::class,'docente_seccion', 'seccion_id', 'user_id');
     }
 
 

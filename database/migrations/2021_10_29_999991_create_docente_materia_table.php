@@ -14,6 +14,7 @@ class CreateDocenteMateriaTable extends Migration
     public function up()
     {
         Schema::create('docente_materia', function (Blueprint $table) {
+
             $table->id();
 
             $table->unsignedBigInteger('user_id');
