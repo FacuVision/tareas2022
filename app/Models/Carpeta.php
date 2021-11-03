@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Tarea;
 use App\Models\Docente;
+use App\Models\Seccion;
 
 class Carpeta extends Model
 {
@@ -28,6 +29,12 @@ class Carpeta extends Model
     public function materia()
     {
         return $this->belongsTo(Materia::class);
+    }
+
+    //UNA CARPETA PERTEENCE A UNA SECCION
+    public function seccion()
+    {
+        return $this->belongsTo(Seccion::class);
     }
 
 }

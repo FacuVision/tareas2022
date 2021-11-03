@@ -14,7 +14,10 @@ class ActividadFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'descripcion' => $this->faker->paragraph(),
+            'recurso' => $this->faker->optional()->url(),
+            'tipo' => $this->faker->randomElement(['0','1','2','3']),
+            'puntaje_max' => $this->faker->randomFloat(1,1,5)
         ];
     }
 }

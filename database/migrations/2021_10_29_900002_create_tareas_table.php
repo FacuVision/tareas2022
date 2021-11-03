@@ -17,17 +17,17 @@ class CreateTareasTable extends Migration
             $table->id();
             $table->string('titulo',100);
             $table->text('descripcion');
-            $table->enum('estado',[0,1,2,3]);
+            $table->enum('estado',[0,1]);
 
             /**
-             * 0 = desaprobado
-             * 1 = aprobado
-             * 2 = publicado (por el docente)
-             * 3 = entregado (por el alumno)
+             * 0 = borrador (por el docente)
+             * 1 = publicado (por el docente)
              *
              */
 
             $table->unsignedBigInteger('carpeta_id');
+
+            $table->timestamps();
 
             $table->foreign('carpeta_id')
             ->references('id')

@@ -15,7 +15,7 @@ class Logro extends Model
 
     public function alumnos()
     {
-        return $this->belongsToMany(Alumno::class, 'alumno_logro', 'id', 'user_id');
+        return $this->belongsToMany(Alumno::class, 'alumno_logro', 'logro_id', 'user_id');
     }
 
     public function image()

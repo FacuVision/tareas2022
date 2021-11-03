@@ -92,13 +92,15 @@ class UserSeeder extends Seeder
                 "user_id" => $al->id
             ]);
 
+            //asignacion de secciones y creacion de alumnos
+
             Alumno::factory()->create([
                 "user_id" => $al->id,
                 "seccion_id" => random_int(1,12)
             ]);
 
-        }
 
+        }
 
     }
 }

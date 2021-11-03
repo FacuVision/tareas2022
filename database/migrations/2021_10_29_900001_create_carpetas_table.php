@@ -25,6 +25,7 @@ class CreateCarpetasTable extends Migration
 
             $table->unsignedBigInteger('materia_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('seccion_id');
 
 
             //0 = cerrado
@@ -42,6 +43,12 @@ class CreateCarpetasTable extends Migration
             ->references('id')
             ->on('materias')
             ->onDelete('set null')
+            ->onUpdate('cascade');
+
+            $table->foreign('seccion_id')
+            ->references('id')
+            ->on('seccions')
+            ->onDelete('cascade')
             ->onUpdate('cascade');
 
         });

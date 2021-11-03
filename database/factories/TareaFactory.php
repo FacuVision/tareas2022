@@ -14,7 +14,9 @@ class TareaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'titulo' => $this->faker->unique()->text(10),
+            'descripcion' => $this->faker->paragraph(),
+            'estado' => $this -> faker->randomElement(['0','1']),
         ];
     }
 }

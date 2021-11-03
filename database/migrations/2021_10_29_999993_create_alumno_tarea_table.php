@@ -18,7 +18,7 @@ class CreateAlumnoTareaTable extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('tarea_id');
-            $table->integer('nota_final');
+            $table->integer('nota_final')->nullable();
 
             $table->timestamps();
 

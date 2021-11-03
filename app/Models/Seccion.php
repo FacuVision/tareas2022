@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Grado;
 use App\Models\Alumno;
 use App\Models\Docente;
+use App\Models\Carpeta;
 
 class Seccion extends Model
 {
@@ -29,6 +30,12 @@ class Seccion extends Model
     public function docentes()
     {
         return $this->belongsToMany(Docente::class,'docente_seccion', 'seccion_id', 'user_id');
+    }
+
+    //UNA SECCION APARECE EN LOS REGISTROS DE MUCHAS CARPETAS
+    public function carpetas()
+    {
+        return $this->hasMany(Carpeta::class);
     }
 
 

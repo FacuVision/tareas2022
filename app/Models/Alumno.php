@@ -27,7 +27,7 @@ class Alumno extends Model
     //Muchos alumnos poseen muchos logros
     public function logros()
     {
-        return $this->belongsToMany(Logro::class, 'alumno_logro', 'user_id', 'id');
+        return $this->belongsToMany(Logro::class, 'alumno_logro', 'user_id', 'logro_id');
     }
 
     //Un alumno pertenece a una seccion
@@ -39,7 +39,7 @@ class Alumno extends Model
     //Muchos alumnos tienen muchas tareas
     public function tareas()
     {
-        return $this->belongsToMany(Tarea::class, 'alumno_tarea', 'user_id', 'id');
+        return $this->belongsToMany(Tarea::class, 'alumno_tarea', 'user_id', 'tarea_id')->withPivot('nota_final');
     }
 
     //un alumno puede tener muchas respuestas
