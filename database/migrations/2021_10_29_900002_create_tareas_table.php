@@ -15,7 +15,7 @@ class CreateTareasTable extends Migration
     {
         Schema::create('tareas', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
+            $table->string('titulo',100);
             $table->text('descripcion');
             $table->enum('estado',[0,1,2,3]);
 

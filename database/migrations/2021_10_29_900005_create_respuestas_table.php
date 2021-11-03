@@ -16,8 +16,8 @@ class CreateRespuestasTable extends Migration
         Schema::create('respuestas', function (Blueprint $table) {
             $table->id();
             $table->text('descripcion');
-            $table->integer('puntaje')->nullable();
-
+            $table->double('puntaje',4,1)->nullable();
+            $table->string('recurso')->nullable();
 
             $table->unsignedBigInteger('actividad_id');
             $table->unsignedBigInteger('user_id')->nullable();

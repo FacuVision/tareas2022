@@ -28,7 +28,7 @@ class CreateActividadsTable extends Migration
              * ESTOS LINKS VAN EN RECURSOS
              */
 
-            $table->string('puntaje_max');
+            $table->double('puntaje_max',4, 1)->nullable();
             $table->unsignedBigInteger('tarea_id');
             $table->timestamps();
 

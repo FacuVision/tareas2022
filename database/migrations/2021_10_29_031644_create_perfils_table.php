@@ -15,8 +15,8 @@ class CreatePerfilsTable extends Migration
     {
         Schema::create('perfils', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('apellido');
+            $table->string('nombre',100);
+            $table->string('apellido',100);
             $table->date('fecha_nac');
             $table->string('DNI',8)->unique();
             $table->string('edad',3);

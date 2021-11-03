@@ -42,7 +42,7 @@ class Alumno extends Model
         return $this->belongsToMany(Tarea::class, 'alumno_tarea', 'user_id', 'id');
     }
 
-    //una respuesta le pertenece solo a un alumno
+    //un alumno puede tener muchas respuestas
     public function respuestas()
     {
         return $this->hasMany(Respuesta::class,'user_id');

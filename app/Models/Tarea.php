@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Alumno;
 use App\Models\Actividad;
 use App\Models\Carpeta;
+use App\Models\Image;
 
 class Tarea extends Model
 {
@@ -29,4 +30,6 @@ class Tarea extends Model
     {
         return $this->belongsTo(Carpeta::class);
     }
+
+
 }

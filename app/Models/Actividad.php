@@ -18,8 +18,13 @@ class Actividad extends Model
     }
 
         //UNA ACTIVIDAD PERTENECE A UNA SOLA TAREA
-        public function tarea()
+    public function tarea()
         {
             return $this->belongsTo(Tarea::class);
+        }
+
+    public function image()
+        {
+            return $this->morphOne(Image::class,'imageable');
         }
 }

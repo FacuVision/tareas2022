@@ -15,7 +15,7 @@ class CreateSeccionsTable extends Migration
     {
         Schema::create('seccions', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre',30);
             $table->unsignedBigInteger('grado_id');
 
             $table->foreign('grado_id')

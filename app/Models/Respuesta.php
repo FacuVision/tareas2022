@@ -22,5 +22,10 @@ class Respuesta extends Model
     {
         return $this->belongsTo(Actividad::class);
     }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class,'imageable');
+    }
 }
 

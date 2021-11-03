@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Tarea;
+use App\Models\Docente;
 
 class Carpeta extends Model
 {
@@ -15,4 +16,18 @@ class Carpeta extends Model
     {
         return $this->hasMany(Tarea::class);
     }
+
+    //una carpeta le pertenece  a un docente
+    public function docente()
+    {
+        return $this->belongsTo(Docente::class,'user_id');
+    }
+
+    //UNA CARPETA LE PERTENECE A UNA MATERIA
+
+    public function materia()
+    {
+        return $this->belongsTo(Materia::class);
+    }
+
 }
