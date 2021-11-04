@@ -14,7 +14,8 @@ class GradoFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->name
+            'grado' => $this->faker->name,
+            'nivel' => $this->faker->name
         ];
     }
 }

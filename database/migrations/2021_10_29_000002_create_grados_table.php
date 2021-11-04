@@ -15,7 +15,8 @@ class CreateGradosTable extends Migration
     {
         Schema::create('grados', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',50);
+            $table->enum('grado', ['PRIMERO','SEGUNDO','TERCERO','CUARTO','QUINTO', 'SEXTO']);
+            $table->enum('nivel', ['PRIMARIA','SECUNDARIA']);
             $table->timestamps();
         });
     }

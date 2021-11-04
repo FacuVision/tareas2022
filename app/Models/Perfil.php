@@ -9,7 +9,7 @@ use App\Models\User;
 class Perfil extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     //un perfil pertenece a un usuario
     public function user()
     {

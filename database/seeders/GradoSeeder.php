@@ -20,13 +20,14 @@ class GradoSeeder extends Seeder
     {
         //SE CREA LOS GRADOS,EN ESTE CASO NECESITAMOS 6 REGISTROS
 
-        $grados =  ["PRIMERO-PRIM","SEGUNDO-PRIM","TERCER-PRIM","CUARTO-PRIM","QUINTO-PRIM","SEXTO-PRIM"];
+        $grados =  ["PRIMERO","SEGUNDO","TERCERO","CUARTO","QUINTO","SEXTO"];
 
         $cont = 0;
 
          while($cont!=6){
             $grado = Grado::factory()->create([
-                "nombre" => $grados[$cont]
+                "grado" => $grados[$cont],
+                "nivel" => 'PRIMARIA',
             ]);
 
             Seccion::factory()->create([

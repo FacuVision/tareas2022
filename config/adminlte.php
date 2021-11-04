@@ -267,14 +267,14 @@ return [
         ],
         [
             'text' => 'Todos los usuarios',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/users',
             'icon' => 'fas fa-address-card',
         ],
 
         ['header' => 'COLEGIO'],
         [
             'text' => 'Grados',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/grados',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -284,7 +284,7 @@ return [
         ],
 
 
-        
+
         ['header' => 'SEGURIDAD'],
         [
             'text' => 'Roles',

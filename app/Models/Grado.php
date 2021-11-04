@@ -9,6 +9,7 @@ use App\Models\Seccion;
 class Grado extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     //un grado puede aparecer en los registros de muchas secciones
     public function seccions()
