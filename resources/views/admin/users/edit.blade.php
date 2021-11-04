@@ -9,7 +9,11 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-
+        @if (session('mensaje'))
+            <div class="alert alert-success">
+                <strong>{{session('mensaje')}}</strong>
+            </div>
+        @endif
         @if (count($errors) > 0)
         <div class="text-danger">
 
@@ -23,8 +27,7 @@
     </div>
     <div class="card-body">
 
-
-        {!! Form::model($user, ['route' => ['admin.grados.update', $user], 'method' => 'PUT']) !!}
+        {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'PUT']) !!}
         <div class="form-group">
             <div class="form-group">
                 {!! Form::label('email', 'Correo Electronico') !!}
@@ -36,35 +39,35 @@
             </div>
             <div class="form-group">
                 {!! Form::label('nombre', 'Nombres') !!}
-                {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+                {!! Form::text('nombre', $user->name, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('apellido', 'Apellidos') !!}
-                {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
+                {!! Form::text('apellido', $user->perfil->apellido, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('fecha', 'Fecha de Nacimiento') !!}
-                {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
+                {!! Form::date('fecha', $user->perfil->fecha_nac, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('dni', 'DNI') !!}
-                {!! Form::text('dni', null, ['class' => 'form-control']) !!}
+                {!! Form::text('dni', $user->perfil->DNI, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('edad', 'Edad') !!}
-                {!! Form::text('edad', null, ['class' => 'form-control']) !!}
+                {!! Form::text('edad', $user->perfil->edad, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('sexo', 'Sexo') !!}
-                {!! Form::select('sexo', $sexo, null, ['placeholder' => 'Elija sexo...', 'class' => 'form-control']); !!}
+                {!! Form::select('sexo', $sexo, $user->perfil->sexo, ['placeholder' => 'Elija sexo...', 'class' => 'form-control']); !!}
             </div>
             <div class="form-group">
                 {!! Form::label('direccion', 'Direccion') !!}
-                {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
+                {!! Form::text('direccion', $user->perfil->direccion, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('distrito', 'Distrito') !!}
-                {!! Form::select('distrito', $dist, null, ['placeholder' => 'Elija un distrito...', 'class' => 'form-control']); !!}
+                {!! Form::select('distrito', $dist, $user->perfil->distrito, ['placeholder' => 'Elija un distrito...', 'class' => 'form-control']); !!}
             </div>
         </div>
 

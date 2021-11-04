@@ -9,7 +9,11 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-
+        @if (session('mensaje'))
+            <div class="alert alert-success">
+                <strong>{{session('mensaje')}}</strong>
+            </div>
+        @endif
         @if (count($errors) > 0)
         <div class="text-danger">
 
