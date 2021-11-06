@@ -1,6 +1,14 @@
-<x-app-layout>
+{{-- Este compoponente se encuentra en views/components/barra... --}}
+<x-barra-inicial-component>
 
-</x-app-layout>
+
+</x-barra-inicial-component>
+
+
+
+
+
+
 
 {{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">

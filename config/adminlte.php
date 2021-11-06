@@ -189,7 +189,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => '/dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -248,11 +248,10 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
+            'text'        => 'Hacer una Tarea',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'topnav'      => true
+
         ],
         ['header' => 'PERSONAS'],
         [
@@ -267,23 +266,48 @@ return [
         ],
         [
             'text' => 'Todos los usuarios',
-            'url'  => 'admin/users',
+            'route'  => 'admin.users.index',
             'icon' => 'fas fa-address-card',
+        ],
+
+
+        ['header' => 'MI PERFIL'],
+        [
+            'text' => 'Ver mi perfil',
+            'route'  => 'admin.grados.index',
+            'icon' => 'fas fa-graduation-cap',
         ],
 
         ['header' => 'COLEGIO'],
         [
             'text' => 'Grados',
-            'url'  => 'admin/grados',
-            'icon' => 'fas fa-fw fa-user',
+            'route'  => 'admin.grados.index',
+            'icon' => 'fas fa-graduation-cap',
         ],
         [
             'text' => 'Secciones',
             'url'  => 'admin/settings',
+            'icon' => 'fas fa-puzzle-piece',
+        ],
+
+        ['header' => 'MOTIVACION'],
+        [
+            'text' => 'Logros',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Mensajes del Dia',
+            'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
 
-
+        ['header' => 'REVISIONES'],
+        [
+            'text' => 'Ver respuestas de tareas',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-user',
+        ],
 
         ['header' => 'SEGURIDAD'],
         [
