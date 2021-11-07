@@ -14,6 +14,7 @@ class UserController extends Controller
                     "Lurin"=>"Lurin",
                     "San Juan de Miraflores"=>"San Juan de Miraflores",
                     "Pachacamac"=>"Pachacamac"];
+
     public $sexo =["m" => "Masculino","f"=>"Femenino"];
     /**
      * Display a listing of the resource.
@@ -22,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('id','DESC')->get();
         return view('admin.users.index', compact('users'));
     }
 

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Alumno;
-use App\Models\Carpeta;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MateriaSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(CarpetaSeeder::class);
+        $this->call(MensajeSeeder::class);
 
 
         //asignacion de tareas a los alumnos

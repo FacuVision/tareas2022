@@ -20,7 +20,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -77,6 +77,16 @@ class User extends Authenticatable
     public function alumno()
     {
         return $this->hasOne(Alumno::class);
+    }
+
+    public function adminlte_image()
+    {
+        return auth()->user()->profile_photo_url;
+    }
+
+    public function adminlte_desc()
+    {
+        return "Rol de Admin";
     }
 
 }
