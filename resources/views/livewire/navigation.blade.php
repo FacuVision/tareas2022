@@ -1,4 +1,4 @@
-<div>
+<div class="w-full fixed">
 
 
 <nav class="bg-gray-800" x-data="{open:false}">
