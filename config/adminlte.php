@@ -249,12 +249,20 @@ return [
 
         [
             'text' => 'Crear Tareas',
-            'url' => '#',
-            'class' => 'bg bg-warning',
+            'route' => 'admin.carpetas.index',
             'label' => 'nuevo',
             'label_color' => 'warning',
             'icon' => 'fas fa-apple-alt'
         ],
+
+        [
+            'text' => 'Revisar Tareas',
+            'url'  => 'admin/settings',
+            'label' => 'revision',
+            'label_color' => 'primary',
+            'icon' => 'fa fa-archive'
+        ],
+
 
         ['header' => ' '],
 
@@ -296,6 +304,11 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-puzzle-piece',
         ],
+        [
+            'text' => 'Materias',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-user',
+        ],
 
         ['header' => 'MOTIVACION'],
         [
@@ -309,12 +322,6 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
 
-        ['header' => 'REVISIONES'],
-        [
-            'text' => 'Ver respuestas de tareas',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
 
         ['header' => 'SEGURIDAD'],
         [

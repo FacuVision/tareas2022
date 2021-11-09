@@ -12,6 +12,8 @@ class Carpeta extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     //UNA CARPETA POSEE MUCHAS TAREAS EN SU INTERIOR
     public function tareas()
     {
