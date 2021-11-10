@@ -20,10 +20,10 @@
                 </div>
             @endif
             @if (session('mensaje'))
-                            <div class="alert alert-warning">
-                                <strong>{{session('mensaje')}}</strong>
-                            </div>
-                        @endif
+                <div class="alert alert-warning">
+                    <strong>{{ session('mensaje') }}</strong>
+                </div>
+            @endif
 
         </div>
         <div class="card-body">
@@ -59,32 +59,42 @@
 
                 <div class="form-group">
                     {!! Form::label('materia', 'Materia') !!}
-
-                    <select name="materia_id" class="form-control" placeholder="Elija una materia">
+                    {!! Form::select('materia_id', $selectmat, $carpeta->materia->materia_id, ['required' => true, 'placeholder' => 'Elija una materia...', 'class' => 'form-control']) !!}
+                    {{-- <select name="materia_id" class="form-control" placeholder="Elija una materia">
                         @foreach ($materias as $materia)
-                            <option value={{ $materia->id }}>{{ $materia->nombre }}</option>
+                            <option value={{ $materia->id }}>
+                                {{ $materia->nombre }}
+                            </option>
                         @endforeach
-                    </select>
+                    </select> --}}
                 </div>
+
 
                 <div class="form-group">
                     {!! Form::label('seccion', 'Seccion') !!}
-
-                    <select required name="seccion_id" class="form-control" placeholder="Elija una seccion y grado">
+                    {!! Form::select('seccion_id', $selectsec, $carpeta->seccion->id, ['required' => true, 'placeholder' => 'Elija una seccion...', 'class' => 'form-control']) !!}
+                    {{-- <select required name="seccion_id" class="form-control" placeholder="Elija una seccion y grado">
                         @foreach ($secciones as $seccion)
-                            <option value={{ $seccion->id }}>{{ $seccion->grado->grado }} DE {{ $seccion->grado->nivel}} - {{ $seccion->nombre }}</option>
+
+                            <option value={{ $seccion->id }}
+                                @if ($seccion->id == $carpeta->seccion->id)
+                                    selected
+                                @endif
+                            >
+                                {{ $seccion->grado->grado }} DE {{ $seccion->grado->nivel}} - {{ $seccion->nombre }}
+                            </option>
                         @endforeach
-                    </select>
+                    </select> --}}
                 </div>
 
 
 
                 <div class="form-group">
                     {!! Form::label('estado', 'Estado') !!}
-                    {!! Form::select("estado", ["0"=>"inactivo", "1"=>"activo"], $carpeta->estado, ["class"=>"form-control"]) !!}
+                    {!! Form::select('estado', ['0' => 'inactivo', '1' => 'activo'], $carpeta->estado, ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::hidden("user_id", Auth::user()->id) !!}
+                {!! Form::hidden('user_id', Auth::user()->id) !!}
 
 
                 {!! Form::submit('Actualizar', ['class' => 'btn btn-success']) !!}

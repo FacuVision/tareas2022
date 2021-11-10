@@ -88,11 +88,25 @@ class CarpetaController extends Controller
     public function edit(Carpeta $carpeta)
     {
         $docente = Docente::findOrFail(auth()->user()->id);
-
+        //Array de materias
         $materias = $docente->materias;
+        //Array vacio
+        $selectmat = [];
+        //Recorrido del modelo guardandolo en el array vacio
+        foreach($materias as $materia){
+            $selectmat[$materia->id] = $materia->nombre;
+        }
+        //------------------------------------------------------------//
+        //Array de secciones
         $secciones = $docente->secciones;
-
-        return view("admin.carpetas.edit", compact('carpeta', 'materias','secciones'));
+        //Array vacio
+        $selectsec = [];
+        //Recorrido del modelo guardandolo en el array vacio
+        foreach($secciones as $seccion){
+            $selectsec[$seccion->id] = $seccion->grado->grado . " DE ". $seccion->grado->nivel . " - " . $seccion->nombre;
+        }
+        // return view("admin.carpetas.edit", compact('carpeta', 'materias','secciones'));
+        return view("admin.carpetas.edit", compact('carpeta', 'selectmat','selectsec'));
     }
 
     /**

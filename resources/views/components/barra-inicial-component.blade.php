@@ -20,14 +20,16 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         <style>
             .gradient {
-              background: linear-gradient(80deg, #c4fff7 30%, #ffd26f 70%);
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background: linear-gradient(90deg, #c4fff7 30%, #ffd26f 70%);
             }
           </style>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100 gradient">
             @livewire('navigation-well')
 
             <!-- Page Heading -->
