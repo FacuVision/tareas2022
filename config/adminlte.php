@@ -301,7 +301,7 @@ return [
         ],
         [
             'text' => 'Secciones',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/secciones',
             'icon' => 'fas fa-puzzle-piece',
         ],
         [

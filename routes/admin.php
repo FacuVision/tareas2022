@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CarpetaController;
 use App\Http\Controllers\Admin\MensajeController;
 use App\Http\Controllers\Admin\TareaController;
+use App\Http\Controllers\Admin\SeccionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,5 +16,6 @@ Route::resource('users', UserController::class)->names('admin.users');
 Route::resource('carpetas', CarpetaController::class)->names('admin.carpetas');
 Route::resource('mensajes', MensajeController::class)->names('admin.mensajes');
 Route::resource('tareas', TareaController::class)->names('admin.tareas');
+Route::resource('secciones', SeccionController::class)->names('admin.secciones');
 
 

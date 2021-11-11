@@ -135,7 +135,7 @@ class CarpetaController extends Controller
 
         if ($request->estado == 1) {
             if ($request->fecha_final < Carbon::now()) {
-                return redirect()->route('admin.carpetas.edit',$carpeta)->with('mensaje','No puedes activar una carpeta antigua');
+                return redirect()->route('admin.carpetas.edit',$carpeta)->with('mensaje','No puedes activar una carpeta antigua. Verifique las fechas');
             }
         }
 

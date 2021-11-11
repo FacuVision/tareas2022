@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-<h1>Menu de Creación de Grados </h1>
+<h1>Menu de Creación de Secciones</h1>
 @stop
 
 @section('content')
@@ -23,20 +23,18 @@
     </div>
     <div class="card-body">
 
-        {!! Form::open(['method' => 'POST', 'route' => 'admin.grados.store']) !!}
+        {!! Form::open(['method' => 'POST', 'route' => 'admin.secciones.store']) !!}
 
         <div class="form-group">
             <div class="form-group">
-                {!! Form::label('grado', 'Grado') !!}
-                {!! Form::select('grado', $gr, null, ['placeholder' => 'Elija un grado...', 'class' => 'form-control']); !!}
-
+                {!! Form::label('nombre', 'Sección') !!}
+                {!! Form::select('nombre', $selectsec, null, ['placeholder' => 'Elija una sección...', 'class' => 'form-control']); !!}
                 {{-- {!! Form::text('grado', null, ['class' => 'form-control']) !!} --}}
             </div>
 
-
             <div class="form-group">
-                {!! Form::label('nivel', 'Nivel') !!}
-                {!! Form::select('nivel', $niv, null, ['placeholder' => 'Elija un nivel...', 'class' => 'form-control']); !!}
+                {!! Form::label('grado_id', 'Grado') !!}
+                {!! Form::select('grado_id', $selectgr, null, ['placeholder' => 'Elija un grado...', 'class' => 'form-control']); !!}
             </div>
         </div>
 

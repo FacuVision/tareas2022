@@ -13,7 +13,7 @@ class Seccion extends Model
 {
     use HasFactory;
 
-
+    protected $guarded = [];
     //una seccion pertenece a un solo grado
     public function grado()
     {

@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Menu de Grados </h1>
+    <h1>Menu de Secciones </h1>
 @stop
 
 @section('content')
@@ -13,36 +13,42 @@
                 <strong>{{ session('mensaje') }}</strong>
             </div>
         @endif
+        @if (session('warning'))
+            <div class="alert alert-warning">
+                <strong>{{ session('warning') }}</strong>
+            </div>
+        @endif
         <div class="card-header">
-            <a href="{{ route('admin.grados.create') }}" class="btn btn-primary"> Crear Grado</a>
+            <a href="{{ route('admin.secciones.create') }}" class="btn btn-primary"> Crear Sección</a>
         </div>
 
 
         <div class="card-body">
-            <table id="grado" class="table table-sm table-striped " style="width:100%">
+            <table id="seccion" class="table table-sm table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Sección</th>
                         <th>Grado</th>
-                        <th>Nivel</th>
                         <th style="width:20px;text-align:center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($grados as $grado)
+                    @foreach ( $secciones as $seccion)
                         <tr>
-                            <td>{{ $grado->id }}</td>
-                            <td>{{ $grado->grado }}</td>
-                            <td>{{ $grado->nivel }}</td>
+
+                            <td>{{$seccion->id}}</td>
+                            <td>{{$seccion->nombre}}</td>
+                            <td>{{$seccion->grado->grado. " DE ". $seccion->grado->nivel}}</td>
                             <td style="display: flex">
 
                                 {{-- Editar --}}
 
-                                <a href="{{ route('admin.grados.edit', $grado) }}" class="btn btn-success">Editar</a>
+                                <a href="{{ route('admin.secciones.edit', $seccion) }}" class="btn btn-success">Editar</a>
 
                                 {{-- Eliminar --}}
 
-                                <form action="{{ route('admin.grados.destroy', $grado) }}" method="post"
+                                <form action="{{ route('admin.secciones.destroy', $seccion) }}" method="post"
                                     class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')
