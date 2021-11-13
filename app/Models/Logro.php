@@ -10,7 +10,7 @@ use App\Models\Image;
 class Logro extends Model
 {
     use HasFactory;
-
+    protected $guarded =[];
     //Muchos logros son asignados a muchos alumnos
 
     public function alumnos()

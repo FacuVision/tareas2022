@@ -1,5 +1,8 @@
 <?php
 
+use App\Providers\EventServiceProvider;
+use Illuminate\Events\EventServiceProvider as EventsEventServiceProvider;
+
 return [
 
     /*

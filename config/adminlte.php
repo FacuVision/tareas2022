@@ -266,12 +266,7 @@ return [
 
         ['header' => ' '],
 
-        ['header' => 'MI PERFIL'],
-        [
-            'text' => 'Ver mi perfil',
-            'url'  => '#',
-            'icon' => 'fas fa-graduation-cap',
-        ],
+
 
 
 
@@ -313,7 +308,7 @@ return [
         ['header' => 'MOTIVACION'],
         [
             'text' => 'Logros',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/logros',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
