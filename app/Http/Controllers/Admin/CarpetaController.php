@@ -20,7 +20,6 @@ class CarpetaController extends Controller
     {
         //OBTENEMOS LA INFORMACION DEL DOCENTE LOGUEADO HASTA EL MOMENTO
         $docente = Docente::findOrFail(auth()->user()->id);
-
         return view("admin.carpetas.index",compact('docente'));
     }
 
@@ -88,7 +87,7 @@ class CarpetaController extends Controller
     public function edit(Carpeta $carpeta)
     {
         $docente = Docente::findOrFail(auth()->user()->id);
-        //Array de materias
+        //Array de materias del docente
         $materias = $docente->materias;
         //Array vacio
         $selectmat = [];
@@ -97,7 +96,8 @@ class CarpetaController extends Controller
             $selectmat[$materia->id] = $materia->nombre;
         }
         //------------------------------------------------------------//
-        //Array de secciones
+
+        //Array de secciones del docente
         $secciones = $docente->secciones;
         //Array vacio
         $selectsec = [];

@@ -67,7 +67,6 @@ class SeccionController extends Controller
         Seccion::create($request->all());
         return redirect()->route('admin.secciones.index')->with('mensaje', 'Sección creada correctamente');
 
-
     }
 
     /**

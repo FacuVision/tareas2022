@@ -11,6 +11,8 @@ use App\Models\Image;
 
 class Tarea extends Model
 {
+    protected $guarded= [];
+    
     use HasFactory;
 
     //Muchas tareas son asignadas a muchos alumnos

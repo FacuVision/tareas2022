@@ -10,10 +10,14 @@
     <p>Aqui podras añadir, eliminar y ver las tareas que esten dentro de tu carpeta</p>
 
     <div class="card">
+        <div class="card-header">
+            <a href="{{ route('admin.carpetas.index') }}" class="btn btn-primary">Volver a tus Carpetas</a>
+        </div>
+
         <div class="card-body">
 
 
-            
+
             {{-- MI CARPETA - INFORMACION ----------------------------------------------------------------------}}
             <div class="card" style="width: 18rem; display:inline-block; margin: 0px 10px">
 
@@ -50,6 +54,7 @@
         </div>
 
         <div class="card-footer">
+
             <a href="{{ route('admin.carpetas.edit', $carpeta) }}" class="btn btn-success">Editar esta carpeta</a>
 
             <form style="display: inline-block;" action="{{ route('admin.carpetas.destroy', $carpeta)}}" method="post">
@@ -81,7 +86,7 @@
 
             <h3>Tus Tareas</h3>
             <br>
-            <a href="{{ route('admin.tareas.create') }}" class="btn btn-warning"> Añadir una nueva tarea</a>
+            <a href="{{ route('admin.crear_tareas.show', $carpeta) }}" class="btn btn-warning"> Añadir una nueva tarea</a>
         </div>
 
 
@@ -113,21 +118,6 @@
 
                                 <a style="margin: 0px 5px" href="{{ route('admin.tareas.show', $tarea) }}"
                                     class="btn btn-primary">Ver</a>
-
-                                {{-- Editar --}}
-
-                                <a href="{{ route('admin.tareas.edit', $tarea) }}" class="btn btn-success">Editar</a>
-
-                                {{-- Eliminar --}}
-
-                                <form action="{{ route('admin.tareas.destroy', $tarea) }}" method="post"
-                                    class="formulario-eliminar">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger"
-                                        style="margin: 0px 0px 0px 5px;">
-                                </form>
-
                             </td>
                         </tr>
                     @endforeach

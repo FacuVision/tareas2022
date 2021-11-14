@@ -96,27 +96,12 @@
 
                 {!! Form::hidden('user_id', Auth::user()->id) !!}
 
-
                 {!! Form::submit('Actualizar', ['class' => 'btn btn-success']) !!}
 
                 {!! Form::close() !!}
 
             </div>
         @stop
-
-        {{-- id: 10,
-         titulo: "alias",
-         sesion: 3,
-         descripcion: "Non et voluptates quo ad praesentium. Numquam aut id odit dolore est reiciendis minus suscipit.",
-         fecha_inicio: "2021-11-06",
-         fecha_final: "2021-11-08",
-         estado: "1",
-         materia_id: 8,
-         user_id: 2,
-         seccion_id: 1,
-         created_at: "2021-11-06 23:15:29",
-         updated_at: "2021-11-06 23:15:29", --}}
-
 
         @section('css')
 
