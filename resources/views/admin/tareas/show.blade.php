@@ -22,7 +22,7 @@
 
 
 
-            {{-- MI TAREA - INFORMACION ----------------------------------------------------------------------}}
+            {{-- MI TAREA - INFORMACION -------------------------------------------------------------------- --}}
             <div class="card" style="width: 18rem; display:inline-block; margin: 0px 10px">
 
                 @if ($tarea->estado == 0)
@@ -42,10 +42,11 @@
         <div class="card-footer">
             <a href="{{ route('admin.tareas.edit', $tarea) }}" class="btn btn-success">Editar esta tarea</a>
 
-            <form style="display: inline-block;" action="{{ route('admin.tareas.destroy', $tarea)}}" method="post">
+            <form style="display: inline-block;" action="{{ route('admin.tareas.destroy', $tarea) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <input type="submit" id="delete" value="Eliminar esta tarea" class="btn btn-danger" style="margin: 0px 0px 0px 5px;">
+                <input type="submit" id="delete" value="Eliminar esta tarea" class="btn btn-danger"
+                    style="margin: 0px 0px 0px 5px;">
             </form>
 
         </div>
@@ -55,7 +56,8 @@
 
     @if ($tarea->actividades->isEmpty())
         <div class="card">
-            <a href="{{ route('admin.actividades.show',$tarea) }}" class="btn btn-warning"><strong> Ir al menu de creacion de actividades</strong></a>
+            <a href="{{ route('admin.actividades.show', $tarea) }}" class="btn btn-warning"><strong> Ir al menu de creacion
+                    de actividades</strong></a>
         </div>
     @endif
 
@@ -89,10 +91,11 @@
                     @foreach ($tarea->actividades as $actividad)
                         <tr>
                             <td>{{ $actividad->id }}</td>
-                            <td>{{ $actividad->descripcion}}</td>
+                            <td>{{ $actividad->descripcion }}</td>
                             <td>{{ $actividad->puntaje_max }}</td>
 
-                            @if ($tarea->recurso != " ")
+
+                            @if ($tarea->recurso != ' ')
                                 <td><strong class="text text-success">Recurso</strong></td>
                             @else
                                 <td><strong class="text text-secondary">Sin recurso</strong></td>
@@ -100,25 +103,10 @@
 
                             <td style="display: flex">
 
-                                {{-- Ver --}}
-
-                                <a style="margin: 0px 5px" href="{{ route('admin.actividades.show', $actividad) }}"
-                                    class="btn btn-primary">Ver</a>
-
                                 {{-- Editar --}}
 
-                                <a href="{{ route('admin.actividades.edit', $actividad) }}" class="btn btn-success">Editar</a>
-
-                                {{-- Eliminar --}}
-
-                                <form action="{{ route('admin.actividades.destroy', $actividad) }}" method="post"
-                                    class="formulario-eliminar">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger"
-                                        style="margin: 0px 0px 0px 5px;">
-                                </form>
-
+                                <a href="{{ route('admin.actividades.edit', $actividad) }}"
+                                    class="btn btn-success">Editar</a>
                             </td>
                         </tr>
                     @endforeach
@@ -126,7 +114,20 @@
                 </tbody>
             </table>
         </div>
+
+        @if (!$tarea->actividades->isEmpty())
+            <div class="card-header">
+                <form action="{{ route('admin.actividades.destroy', $tarea) }}" method="post" class="formulario-eliminar">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" id="delete" value="Eliminar todas las actividades" class="btn btn-danger" style="margin: 0px 0px 0px 5px;">
+                </form>
+            </div>
+
+        @endif
+
     </div>
+
 
 
 @stop

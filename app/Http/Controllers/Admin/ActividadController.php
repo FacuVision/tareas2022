@@ -37,22 +37,20 @@ class ActividadController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-            "hiden_json" => "required"
+            "hiden_json" => "required",
         ]);
 
 
         $tarea = Tarea::findOrFail($request->tarea_id);
         $carpeta = $tarea->carpeta;
 
-
-
         $listaActividades = json_decode($request->hiden_json);
 
         if ($listaActividades==null) {
             return redirect()->route('admin.actividades.show',$tarea)->with('error', 'Las actividades no pueden estar vacias');
         }
+
         $array = [];
 
         foreach ($listaActividades as $actividad => $value) {
@@ -106,7 +104,10 @@ class ActividadController extends Controller
      */
     public function edit(Actividad $actividad)
     {
-        //
+
+        $tipos = ["0"=>"Respuesta corta", "1"=>"Respuesta larga", "2"=>"Link de Video", "3"=>"Link de carpeta de Drive"];
+
+        return view("admin.actividades.index", compact('actividad','tipos'));
     }
 
     /**
@@ -118,7 +119,19 @@ class ActividadController extends Controller
      */
     public function update(Request $request, Actividad $actividad)
     {
-        //
+        $tipos = ["0"=>"Respuesta corta", "1"=>"Respuesta larga", "2"=>"Link de Video", "3"=>"Link de carpeta de Drive"];
+
+        $request->validate([
+            "descripcion" => "required",
+            "tipo" => "required:in:0,1,2,3",
+        ]);
+
+        $actividad->update($request->all());
+
+        $tarea = $actividad->tarea;
+        $carpeta = $tarea->carpeta;
+
+        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje', 'Actividad modificada correctamente');
     }
 
     /**
@@ -127,8 +140,16 @@ class ActividadController extends Controller
      * @param  \App\Models\Actividad  $actividad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Actividad $actividad)
+    public function destroy(Tarea $actividad)
     {
-        //
+
+
+        $tarea = $actividad;
+        $carpeta = $tarea->carpeta;
+        $tarea->actividades()->delete();
+
+
+        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje', 'Actividades eliminadas correctamente');
+
     }
 }

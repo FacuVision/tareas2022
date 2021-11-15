@@ -3,11 +3,67 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Sistema Web de Gestion de tareas Escolares</h1>
+    <h1>Editar Actividad</h1>
 @stop
 
 @section('content')
-    <p>¡Bienvenido al panel de administracion!</p>
+
+    <div class="card">
+        <div class="card-header">
+
+            @if (count($errors) > 0)
+                <div class="text-danger">
+
+                    @foreach ($errors->all() as $message)
+                        <li>{{ $message }}</li>
+                    @endforeach
+
+                </div>
+            @endif
+
+            @if (session('mensaje'))
+                <div class="alert alert-success">
+                    <strong>{{ session('mensaje') }}</strong>
+                </div>
+            @endif
+
+            @if (session('error'))
+            <div class="alert alert-warning">
+                <strong>{{ session('error') }}</strong>
+            </div>
+        @endif
+
+        </div>
+        <div class="card-body">
+
+            {!! Form::model($actividad, ['route' => ['admin.actividades.update', $actividad], 'method' => 'PUT']) !!}
+
+            <div class="form-group">
+
+                <div class="form-group">
+                    {!! Form::label('descripcion', 'Descripcion') !!}
+                    {!! Form::text('descripcion', $actividad->descripcion, ['required' => true, 'class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('recurso', 'Recurso (opcional)') !!}
+                    {!! Form::text('recurso', $actividad->recurso, ['class' => 'form-control']) !!}
+                </div>
+
+
+                <div class="form-group">
+                    {!! Form::label('tipo', 'Tipo') !!}
+                    {!! Form::select('tipo', $tipos, $actividad->tipo, ['required' => true,  'class' => 'form-control']) !!}
+                </div>
+
+
+                <div class="form-group">
+                    {!! Form::submit('Actualizar', ['class' => 'btn btn-success']) !!}
+                </div>
+
+                {!! Form::close() !!}
+
+            </div>
 @stop
 
 @section('css')
