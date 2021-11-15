@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class LogroController extends Controller
 {
+
+    public $tipoL = [
+        0 => 'Basico',
+        1 => 'Regular',
+        2 => 'Normal',
+        3 => 'Bueno',
+        4 => 'Muy bueno',
+        5 => 'Excelente',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -29,14 +38,7 @@ class LogroController extends Controller
     public function create()
     {
 
-        $tipo = [
-                0 => 'Basico',
-                1 => 'Regular',
-                2 => 'Normal',
-                3 => 'Bueno',
-                4 => 'Muy bueno',
-                5 => 'Excelente',
-                ];
+        $tipo = $this->tipoL;
         return view('admin.logros.create', compact('tipo'));
     }
 
@@ -50,26 +52,26 @@ class LogroController extends Controller
     {
 
         $request->validate([
-            'nombre' =>'required|string',
-            'descripcion' =>'required|string',
-            'tipo' =>'required|string',
-            'file' =>'required|image',
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+            'tipo' => 'required|string',
+            'file' => 'required|image',
         ]);
 
-        $logro = Logro::create(['nombre' => $request->nombre,
-                                'descripcion' => $request->descripcion,
-                                'tipo' => $request->tipo,
-                                ]);
+        $logro = Logro::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'tipo' => $request->tipo,
+        ]);
 
-        if($request->file('file')){
+        if ($request->file('file')) {
             $url = Storage::disk('public')->put('_logros', $request->file('file'));
             $logro->image()->create([
                 'url' => $url
             ]);
         }
 
-        return redirect()->route('admin.logros.index')->with('mensaje','El logro ha sido creado correctamente');
-
+        return redirect()->route('admin.logros.index')->with('mensaje', 'El logro ha sido creado correctamente');
     }
 
     /**
@@ -91,7 +93,8 @@ class LogroController extends Controller
      */
     public function edit(Logro $logro)
     {
-        //
+        $tipo = $this->tipoL;
+        return view('admin.logros.edit', compact('tipo', 'logro'));
     }
 
     /**
@@ -103,7 +106,33 @@ class LogroController extends Controller
      */
     public function update(Request $request, Logro $logro)
     {
-        //
+
+        $request->validate([
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+            'tipo' => 'required|string',
+        ]);
+
+        $logro->update([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'tipo' => $request->tipo
+        ]);
+
+        if ($request->file('file')) {
+            $url = Storage::disk('public')->put('_logros', $request->file('file'));
+            if ($logro->image) {
+                Storage::delete($logro->image->url);
+                $logro->image()->update([
+                    'url' => $url
+                ]);
+            } else {
+                $logro->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+        return redirect()->route('admin.logros.edit', $logro)->with('mensaje','El logro ha sido modificado correctamente');
     }
 
     /**
@@ -119,6 +148,6 @@ class LogroController extends Controller
         Storage::disk('public')->delete($logro->image->url);
         $logro->delete();
 
-        return redirect()->route('admin.logros.index')->with('mensaje','Logro eliminado correctamente');
+        return redirect()->route('admin.logros.index')->with('mensaje', 'Logro eliminado correctamente');
     }
 }
