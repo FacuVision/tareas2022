@@ -9,6 +9,8 @@ use App\Models\Tarea;
 
 class Actividad extends Model
 {
+    protected $guarded = [];
+    
     use HasFactory;
 
     //UNA ACTIVIDAD SOLO TIENE UNA RESPUESTA

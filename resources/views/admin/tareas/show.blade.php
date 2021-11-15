@@ -55,7 +55,7 @@
 
     @if ($tarea->actividades->isEmpty())
         <div class="card">
-            <a href="{{ route('admin.actividades.create') }}" class="btn btn-warning"><strong> Ir al menu de creacion de actividades</strong></a>
+            <a href="{{ route('admin.actividades.show',$tarea) }}" class="btn btn-warning"><strong> Ir al menu de creacion de actividades</strong></a>
         </div>
     @endif
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Actividad;
+use App\Models\Tarea;
 use Illuminate\Http\Request;
 
 class ActividadController extends Controller
@@ -25,7 +26,7 @@ class ActividadController extends Controller
      */
     public function create()
     {
-        return view("admin.actividades.create");
+
     }
 
     /**
@@ -36,7 +37,53 @@ class ActividadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            "hiden_json" => "required"
+        ]);
+
+
+        $tarea = Tarea::findOrFail($request->tarea_id);
+        $carpeta = $tarea->carpeta;
+
+
+
+        $listaActividades = json_decode($request->hiden_json);
+
+        if ($listaActividades==null) {
+            return redirect()->route('admin.actividades.show',$tarea)->with('error', 'Las actividades no pueden estar vacias');
+        }
+        $array = [];
+
+        foreach ($listaActividades as $actividad => $value) {
+            $array[$actividad] = $value;
+        }
+
+        $sumatotal = 0;
+
+        foreach ($array as $act) {
+
+            $sumatotal = $sumatotal + $act->puntaje_max;
+        }
+
+        if($sumatotal != 20){
+            return redirect()->route('admin.actividades.show',$tarea)->with('error', 'La suma de los puntajes deben de ser de 20 pts');
+        }
+
+
+        foreach ($array as $act) {
+
+            Actividad::create([
+                "descripcion" => $act->descripcion,
+                "puntaje_max" => $act->puntaje_max,
+                "tipo" => $act->tipo,
+                "tarea_id" => $request->tarea_id,
+                "recurso" => $act->recurso
+            ]);
+        }
+
+        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje', 'Actividades creadas correctamente');
+
     }
 
     /**
@@ -45,9 +92,10 @@ class ActividadController extends Controller
      * @param  \App\Models\Actividad  $actividad
      * @return \Illuminate\Http\Response
      */
-    public function show(Actividad $actividad)
+    public function show(Tarea $actividad)
     {
-        //
+        $tarea = $actividad;
+        return view("admin.actividades.create", compact('tarea'));
     }
 
     /**
