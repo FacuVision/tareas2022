@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Menu de creacion de carpetas </h1>
+    <h1>Menu de creacion de Tareas </h1>
 @stop
 
 @section('content')
@@ -37,10 +37,10 @@
                     {!! Form::textarea('descripcion', null, ['rows' => 5, 'required' => true, 'placeholder' => 'Ingrese una descripcion...', 'class' => 'form-control']) !!}
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     {!! Form::label('estado', 'Estado') !!}
                     {!! Form::select('estado', $estados, $estados[0], ['required' => true,  'class' => 'form-control']) !!}
-                </div>
+                </div> --}}
 
                 {!! Form::hidden("carpeta_id", $carpeta->id) !!}
 
@@ -60,7 +60,4 @@
         @stop
 
         @section('js')
-            <script>
-                console.log('Hi!');
-            </script>
         @stop

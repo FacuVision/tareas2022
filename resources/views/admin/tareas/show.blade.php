@@ -14,8 +14,19 @@
 
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('admin.carpetas.show', $carpeta) }}" class="btn btn-primary">Volver a tu Carpeta</a>
 
+        @if (session('mensaje'))
+            <div class="alert alert-success">
+                <strong>{{ session('mensaje') }}</strong>
+            </div>
+        @endif
+        @if (session('error'))
+        <div class="alert alert-warning">
+            <strong>{{ session('error') }}</strong>
+        </div>
+    @endif
+
+            <a href="{{ route('admin.carpetas.show', $carpeta) }}" class="btn btn-primary">Volver a tu Carpeta</a>
         </div>
 
         <div class="card-body">
@@ -64,9 +75,9 @@
     <div class="card">
         <div class="card-header">
 
-            @if (session('mensaje'))
+            @if (session('mensaje_act'))
                 <div class="alert alert-success">
-                    <strong>{{ session('mensaje') }}</strong>
+                    <strong>{{ session('mensaje_act') }}</strong>
                 </div>
             @endif
 

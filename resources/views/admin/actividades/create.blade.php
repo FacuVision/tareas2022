@@ -3,11 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Sistema Web de Gestion de tareas Escolares</h1>
+    <h1>Añadir actividades a tu tarea</h1>
 @stop
 
 @section('content')
-    <p>¡Bienvenido al panel de administracion!</p>
+    <p>Este es el menu de creacion de actividades para las tareas (Recuerda que la suma de los puntos debe de ser equivalente a 20)</p>
 
     <div class="card">
 
@@ -42,7 +42,7 @@
 
 
             <form action="" id="frmActividad" class="m-3">
-                <label class="label">Crear Actividad</label>
+                <label class="label">Descripcion:</label>
 
                 <div class="columns">
                     <div class="column">
@@ -53,6 +53,7 @@
                 <div class="columns">
 
                     <div class="column">
+                        <label class="label">Recurso (opcional):</label>
                         <input class="form-control" required class="input" name="recurso" type="text"
                             placeholder="Recurso (opcional)" autocomplete="off">
                     </div>
@@ -62,10 +63,14 @@
 
                     <div class="columns">
                         <div class="column">
+                            <label class="label">Puntaje Maximo:</label>
+
                             <input class="form-control" required class="input" name="puntaje_max" type="text"
                                 placeholder="Puntaje maximo (1 al 10)" autocomplete="off">
                         </div>
                         <div class="column">
+                            <label class="label">Tipo de pregunta:</label>
+
                             <div class="select">
                             <select name="tipo" id="tipo">
                                 <option value="0">Pregunta Corta</option>
@@ -77,6 +82,8 @@
 
                         </div>
                         <div class="column">
+                            <label class="label">Añadir:</label>
+
                             <button id="btnAdd" type="button" class="btn btn-success">
                                 <span class="icon">
                                     <i class="fas fa-plus"></i>

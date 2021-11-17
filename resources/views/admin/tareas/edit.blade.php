@@ -47,12 +47,8 @@
                     {!! Form::select('estado', $estados, $tarea->estado, ['required' => true,  'class' => 'form-control']) !!}
                 </div>
 
-                {{-- <div class="form-group">
-                    {!! Form::label('carpeta_id', 'Mover a otra carpeta') !!}
-                    {!! Form::select('carpeta_id', $carpetas_disponibles, $tarea->carpeta_id, ['required' => true,  'class' => 'form-control']) !!}
-                </div> --}}
-
                 <div class="form-group">
+                    <a  class="btn btn-secondary" href="{{ route('admin.tareas.show', $tarea) }}"> Volver </a>
                     {!! Form::submit('Actualizar', ['class' => 'btn btn-success']) !!}
                 </div>
 

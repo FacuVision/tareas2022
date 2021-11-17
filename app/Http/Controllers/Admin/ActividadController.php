@@ -80,7 +80,7 @@ class ActividadController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje', 'Actividades creadas correctamente');
+        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje_act', 'Actividades creadas correctamente');
 
     }
 
@@ -131,7 +131,7 @@ class ActividadController extends Controller
         $tarea = $actividad->tarea;
         $carpeta = $tarea->carpeta;
 
-        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje', 'Actividad modificada correctamente');
+        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje_act', 'Actividad modificada correctamente');
     }
 
     /**
@@ -149,7 +149,7 @@ class ActividadController extends Controller
         $tarea->actividades()->delete();
 
 
-        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje', 'Actividades eliminadas correctamente');
+        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje_act', 'Actividades eliminadas correctamente');
 
     }
 }

@@ -60,31 +60,13 @@
                 <div class="form-group">
                     {!! Form::label('materia', 'Materia') !!}
                     {!! Form::select('materia_id', $selectmat, $carpeta->materia->materia_id, ['required' => true, 'placeholder' => 'Elija una materia...', 'class' => 'form-control']) !!}
-                    {{-- <select name="materia_id" class="form-control" placeholder="Elija una materia">
-                        @foreach ($materias as $materia)
-                            <option value={{ $materia->id }}>
-                                {{ $materia->nombre }}
-                            </option>
-                        @endforeach
-                    </select> --}}
+
                 </div>
 
 
                 <div class="form-group">
                     {!! Form::label('seccion', 'Seccion') !!}
                     {!! Form::select('seccion_id', $selectsec, $carpeta->seccion->id, ['required' => true, 'placeholder' => 'Elija una seccion...', 'class' => 'form-control']) !!}
-                    {{-- <select required name="seccion_id" class="form-control" placeholder="Elija una seccion y grado">
-                        @foreach ($secciones as $seccion)
-
-                            <option value={{ $seccion->id }}
-                                @if ($seccion->id == $carpeta->seccion->id)
-                                    selected
-                                @endif
-                            >
-                                {{ $seccion->grado->grado }} DE {{ $seccion->grado->nivel}} - {{ $seccion->nombre }}
-                            </option>
-                        @endforeach
-                    </select> --}}
                 </div>
 
 
@@ -96,6 +78,7 @@
 
                 {!! Form::hidden('user_id', Auth::user()->id) !!}
 
+                <a  class="btn btn-secondary" href="{{ route('admin.carpetas.show', $carpeta) }}"> Volver </a>
                 {!! Form::submit('Actualizar', ['class' => 'btn btn-success']) !!}
 
                 {!! Form::close() !!}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alumno;
 use App\Models\Carpeta;
 use App\Models\Docente;
 use App\Models\Tarea;
@@ -42,7 +43,6 @@ class TareaController extends Controller
         $request->validate([
             "titulo" => "required|string|max:200",
             "descripcion"=> "required",
-            "estado"=> "required|in:0,1",
             "carpeta_id"=> "required"
         ]);
 
@@ -50,7 +50,13 @@ class TareaController extends Controller
         $tarea = Tarea::create($request->all());
         $carpeta = Carpeta::findOrFail($request->carpeta_id);
 
-        return view("admin.tareas.show", compact('tarea','carpeta'))->with('mensaje','tarea creada correctamente');
+        //ASIGNACION DE LAS TAREAS A LOS ALUMNOS
+
+            $alumnos_seccion_x = Alumno::where("seccion_id",$carpeta->seccion_id)->get();
+
+            $tarea->alumnos()->sync($alumnos_seccion_x->pluck("user_id"));
+
+        return redirect()->route('admin.tareas.show', compact('tarea','carpeta'))->with('mensaje', 'tarea creada correctamente');
     }
 
     /**
@@ -75,8 +81,6 @@ class TareaController extends Controller
     public function edit(Tarea $tarea)
     {
         $estados = ["0" => "borrador", "1"=>"publicado"];
-        // $carpetas_disponibles =  Auth::user()->docente->carpetas->pluck('titulo','id');
-
         return view("admin.tareas.edit",compact('tarea','estados'));
     }
 
@@ -90,10 +94,25 @@ class TareaController extends Controller
     public function update(Request $request, Tarea $tarea)
     {
 
-        $tarea->update($request->all());
-        $carpeta = $tarea->carpeta;
-        return view("admin.tareas.show",compact('tarea','carpeta'))->with('mensaje', 'Tarea modificada correctamente');
-        // return redirect()->route('admin.carpetas.index')->with('mensaje', 'Tarea modificada correctamente');
+        $estados = ["0" => "borrador", "1"=>"publicado"];
+
+        $request->validate([
+            "titulo" => "required|string|max:200",
+            "descripcion"=> "required",
+        ]);
+
+        if ($request->estado == 1 && $tarea->actividades->isEmpty()) {
+
+            return redirect()->route('admin.tareas.edit', compact('tarea','estados'))->with('mensaje', 'No puedes publicar una tarea sin actividades');
+
+        } else{
+            $tarea->update($request->all());
+            $carpeta = $tarea->carpeta;
+
+            return redirect()->route('admin.tareas.show', compact('tarea','carpeta'))->with('mensaje', 'Tarea modificada correctamente');
+        }
+
+
     }
 
     /**
@@ -104,10 +123,10 @@ class TareaController extends Controller
      */
     public function destroy(Tarea $tarea)
     {
+        $carpeta = $tarea->carpeta;
         $tarea->delete();
-        $docente = Docente::findOrFail(auth()->user()->id);
 
-        return redirect()->route('admin.carpetas.index', $docente)->with('mensaje', 'Tarea eliminada correctamente');
+        return redirect()->route('admin.carpetas.show', $carpeta)->with('mensaje', 'Tarea eliminada correctamente');
 
     }
 }
