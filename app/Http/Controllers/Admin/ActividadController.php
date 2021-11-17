@@ -143,10 +143,13 @@ class ActividadController extends Controller
     public function destroy(Tarea $actividad)
     {
 
-
         $tarea = $actividad;
         $carpeta = $tarea->carpeta;
         $tarea->actividades()->delete();
+
+        $tarea->update([
+            "estado" => "0"
+        ]);
 
 
         return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje_act', 'Actividades eliminadas correctamente');

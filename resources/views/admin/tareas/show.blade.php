@@ -91,8 +91,9 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Titulo</th>
+                        <th>Descripcion</th>
                         <th>Puntaje Max</th>
+                        <th>Tipo Pregunta</th>
                         <th>Recurso</th>
 
                         <th style="width:20px;text-align:center">Acciones</th>
@@ -105,11 +106,26 @@
                             <td>{{ $actividad->descripcion }}</td>
                             <td>{{ $actividad->puntaje_max }}</td>
 
+                            @switch($actividad->tipo)
+                                @case(0)
+                                    <td><strong class="text text-secondary">Pregunta corta</strong></td>
+                                @break
+                                @case(1)
+                                    <td><strong class="text text-success">Pregunta larga</strong></td>
+                                 @break
+                                @case(2)
+                                    <td><strong class="text text-danger">Link de video</strong></td>
+                                @break
+                                @case(3)
+                                    <td><strong class="text text-warning">Subir a carpeta de Drive</strong></td>
+                                @break
+                            @endswitch
 
-                            @if ($tarea->recurso != ' ')
-                                <td><strong class="text text-success">Recurso</strong></td>
+
+                            @if ($actividad->recurso == null)
+                                <td><strong class="text text-secondary">Sin Recurso</strong></td>
                             @else
-                                <td><strong class="text text-secondary">Sin recurso</strong></td>
+                                <td><strong class="text text-success">Recurso</strong></td>
                             @endif
 
                             <td style="display: flex">

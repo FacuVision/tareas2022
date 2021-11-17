@@ -58,6 +58,7 @@
 
 
                 <div class="form-group">
+                    <a class="btn btn-secondary" href="{{ route('admin.tareas.show', $actividad->tarea) }}">Volver</a>
                     {!! Form::submit('Actualizar', ['class' => 'btn btn-success']) !!}
                 </div>
 

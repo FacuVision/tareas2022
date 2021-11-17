@@ -64,6 +64,7 @@ class LogroController extends Controller
             'tipo' => $request->tipo,
         ]);
 
+
         if ($request->file('file')) {
             $url = Storage::disk('public')->put('_logros', $request->file('file'));
             $logro->image()->create([
@@ -120,15 +121,16 @@ class LogroController extends Controller
         ]);
 
         if ($request->file('file')) {
-            $url = Storage::disk('public')->put('_logros', $request->file('file'));
+            $urlnueva = Storage::disk('public')->put('_logros', $request->file('file'));
+
             if ($logro->image) {
                 Storage::delete($logro->image->url);
                 $logro->image()->update([
-                    'url' => $url
+                    'url' => $urlnueva
                 ]);
             } else {
                 $logro->image()->create([
-                    'url' => $url
+                    'url' => $urlnueva
                 ]);
             }
         }
