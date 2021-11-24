@@ -10,7 +10,7 @@ use App\Models\Actividad;
 class Respuesta extends Model
 {
     use HasFactory;
-
+    protected $guarded =[];
     //una respuesta le pertenece solo a un alumno
     public function alumno()
     {

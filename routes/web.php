@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\CarpetaController;
 use App\Http\Controllers\Admin\HomeController;
 
 /*
@@ -17,6 +20,10 @@ use App\Http\Controllers\Admin\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('materias', MateriaController::class)->names('alumno.materias');
+Route::resource('carpetas', CarpetaController::class)->names('alumno.carpetas');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
