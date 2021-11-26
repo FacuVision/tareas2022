@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Carpeta;
+use App\Models\Docente;
+use App\Models\Tarea;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class RevisionController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $docente = Docente::findOrFail(auth()->user()->id);
+        $materia = $docente->materias->pluck('nombre','id');
+
+        return view("admin.revisiones.index", compact('materia', 'docente'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $carpetas = Carpeta::where("materia_id",$request->materia_id)->where("seccion_id",$request->seccion_id)->where("user_id",Auth::user()->id)->where("estado","1")->get();
+
+        return view("admin.revisiones.create", compact("carpetas"));
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $tareas = Tarea::where("carpeta_id",$id)->where("estado","1")->get();
+        return view("admin.revisiones.show", compact("tareas"));
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($tarea)
+    {
+        $tarea = Tarea::findOrFail($tarea);
+        return $tarea;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

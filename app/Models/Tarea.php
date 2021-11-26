@@ -12,13 +12,13 @@ use App\Models\Image;
 class Tarea extends Model
 {
     protected $guarded= [];
-    
+
     use HasFactory;
 
     //Muchas tareas son asignadas a muchos alumnos
     public function alumnos()
     {
-        return $this->belongsToMany(Alumno::class, 'alumno_tarea', 'tarea_id', 'user_id')->withPivot('nota_final');
+        return $this->belongsToMany(Alumno::class, 'alumno_tarea', 'tarea_id', 'user_id')->withPivot('nota_final', 'estado');
     }
 
     //UNA TAREA POSEE MUCHAS ACTIVIDADES
