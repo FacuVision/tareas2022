@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ActividadController;
+use App\Http\Controllers\Admin\AsignacionController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\GradoController;
 use App\Http\Controllers\Admin\UserController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Admin\MensajeController;
 use App\Http\Controllers\Admin\TareaController;
 use App\Http\Controllers\Admin\SeccionController;
 use App\Http\Controllers\Admin\LogroController;
+use App\Http\Controllers\Admin\RevisionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name('admin.index');
@@ -24,4 +26,8 @@ Route::get('/crear_tarea/{carpeta}', [CrearTareaController::class,'show'])->name
 Route::resource('secciones', SeccionController::class)->names('admin.secciones');
 Route::resource('logros', LogroController::class)->names('admin.logros');
 Route::resource('actividades', ActividadController::class)->names('admin.actividades')->parameters(['actividades' => 'actividad']);
+
+Route::resource('revisiones', RevisionController::class)->names('admin.revisiones')->parameters(['revisiones' => 'revision']);
+Route::resource('asignaciones', AsignacionController::class)->names('admin.asignaciones')->parameters(['asignaciones' => 'asignacion']);
+
 

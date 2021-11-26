@@ -257,7 +257,7 @@ return [
 
         [
             'text' => 'Revisar Tareas',
-            'url'  => 'admin/settings',
+            'route'  => 'admin.revisiones.index',
             'label' => 'revision',
             'label_color' => 'primary',
             'icon' => 'fa fa-archive'

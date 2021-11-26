@@ -19,6 +19,13 @@ class CreateAlumnoTareaTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('tarea_id');
             $table->integer('nota_final')->nullable();
+            $table->enum('estado',[0,1,2])->default(0);
+
+            /*
+             * 0 = sin responder
+             * 1 = respondido
+             * 2 = calificado
+             */
 
             $table->timestamps();
 
