@@ -10,13 +10,13 @@ use App\Models\Tarea;
 class Actividad extends Model
 {
     protected $guarded = [];
-    
+
     use HasFactory;
 
     //UNA ACTIVIDAD SOLO TIENE UNA RESPUESTA
-    public function respuesta()
+    public function respuestas()
     {
-        return $this->hasOne(Respuesta::class);
+        return $this->hasMany(Respuesta::class);
     }
 
         //UNA ACTIVIDAD PERTENECE A UNA SOLA TAREA

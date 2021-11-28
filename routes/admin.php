@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\MensajeController;
 use App\Http\Controllers\Admin\TareaController;
 use App\Http\Controllers\Admin\SeccionController;
 use App\Http\Controllers\Admin\LogroController;
+use App\Http\Controllers\Admin\RevisarTareaController;
 use App\Http\Controllers\Admin\RevisionController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,13 +22,17 @@ Route::resource('carpetas', CarpetaController::class)->names('admin.carpetas');
 Route::resource('mensajes', MensajeController::class)->names('admin.mensajes');
 
 Route::resource('tareas', TareaController::class)->names('admin.tareas');
-Route::get('/crear_tarea/{carpeta}', [CrearTareaController::class,'show'])->name('admin.crear_tareas.show');
+Route::get('/crear_tareas/{carpeta}', [CrearTareaController::class,'show'])->name('admin.crear_tareas.show');
+
 
 Route::resource('secciones', SeccionController::class)->names('admin.secciones');
 Route::resource('logros', LogroController::class)->names('admin.logros');
 Route::resource('actividades', ActividadController::class)->names('admin.actividades')->parameters(['actividades' => 'actividad']);
 
 Route::resource('revisiones', RevisionController::class)->names('admin.revisiones')->parameters(['revisiones' => 'revision']);
+Route::get('/revisar_tareas/{tarea}', [RevisarTareaController::class,'edit'])->name('admin.revisar_tareas.edit');
+
+
 Route::resource('asignaciones', AsignacionController::class)->names('admin.asignaciones')->parameters(['asignaciones' => 'asignacion']);
 
 

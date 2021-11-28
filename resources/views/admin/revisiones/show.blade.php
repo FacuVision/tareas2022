@@ -53,7 +53,7 @@
                             <li class="list-group-item text-center"><strong class="text text-success">Publicado</strong></li>
                             <li class="list-group-item text-justify font-weight-light text-sm">{{$tarea->descripcion}}</li>
                             <li class="list-group-item text-center">
-                                <a style="margin: 0px 5px" href="{{ route('admin.revisiones.edit', $tarea) }}"
+                                <a style="margin: 0px 5px" href="{{ route('admin.revisiones.edit', $tarea->id) }}"
                                 class="btn btn-warning">Ver</a>
                             </li>
                         </ul>

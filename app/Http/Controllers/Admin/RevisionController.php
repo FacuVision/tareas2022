@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Actividad;
 use App\Models\Carpeta;
 use App\Models\Docente;
+use App\Models\Respuesta;
 use App\Models\Tarea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,10 +69,24 @@ class RevisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($tarea)
+    public function edit($id)
     {
-        $tarea = Tarea::findOrFail($tarea);
-        return $tarea;
+        $tarea = Tarea::findOrFail($id);
+        $tareas_alumnos = Tarea::findOrFail($id)->alumnos;
+        $seccion = Tarea::findOrFail($id)->carpeta->seccion;
+
+
+        //return $tarea->alumnos[0]->user->perfil;
+       //return $tarea->alumnos[0]->pivot;
+        // echo $tareas->titulo;
+        // echo $tareas->alumnos[0]->pivot->estado;
+        // echo $tareas->alumnos[0]->user->perfil->nombre;
+
+        //ESTOS DATOS NOS PERMITIRA SABER SI LA TAREA HA SIDO CALIFICADA O NO, TODO ELLO EN UNA TABLA ORDENADA
+        //**************************************************************************************************** */
+
+        return view("admin.revisiones.edit",compact("tareas_alumnos","seccion","tarea"));
+
     }
 
     /**
@@ -80,9 +96,35 @@ class RevisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $tarea_id)
     {
-        //
+        $inputs_final = explode("_", $request->id_respuestas);
+
+
+        $notal_final=0;
+
+        foreach ($inputs_final as $input) {
+
+            $puntaje_en_orden = $request->input("puntaje_".$input);
+
+            $respuesta = Respuesta::FindOrFail($input);
+
+            $respuesta->update([
+                "puntaje"=> $puntaje_en_orden
+            ]);
+
+            $notal_final = $notal_final + $puntaje_en_orden;
+        }
+
+        $respuesta->alumno->tareas()->detach($tarea_id);
+        $respuesta->alumno->tareas()->attach($tarea_id,["nota_final"=>$notal_final,"estado"=>"2"]);
+
+        $tarea = Tarea::findOrFail($tarea_id);
+        $tareas_alumnos = Tarea::findOrFail($tarea_id)->alumnos;
+        $seccion = Tarea::findOrFail($tarea_id)->carpeta->seccion;
+
+        return view("admin.revisiones.edit",compact("tareas_alumnos","seccion","tarea"));
+
     }
 
     /**
