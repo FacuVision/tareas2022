@@ -79,11 +79,8 @@
 
                                 @case(1)
                                     <a href="{{ route('admin.revisar_tareas.edit', $tarea_alumno->pivot->tarea_id ."-".$tarea_alumno->pivot->user_id)}}" class="btn btn-primary">Calificar</a>
-                                @break
-
                             @endswitch
-
-                                <a href="" class="btn btn-success">Asignar Logro</a>
+                                <a href="{{ route('admin.asignaciones.show', $tarea_alumno->user_id."-".$tarea_alumno->pivot->tarea_id) }}" class="btn btn-success">Asignar Logro</a>
                             </td>
 
                         </tr>

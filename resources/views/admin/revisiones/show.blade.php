@@ -37,8 +37,6 @@
                     @foreach ($tareas as $tarea)
                   <div class="col-md-4 col-sm-6">
 
-
-
                     <div class="card" style="width: 18rem;">
                         <div class="card-header" style="text-align:center" >
                             <i style="padding: 30px; color: royalblue" class="fas fa-book fa-5x"></i>
@@ -63,7 +61,7 @@
                   </div>
                   @endforeach
                 </div>
-              </div>
+            </div>
 
         </div>
     @stop

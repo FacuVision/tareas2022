@@ -11,19 +11,7 @@
 
 
     <div class="card">
-        <div class="card-header">
 
-            @if (count($errors) > 0)
-                <div class="text-danger">
-
-                    @foreach ($errors->all() as $message)
-                        <li>{{ $message }}</li>
-                    @endforeach
-
-                </div>
-            @endif
-
-        </div>
             <div class="card-body">
 
                 {!! Form::open(['method' => 'POST', 'route' => ['admin.revisiones.update', $tarea_id], 'method' => 'PUT']) !!}
@@ -84,6 +72,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
+                                
                                 @if ($actividad->tipo==3)
                                 <strong> Carpeta de Drive:</strong>
 
@@ -101,7 +90,7 @@
                                 <a href="{{$actividad->recurso}}" target="_blank" class="text-danger" style="display: inline-block; margin: 10px 20px">
                                     <div class="pb-6 block">
                                         <i class="text-center fab fa-youtube fa-2x"></i>
-                                        Abrir en drive
+                                        Abrir en YouTube
                                     </div>
                                 </a>
                                 @endif

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class RevisarTareaController extends Controller
 {
-    public function edit($id)
+    public function edit($id) //1-2
     {
         $arrayString= explode("-",$id);
 
