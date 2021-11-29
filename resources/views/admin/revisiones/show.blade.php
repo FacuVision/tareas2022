@@ -37,8 +37,6 @@
                     @foreach ($tareas as $tarea)
                   <div class="col-md-4 col-sm-6">
 
-
-
                     <div class="card" style="width: 18rem;">
                         <div class="card-header" style="text-align:center" >
                             <i style="padding: 30px; color: royalblue" class="fas fa-book fa-5x"></i>
@@ -53,7 +51,7 @@
                             <li class="list-group-item text-center"><strong class="text text-success">Publicado</strong></li>
                             <li class="list-group-item text-justify font-weight-light text-sm">{{$tarea->descripcion}}</li>
                             <li class="list-group-item text-center">
-                                <a style="margin: 0px 5px" href="{{ route('admin.revisiones.edit', $tarea) }}"
+                                <a style="margin: 0px 5px" href="{{ route('admin.revisiones.edit', $tarea->id) }}"
                                 class="btn btn-warning">Ver</a>
                             </li>
                         </ul>
@@ -63,7 +61,7 @@
                   </div>
                   @endforeach
                 </div>
-              </div>
+            </div>
 
         </div>
     @stop

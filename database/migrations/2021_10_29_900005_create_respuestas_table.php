@@ -17,7 +17,6 @@ class CreateRespuestasTable extends Migration
             $table->id();
             $table->text('descripcion');
             $table->double('puntaje',4,1)->nullable();
-            $table->string('recurso')->nullable();
 
             $table->unsignedBigInteger('actividad_id');
             $table->unsignedBigInteger('user_id')->nullable();
