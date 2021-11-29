@@ -8,13 +8,12 @@
     </x-slot>
 
     <div class="flex flex-col py-4 max-w-7xl mx-auto sm:px-6">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
-                    <table id="dtBasicExample" class="table min-w-full divide-y divide-gray-200">
+                    <table class="table-auto min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
-
                             <tr>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -42,68 +41,74 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-
-                            @php
-                                $i = 0;
-                            @endphp
                             @foreach ($datos as $dato)
-
-                                @if ($carpeta->id == $dato->carpeta->id)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="ml-0">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        {{ $dato->carpeta->tareas[$i]->titulo }}
+                                @switch($dato->carpeta->id)
+                                    @case($carpeta->id)
+                                        @if ($dato->pivot->estado != 1)
+                                            @php
+                                                $i = 0;
+                                            @endphp
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="ml-0">
+                                                            <div class="text-sm font-medium text-gray-900">
+                                                                {{ $dato->titulo }}
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">
-                                                {{ $dato->carpeta->tareas[$i]->descripcion }}</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            @switch($dato->carpeta->tareas[$i]->estado)
-                                                @case(0)
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        Activo
-                                                    </span>
-                                                @break
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">
+                                                        {{ $dato->descripcion }}</div>
+                                                </td>
 
-                                                @case(1)
-                                                    <span
-                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-300 text-gray-800">
-                                                        Inactivo
-                                                    </span>
-                                                @break
+                                                @switch($dato->estado)
+                                                    @case(0)
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                Activo
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                                            @livewire('show-tarea', ['dato' => $dato])
 
-                                            @endswitch
-                                            {{-- {{$dato->carpeta->tareas[$i]->estado}} --}}
+                                                        </td>
+                                                    @break
 
-                                        </td>
-                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            Admin
-                                        </td> --}}
-                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                            {{-- <x-jet-button class="py-1 px-6" wire:click="showtarea( {{$dato->carpeta->tareas[$i]}} )">
-                                                VER
-                                            </x-jet-button> --}}
-                                            {{-- <a href="#" wire-click="showtarea({{$dato->carpeta->tareas[$i]}})" class="md:box-content text-white bg-indigo-600 rounded-lg py-1 px-6 hover:bg-indigo-800">VER</a> --}}
-                                        @livewire('show-tarea', ['dato' => $dato->carpeta->tareas[$i]])
+                                                    @case(1)
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-300 text-gray-800">
+                                                                Inactivo
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
 
-                                        </td>
-                                    </tr>
-                                @endif
-                                @php
-                                    $i++;
-                                @endphp
+                                                        </td>
+                                                    @break
+
+                                                @endswitch
+
+                                            </tr>
+                                        @endif
+                                    @break
+                                @endswitch
+
                             @endforeach
-
-
                         </tbody>
+
                     </table>
+                    @if (!isset($i))
+                        <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 text-center"
+                            role="alert">
+                            <p class="font-bold">¡Ohh Vaya!</p>
+                            <p class="text-sm">No tienes tareas pendientes en esta carpeta</p>
+                            <i class="far fa-surprise fa-7x"></i>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>
