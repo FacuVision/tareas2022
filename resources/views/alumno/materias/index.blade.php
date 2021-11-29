@@ -13,8 +13,12 @@
                     <div class="container p-4">
                         <div class="grid gap-4 grid-cols-3 md:inline-flex">
                             @foreach ($datos as $dato)
-                                    <div class="w-full md:w-3/5 text-left p-6 md:p-4 space-y-2 box-border border-2">
-                                        <a href="{{ route('alumno.materias.show', $dato->carpeta->materia)}}" class="text-xl text-indigo-600 font-bold">Materia: {{$dato->carpeta->materia->nombre}}</a>
+                                    <div class="w-full md:w-3/5 text-center p-6 md:p-4 space-y-2 box-border border-2">
+                                        <a href="{{ route('alumno.materias.show', $dato->carpeta->materia)}}" class="text-xl text-indigo-600 font-bold">{{$dato->carpeta->materia->nombre}}
+                                            <div class="text-center pt-2 pb-4 block">
+                                                <i class="fas fa-book fa-3x"></i>
+                                            </div>
+                                        </a>
                                         <div class="flex justify-start space-x-2">
                                             <p class="text-left text-gray-500">{{$dato->carpeta->materia->descripcion}} </p>
                                         </div>

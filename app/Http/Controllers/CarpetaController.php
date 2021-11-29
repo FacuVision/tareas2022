@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carpeta;
 use App\Models\Alumno;
+use App\Models\Respuesta;
 use Illuminate\Http\Request;
 
 class CarpetaController extends Controller
@@ -13,6 +14,8 @@ class CarpetaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $listeners = ['render' => 'show'];
+
     public function index()
     {
         //
@@ -49,9 +52,9 @@ class CarpetaController extends Controller
     {
         $alumno = Alumno::findOrFail(auth()->user()->id);
         $datos = $alumno->tareas;
+        $respuestas = Respuesta::where('user_id', auth()->user()->id)->get();
 
-
-        return view('alumno.carpetas.show', compact('carpeta','datos'));
+        return view('alumno.carpetas.show', compact('carpeta', 'datos', 'respuestas'));
     }
 
     /**

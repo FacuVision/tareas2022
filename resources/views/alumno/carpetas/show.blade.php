@@ -6,39 +6,6 @@
             </h2>
         </div>
     </x-slot>
-    {{-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="py-12 bg-white">
-                    <div class="container p-4">
-                        <div class="grid gap-4 grid-cols-3 md:inline-flex">
-                                @php
-                                    $i=0;
-                                @endphp
-                            @foreach ($datos as $dato)
-
-                                @if ($carpeta->id == $dato->carpeta->id)
-                                    <div class="w-full md:w-3/5 text-left p-6 md:p-4 space-y-2 box-border border-2">
-                                        <a href="{{ route('alumno.tareas.show', $dato->carpeta->tareas[$i]) }}" class="text-xl text-indigo-600 font-bold">{{$dato->carpeta->tareas[$i]->titulo}}</a>
-                                        <p class="text-l text-gray-600 font-bold">Sesion: {{$dato->carpeta->sesion}}</p>
-                                        <p class="text-base text-gray-400">{{$dato->carpeta->tareas[$i]->descripcion}}</p>
-                                        <div class="flex justify-start space-x-2">
-                                            <p class="text-left text-gray-500"></p>
-                                        </div>
-                                    </div>
-                                @endif
-                                @php
-                                $i++;
-                            @endphp
-                            @endforeach
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div> --}}
 
     <div class="flex flex-col py-4 max-w-7xl mx-auto sm:px-6">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -75,6 +42,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+
                             @php
                                 $i = 0;
                             @endphp
