@@ -17,9 +17,18 @@ class MateriaController extends Controller
     {
         $alumno = Alumno::findOrFail(auth()->user()->id);
 
-        $datos = $alumno->tareas;
+        //$datos = $alumno->seccion->carpetas;
+        //$datos = $alumno->seccion->carpetas()->get()->groupBy('materia_id');
+        $datos = $alumno->seccion->carpetas->pluck('materia_id')->toArray();
 
-        return view('alumno.materias.index', compact('datos'));
+        $array = array_unique($datos);
+        $materias = [];
+        foreach ($array as $key) {
+            $materias[$key] = Materia::findOrFail($key);
+        }
+
+        //return $materias;
+        return view('alumno.materias.index', compact('materias'));
     }
 
     /**
@@ -52,7 +61,7 @@ class MateriaController extends Controller
     public function show(Materia $materia)
     {
         $alumno = Alumno::findOrFail(auth()->user()->id);
-        $datos = $alumno->tareas;
+        $datos = $alumno->seccion->carpetas;
         return view('alumno.materias.show', compact('materia','datos'));
     }
 

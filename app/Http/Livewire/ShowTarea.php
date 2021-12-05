@@ -6,20 +6,17 @@ use App\Models\Actividad;
 use Livewire\Component;
 use App\Models\Tarea;
 use App\Models\Respuesta;
+use App\Models\Alumno;
 use Illuminate\Support\Facades\Auth;
 
 class ShowTarea extends Component
 {
     public $showtarea = false;
-    public $show = false;
+    //public $show = false;
     public $descripcion = [];
     public $dato;
     public $validado;
-    // public $validcount;
-    // public $actcount;
-    // protected $rules = [
-    //     'descripcion.*' => 'required',
-    // ];
+
 
     public function render()
     {
@@ -34,16 +31,14 @@ class ShowTarea extends Component
 
     public function enviar()
     {
-        $actcount =0;
+
+        $actcount = 0;
         $this->validado = $this->validate([
             'descripcion.*' => 'required'
         ]);
-        // $this->validcount = count($this->validado);
-        // $this->actcount = count($this->dato->actividades);
-        // $actcount = count($this->dato->actividades);
         $validcount = count($this->validado['descripcion']);
         foreach ($this->dato->actividades as $act) {
-            if($act->tipo != 3){
+            if ($act->tipo != 3) {
                 $actcount++;
             }
         }
@@ -56,9 +51,26 @@ class ShowTarea extends Component
                     "user_id" => Auth::user()->id
                 ]);
             }
+            //AQUI VA EL SYNC PARA CAMBIAR EL ESTADO DE LA TAREA EN ALUMNO-TAREA A 1 = RESUELTO
+            $alumno = Alumno::findOrFail(Auth()->user()->id);
+            //$alumno->tareas()->detach($this->dato->id);
+            //$alumno->tareas()->attach($this->dato->id,['estado' => '1']);
+            $alumno->tareas()->sync([$this->dato->id =>['estado' => '1']]);
+
+            //ENVIAR UN NUEVO MODELO DONDE LLEVA LA CARPETA DONDE ESTA EL ALUMNO ACTUALMENTE.
+
+            foreach ($alumno->tareas as $tarea) {
+                if ($tarea->carpeta_id == $this->dato->carpeta_id) {
+                    $carpeta = $tarea->carpeta;
+                    break;
+                }
+
+            }
             $this->reset(['descripcion']);
-            $this->emit('render');
             $this->showtarea = false;
+            return redirect()->route('alumno.carpetas.show', compact('carpeta'))->with('mensaje_tarea', 'Tarea enviada correctamente');
+
+
         }
 
         // if($validado = true){
@@ -67,6 +79,7 @@ class ShowTarea extends Component
 
 
     }
+
     // public function show()
     // {
 
@@ -74,10 +87,7 @@ class ShowTarea extends Component
     //         'descripcion.*' => 'required'
     //     ]);
 
-    //     $validcount = count($this->validado);
-    //     $actcount = count($this->dato->actividades);
-    //     if ($validcount = $actcount) {
-    //         $this->show = true;
-    //     }
+
+    //     $this->show = true;
     // }
 }
