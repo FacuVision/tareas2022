@@ -56,8 +56,6 @@ class CarpetaController extends Controller
     {
         $alumno = Alumno::findOrFail(auth()->user()->id);
         $datos = $alumno->tareas;
-
-
         return view('alumno.carpetas.show', compact('carpeta', 'datos'));
     }
 

@@ -36,6 +36,7 @@
                         <th>Nombre Alumno</th>
                         <th>Apellido Alumno</th>
                         <th>DNI N°</th>
+                        <th>Correo</th>
                         <th>Nota</th>
                         <th>Estado</th>
                         <th style="width:15%">Acciones</th>
@@ -48,6 +49,7 @@
                             <td>{{ $tarea_alumno->user->perfil->nombre }}</td>
                             <td>{{ $tarea_alumno->user->perfil->apellido }}</td>
                             <td>{{ $tarea_alumno->user->perfil->DNI }}</td>
+                            <td>{{ $tarea_alumno->user->email}}</td>
 
                             <td>
                             @if ($tarea_alumno->pivot->nota_final == null)

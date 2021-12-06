@@ -44,7 +44,7 @@
                             @foreach ($datos as $dato)
                                 @switch($dato->carpeta->id)
                                     @case($carpeta->id)
-                                        @if ($dato->pivot->estado != 1)
+                                        @if ($dato->pivot->estado != 1 && $dato->pivot->estado != 2)
                                             @php
                                                 $i = 0;
                                             @endphp
