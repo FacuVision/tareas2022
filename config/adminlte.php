@@ -273,12 +273,12 @@ return [
         ['header' => 'PERSONAS'],
         [
             'text' => 'Docentes',
-            'url'  => 'admin/settings',
+            'route'  => 'admin.docentes.index',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'Alumnos',
-            'url'  => 'admin/settings',
+            'route'  => 'admin.alumnos.index',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

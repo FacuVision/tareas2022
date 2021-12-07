@@ -13,6 +13,7 @@ use App\Models\Respuesta;
 class Alumno extends Model
 {
     protected $primaryKey = 'user_id';
+    protected $guarded = [];
 
     use HasFactory;
 

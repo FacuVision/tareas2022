@@ -51,7 +51,7 @@ class UserController extends Controller
         // echo '<pre>' , var_export($request->all(),true) , '</pre>';
         // die();
         $request->validate([
-            "email" =>"required|string|email|max:100",
+            "email" =>"required|string|email|max:100|unique:users",
             "password" =>"required|string",
             "nombre" =>"required|string",
             "apellido" =>"required|string",
@@ -141,19 +141,37 @@ class UserController extends Controller
                 "distrito" => "required|string",
                 ];
 
-            if($request->password == "")
-            {
-                //validacion sin password, ya que no se presentaron cambios en la contraseña
-                $request->validate($sin);
-                //actualiza solo modelo user
-                $user->update(['name'=>$request->nombre,'email'=>$request->email]);
-            }else
-            {
-                //validacion con cambios realizados en la contraseña
-                $request->validate($con);
-                //Actualiza solo modelo user
-                $user->update(['name'=>$request->nombre,'email'=>$request->email,'password' => bcrypt($request->password)]);
+                $con_correo = [
+                    "email" =>"required|string|email|max:100|unique:users",
+                    "nombre" =>"required|string",
+                    "apellido" =>"required|string",
+                    "fecha" =>"required",
+                    "dni" =>"required|string|max:8",
+                    "edad" =>"required|string|max:2",
+                    "sexo" =>"required|string",
+                    "direccion" =>"required|max:100",
+                    "distrito" => "required|string",
+                    ];
+
+
+            if ($user->email == $request->email) {
+                if($request->password == "")
+                {
+                    //validacion sin password, ya que no se presentaron cambios en la contraseña
+                    $request->validate($sin);
+                    //actualiza solo modelo user
+                    $user->update(['name'=>$request->nombre,'email'=>$request->email]);
+                }else
+                {
+                    //validacion con cambios realizados en la contraseña
+                    $request->validate($con);
+                    //Actualiza solo modelo user
+                    $user->update(['name'=>$request->nombre,'email'=>$request->email,'password' => bcrypt($request->password)]);
+                }
+            } else{
+                $request->validate($con_correo);
             }
+
 
             //actualiza solo el modelo profile
             $user->perfil->update($request->only("nombre","apellido","DNI","fecha_nac","edad","sexo","direccion","distrito"));
