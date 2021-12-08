@@ -25,7 +25,11 @@
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Estado
+                                    Estado de Tarea
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Estado de Revision
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -42,13 +46,16 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($datos as $dato)
-                                @switch($dato->carpeta->id)
-                                    @case($carpeta->id)
-                                        @if ($dato->pivot->estado != 1 && $dato->pivot->estado != 2)
-                                            @php
-                                                $i = 0;
-                                            @endphp
-                                            <tr>
+                                <tr>
+                                    @switch($dato->carpeta->id)
+                                        @case($carpeta->id)
+                                            {{-- 0: sin responder|| 1: Respondido || 2: Calificado --}}
+
+                                            @if ($dato->pivot->estado == 0)
+                                                @php
+                                                    $i = 0;
+                                                @endphp
+
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="ml-0">
@@ -67,35 +74,164 @@
                                                     @case(0)
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-300 text-gray-800">
+                                                                Inactivo
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-300 text-gray-800">
+                                                                Sin responder
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+
+                                                        </td>
+
+                                                    @break
+
+                                                    @case(1)
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                                 Activo
                                                             </span>
                                                         </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-300 text-gray-800">
+                                                                Sin responder
+                                                            </span>
+                                                        </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                                             @livewire('show-tarea', ['dato' => $dato])
-
                                                         </td>
-                                                    @break
 
-                                                    @case(1)
+                                                    @break
+                                                @endswitch
+                                            @endif
+                                            @if ($dato->pivot->estado == 1)
+                                                @php
+                                                    $i = 0;
+                                                @endphp
+
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="ml-0">
+                                                            <div class="text-sm font-medium text-gray-900">
+                                                                {{ $dato->titulo }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">
+                                                        {{ $dato->descripcion }}</div>
+                                                </td>
+
+                                                @switch($dato->estado)
+                                                    @case(0)
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-300 text-gray-800">
                                                                 Inactivo
                                                             </span>
                                                         </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-300 text-yellow-800">
+                                                                Respondido
+                                                            </span>
                                                         </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                                            @livewire('show-respuesta',['dato' => $dato])
+                                                        </td>
+
                                                     @break
 
+                                                    @case(1)
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                Activo
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-300 text-yellow-800">
+                                                                Respondido
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                                            @livewire('show-respuesta',['dato' => $dato])
+                                                        </td>
+                                                    @break
                                                 @endswitch
+                                            @endif
+                                            @if ($dato->pivot->estado == 2)
+                                                @php
+                                                    $i = 0;
+                                                @endphp
 
-                                            </tr>
-                                        @endif
-                                    @break
-                                @endswitch
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="ml-0">
+                                                            <div class="text-sm font-medium text-gray-900">
+                                                                {{ $dato->titulo }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">
+                                                        {{ $dato->descripcion }}</div>
+                                                </td>
 
+                                                @switch($dato->estado)
+                                                    @case(0)
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-300 text-gray-800">
+                                                                Inactivo
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-cyan-300 text-cyan-800">
+                                                                Calificado
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                                            @livewire('show-respuesta',['dato' => $dato])
+                                                        </td>
+
+                                                    @break
+
+                                                    @case(1)
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                Activo
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-cyan-300 text-cyan-800">
+                                                                Calificado
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                                            @livewire('show-respuesta',['dato' => $dato])
+                                                        </td>
+                                                    @break
+                                                @endswitch
+                                            @endif
+
+
+                                        @break
+
+                                    @endswitch
+                                </tr>
                             @endforeach
                         </tbody>
 

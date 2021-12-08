@@ -12,7 +12,7 @@ use App\Models\Carpeta;
 class Docente extends Model
 {
     protected $primaryKey = 'user_id';
-
+    protected $guarded = [];
     use HasFactory;
 
     //un docente pertenece a un usuario

@@ -15,7 +15,7 @@ class CreateRespuestasTable extends Migration
     {
         Schema::create('respuestas', function (Blueprint $table) {
             $table->id();
-            $table->text('descripcion');
+            $table->text('descripcion')->default('-');
             $table->double('puntaje',4,1)->nullable();
 
             $table->unsignedBigInteger('actividad_id');

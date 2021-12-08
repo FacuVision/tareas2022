@@ -224,7 +224,6 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-
     'menu' => [
         // Navbar items:
         [
@@ -265,9 +264,6 @@ return [
 
 
         ['header' => ' '],
-
-
-
 
 
         ['header' => 'PERSONAS'],

@@ -107,8 +107,8 @@ class RevisionController extends Controller
         }
 
         //$respuesta->alumno->tareas()->detach($tarea_id);
-        $respuesta->alumno->tareas()->sync([$tarea_id => ["nota_final"=>$notal_final,"estado"=>"2"]]);
-
+        // $respuesta->alumno->tareas()->sync([$tarea_id => ["nota_final"=>$notal_final,"estado"=>"2"]]);
+        $respuesta->alumno->tareas()->updateExistingPivot($tarea_id,["nota_final"=>$notal_final,"estado"=>"2"]);
         $tarea = Tarea::findOrFail($tarea_id);
         $tareas_alumnos = Tarea::findOrFail($tarea_id)->alumnos;
         $seccion = Tarea::findOrFail($tarea_id)->carpeta->seccion;

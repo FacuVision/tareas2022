@@ -11,6 +11,7 @@ class Materia extends Model
 {
     use HasFactory;
 
+        protected $guarded = [];
         //LAS MATERIAS SON REPARTIDAS A MUCHOS DOCENTES
         public function docentes()
         {

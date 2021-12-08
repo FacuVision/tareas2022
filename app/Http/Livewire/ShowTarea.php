@@ -32,18 +32,11 @@ class ShowTarea extends Component
     public function enviar()
     {
 
-        $actcount = 0;
+
         $this->validado = $this->validate([
             'descripcion.*' => 'required'
         ]);
-        $validcount = count($this->validado['descripcion']);
-        foreach ($this->dato->actividades as $act) {
-            if ($act->tipo != 3) {
-                $actcount++;
-            }
-        }
 
-        if ($validcount == $actcount) {
             foreach ($this->descripcion as $id => $desc) {
                 Respuesta::create([
                     "descripcion" => $desc,
@@ -51,11 +44,14 @@ class ShowTarea extends Component
                     "user_id" => Auth::user()->id
                 ]);
             }
-            //AQUI VA EL SYNC PARA CAMBIAR EL ESTADO DE LA TAREA EN ALUMNO-TAREA A 1 = RESUELTO
+
+            //AQUI VA EL UPDATE PARA CAMBIAR EL ESTADO DE LA TAREA EN ALUMNO-TAREA A 1 = RESUELTO
             $alumno = Alumno::findOrFail(Auth()->user()->id);
-            //$alumno->tareas()->detach($this->dato->id);
-            //$alumno->tareas()->attach($this->dato->id,['estado' => '1']);
-            $alumno->tareas()->sync([$this->dato->id =>['estado' => '1']]);
+            //$alumno->sync([$this->dato->id =>['estado' => '1']]);   NO FUNKO
+            //$alumno->tareas()->detach($this->dato->id);                   X2
+            //$alumno->tareas()->attach($this->dato->id,['estado' => '1']); X3
+
+            $alumno->tareas()->updateExistingPivot($this->dato->id,['estado' => '1']);
 
             //ENVIAR UN NUEVO MODELO DONDE LLEVA LA CARPETA DONDE ESTA EL ALUMNO ACTUALMENTE.
 
@@ -71,7 +67,7 @@ class ShowTarea extends Component
             return redirect()->route('alumno.carpetas.show', compact('carpeta'))->with('mensaje_tarea', 'Tarea enviada correctamente');
 
 
-        }
+
 
         // if($validado = true){
         //     $this->showtarea = false;
@@ -80,14 +76,10 @@ class ShowTarea extends Component
 
     }
 
-    // public function show()
-    // {
-
-    //     $this->validado = $this->validate([
-    //         'descripcion.*' => 'required'
-    //     ]);
+    //   public function show()
+    //   {
 
 
-    //     $this->show = true;
-    // }
+    //       $this->show = true;
+    //   }
 }
