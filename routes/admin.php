@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\MensajeController;
 use App\Http\Controllers\Admin\TareaController;
 use App\Http\Controllers\Admin\SeccionController;
 use App\Http\Controllers\Admin\LogroController;
+use App\Http\Controllers\Admin\MateriaController;
 use App\Http\Controllers\Admin\RevisarTareaController;
 use App\Http\Controllers\Admin\RevisionController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,7 @@ Route::resource('logros', LogroController::class)->names('admin.logros');
 Route::resource('actividades', ActividadController::class)->names('admin.actividades')->parameters(['actividades' => 'actividad']);
 Route::resource('alumnos', AlumnoController::class)->names('admin.alumnos');
 Route::resource('docentes', DocenteController::class)->names('admin.docentes');
-
+Route::resource('materias', MateriaController::class)->names('admin.materias');
 
 //ASIGNAR LOGROS
 Route::resource('asignaciones', AsignacionController::class)->names('admin.asignaciones')->parameters(['asignaciones' => 'asignacion']);

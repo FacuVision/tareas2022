@@ -297,8 +297,8 @@ return [
         ],
         [
             'text' => 'Materias',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'url'  => 'admin/materias',
+            'icon' => 'fas fa-atlas',
         ],
 
         ['header' => 'MOTIVACION'],
