@@ -6,6 +6,10 @@
     <h1>Menu de Docentes </h1>
 @stop
 
+@section('css')
+    @include('admin.partials_datatables.cdn_css')
+@endsection
+
 @section('content')
     <div class="card">
 
@@ -25,7 +29,7 @@
         </div>
 
         <div class="card-body">
-            <table id="seccion" class="table table-sm table-striped" style="width:100%">
+            <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -33,9 +37,7 @@
                         <th>Apellido</th>
                         <th>DNI</th>
                         <th>Correo</th>
-                        {{-- <th>Grado</th>
-                        <th>Seccion</th> --}}
-                        <th style="width:20px;text-align:center">Acciones</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,13 +49,11 @@
                             <td>{{$docente->user->perfil->apellido}}</td>
                             <td>{{$docente->user->perfil->DNI}}</td>
                             <td>{{$docente->user->email}}</td>
-                            {{-- <td></td>
-                            <td></td> --}}
-                            <td style="display: flex">
+                            <td>
 
                                 {{-- Ver --}}
 
-                                <a href="{{ route('admin.users.show', $docente->user) }}" style="margin: 0px 5px;"class="btn btn-primary">Ver</a>
+                                <a href="{{ route('admin.users.show', $docente->user) }}" class="btn btn-primary">Ver</a>
 
                                 {{-- Editar --}}
 
@@ -69,3 +69,7 @@
 
     </div>
 @stop
+
+@section('js')
+    @include('admin.partials_datatables.cdn_js')
+@endsection

@@ -6,6 +6,11 @@
     <h1>Carpeta {{ $carpeta->titulo }}</h1>
 @stop
 
+@section('css')
+    @include('admin.partials_datatables.cdn_css')
+@endsection
+
+
 @section('content')
     <p>Aqui podras añadir, eliminar y ver las tareas que esten dentro de tu carpeta</p>
 
@@ -92,7 +97,7 @@
 
         <div class="card-body">
 
-            <table id="carpetas" class="table table-sm table-striped " style="width:100%">
+            <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -112,11 +117,11 @@
                                 <td><strong class="text text-secondary">Borrador</strong></td>
                             @endif
 
-                            <td style="display: flex">
+                            <td>
 
                                 {{-- Ver --}}
 
-                                <a style="margin: 0px 5px" href="{{ route('admin.tareas.show', $tarea) }}"
+                                <a href="{{ route('admin.tareas.show', $tarea) }}"
                                     class="btn btn-primary">Ver</a>
                             </td>
                         </tr>
@@ -126,17 +131,8 @@
             </table>
         </div>
     </div>
-
-
-@stop
-
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
-    <script>
-        console.log('Hi!');
-    </script>
-@stop
+    @include('admin.partials_datatables.cdn_js')
+@endsection

@@ -6,12 +6,16 @@
     <h1>Revision de Tareas de {{ $seccion->grado->grado }}  {{ $seccion->grado->nivel }} - {{ $seccion->nombre}}</h1>
 @stop
 
+@section('css')
+    @include('admin.partials_datatables.cdn_css')
+@endsection
+
+
 @section('content')
     <div class="card">
 
 
         <div class="card-header">
-
 
              {{-- TAREA DEL DOCENTE --}}
              <div class="card" style="width:auto; display:inline-block; margin: 0px 10px">
@@ -27,9 +31,9 @@
 
         <div class="card-body">
 
-            <a class="btn btn-secondary" href="{{ route('admin.revisiones.show', $tarea->carpeta->id) }}"> Volver a Tareas </a>
+            <a class="btn btn-secondary" style="margin-bottom: 20px" href="{{ route('admin.revisiones.show', $tarea->carpeta->id) }}"> Volver a Tareas </a>
 
-            <table id="respuestas" class="table table-sm table-striped" style="margin: 20px 0px" style="width:100%" >
+            <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -39,7 +43,7 @@
                         <th>Correo</th>
                         <th>Nota</th>
                         <th>Estado</th>
-                        <th style="width:15%">Acciones</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,3 +98,8 @@
 @stop
 
 
+
+
+@section('js')
+    @include('admin.partials_datatables.cdn_js')
+@endsection
