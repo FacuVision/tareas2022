@@ -456,7 +456,7 @@ button,
  * as it triggers the better focus styles even for links, which still use a dotted
  * outline in Firefox by default.
  */
- 
+
 :-moz-focusring {
 	outline: auto;
 }
@@ -523,14 +523,14 @@ samp {
  *    CSS Remedy, with `svg` added as well.
  *
  *    https://github.com/mozdevs/cssremedy/issues/14
- * 
+ *
  * 2. Add `vertical-align: middle` to align replaced elements more
  *    sensibly by default when overriding `display` by adding a
  *    utility like `inline`.
  *
  *    This can trigger a poorly considered linting error in some
  *    tools but is included by design.
- * 
+ *
  *    https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210
  */
 
@@ -1378,6 +1378,9 @@ select {
 .max-w-6xl {
 	max-width: 72rem;
 }
+.max-w-xs {
+	max-width: 20rem;
+}
 .flex-1 {
 	flex: 1 1 0%;
 }
@@ -1486,15 +1489,15 @@ select {
 	margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
 	margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
-.space-x-4 > :not([hidden]) ~ :not([hidden]) {
-	--tw-space-x-reverse: 0;
-	margin-right: calc(1rem * var(--tw-space-x-reverse));
-	margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-}
 .space-y-10 > :not([hidden]) ~ :not([hidden]) {
 	--tw-space-y-reverse: 0;
 	margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
 	margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
+}
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+	--tw-space-x-reverse: 0;
+	margin-right: calc(1rem * var(--tw-space-x-reverse));
+	margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
 	--tw-space-y-reverse: 0;
@@ -1794,9 +1797,6 @@ select {
 .pb-1 {
 	padding-bottom: 0.25rem;
 }
-.pr-2 {
-	padding-right: 0.5rem;
-}
 .pt-16 {
 	padding-top: 4rem;
 }
@@ -1805,6 +1805,9 @@ select {
 }
 .pt-8 {
 	padding-top: 2rem;
+}
+.pr-2 {
+	padding-right: 0.5rem;
 }
 .pb-2 {
 	padding-bottom: 0.5rem;
@@ -1860,13 +1863,13 @@ select {
 	font-size: 1.25rem;
 	line-height: 1.75rem;
 }
-.text-3xl {
-	font-size: 1.875rem;
-	line-height: 2.25rem;
-}
 .text-5xl {
 	font-size: 3rem;
 	line-height: 1;
+}
+.text-3xl {
+	font-size: 1.875rem;
+	line-height: 2.25rem;
 }
 .font-medium {
 	font-weight: 500;
@@ -1874,11 +1877,11 @@ select {
 .font-semibold {
 	font-weight: 600;
 }
-.font-extrabold {
-	font-weight: 800;
-}
 .font-bold {
 	font-weight: 700;
+}
+.font-extrabold {
+	font-weight: 800;
 }
 .uppercase {
 	text-transform: uppercase;
@@ -1895,23 +1898,23 @@ select {
 .leading-4 {
 	line-height: 1rem;
 }
-.leading-8 {
-	line-height: 2rem;
-}
 .leading-6 {
 	line-height: 1.5rem;
 }
 .leading-normal {
 	line-height: 1.5;
 }
+.leading-8 {
+	line-height: 2rem;
+}
 .tracking-widest {
 	letter-spacing: 0.1em;
 }
-.tracking-tight {
-	letter-spacing: -0.025em;
-}
 .tracking-wide {
 	letter-spacing: 0.025em;
+}
+.tracking-tight {
+	letter-spacing: -0.025em;
 }
 .tracking-wider {
 	letter-spacing: 0.05em;
@@ -1983,6 +1986,18 @@ select {
 .text-gray-200 {
 	--tw-text-opacity: 1;
 	color: rgba(229, 231, 235, var(--tw-text-opacity));
+}
+.text-green-800 {
+	--tw-text-opacity: 1;
+	color: rgba(6, 95, 70, var(--tw-text-opacity));
+}
+.text-yellow-800 {
+	--tw-text-opacity: 1;
+	color: rgba(146, 64, 14, var(--tw-text-opacity));
+}
+.text-blue-700 {
+	--tw-text-opacity: 1;
+	color: rgba(29, 78, 216, var(--tw-text-opacity));
 }
 .text-green-800 {
 	--tw-text-opacity: 1;

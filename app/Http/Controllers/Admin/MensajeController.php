@@ -115,6 +115,7 @@ class MensajeController extends Controller
      */
     public function destroy(Mensaje $mensaje)
     {
+        $mensaje->delete();
         return redirect()->route('admin.mensajes.index')->with('mensaje','El mensaje ha sido eliminado correctamente');
 
     }
