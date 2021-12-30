@@ -6,6 +6,10 @@
     <h1>Mensajes motivadores del dia</h1>
 @stop
 
+@section('css')
+    @include('admin.partials_datatables.cdn_css')
+@stop
+
 @section('content')
     <p>Aqui podras administrar los mensajes que se visualizan en el dashboard del sistema</p>
 
@@ -21,13 +25,13 @@
 
 
         <div class="card-body">
-            <table id="usuario" class="table table-sm table-striped " style="width:100%">
+            <table id="tabla" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Mensaje</th>
                         <th>Color</th>
-                        <th style="width:20px;text-align:center">Acciones</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,36 +39,30 @@
                     <tr>
                         <td>{{$men->id}}</td>
                         <td>{{$men->mensaje}}</td>
-                        <td style="padding: 10px 0px 0px 0px">
+                        <td>
                             <label style="background:{{$men->color}}; padding:10px; width:50%;"></label>
                         </td>
-                        <td  style="display: flex">
+                        <td>
 
                             {{-- Editar --}}
                             <a href="{{route('admin.mensajes.edit', $men)}}" class="btn btn-success">Editar</a>
 
                             {{-- Eliminar --}}
-                            <form action="{{route('admin.mensajes.destroy', $men)}}" method="post" class="formulario-eliminar">
+                            <form style="display: inline" action="{{route('admin.mensajes.destroy', $men)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" id="delete" value="Eliminar" class="btn btn-danger" style="margin: 0px 0px 0px 5px;">
+                                <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                             </form>
-
                         </td>
                     </tr>
                     @endforeach
-
                 </tbody>
             </table>
         </div>
-
     </div>
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
 @section('js')
-    <script> console.log('Hi!'); </script>
-@stop
+    @include('admin.partials_datatables.cdn_js')
+@endsection
+

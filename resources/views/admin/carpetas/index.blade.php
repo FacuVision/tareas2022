@@ -6,6 +6,10 @@
 <h1>Creacion de tareas escolares</h1>
 @stop
 
+@section('css')
+    @include('admin.partials_datatables.cdn_css')
+@endsection
+
 @section('content')
 <p>Es primordial conocer las materia, grado y seccion a la cual va a pertenecer tu carpeta de tareas</p>
 
@@ -60,7 +64,7 @@
 
                 <div class="card-body">
 
-                    <table id="carpetas" class="table table-sm table-striped " style="width:100%">
+                    <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -72,7 +76,7 @@
                                 <th>fecha_inicio</th>
                                 <th>fecha_final</th>
                                 <th>Estado</th>
-                                <th style="width:20px;text-align:center">Acciones</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,11 +96,11 @@
                                     <td><strong class="text text-secondary">Inactivo</strong></td>
                                 @endif
 
-                                <td  style="display: flex">
+                                <td>
 
                                     {{-- Ver --}}
 
-                                    <a style="margin: 0px 5px" href="{{route('admin.carpetas.show', $carpeta)}}" class="btn btn-primary">Ver</a>
+                                    <a href="{{route('admin.carpetas.show', $carpeta)}}" class="btn btn-primary">Ver</a>
 
                                 </td>
                             </tr>
@@ -108,12 +112,7 @@
             </div>
 @stop
 
-@section('css')
-
-    <link rel="stylesheet" href="/css/admin_custom.css">
-
-@stop
-
 @section('js')
-<script> console.log('Hi!');</script>
-@stop
+    @include('admin.partials_datatables.cdn_js')
+@endsection
+

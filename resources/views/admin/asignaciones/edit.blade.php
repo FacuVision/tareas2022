@@ -6,6 +6,12 @@
     <h1>Lista de logros para asignar</h1>
 @stop
 
+
+@section('css')
+    @include('admin.partials_datatables.cdn_css')
+@endsection
+
+
 @section('content')
     <p>Se observan todos los logros disponibles</p>
 
@@ -42,7 +48,7 @@
             <br>
             <hr>
 
-            <table id="logro" class="table table-sm table-striped " style="width:100%">
+            <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -130,10 +136,7 @@
     </div>
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
 @section('js')
-
-@stop
+    @include('admin.partials_datatables.cdn_js')
+@endsection

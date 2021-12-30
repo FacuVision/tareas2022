@@ -6,6 +6,10 @@
     <h1>Tarea {{ $tarea->titulo }}</h1>
 @stop
 
+@section('css')
+    @include('admin.partials_datatables.cdn_css')
+@endsection
+
 @section('content')
     <p>Aqui podras añadir, eliminar y ver las actividades que esten dentro de tu tarea</p>
 
@@ -87,23 +91,21 @@
 
         <div class="card-body">
 
-            <table id="actividades" class="table table-sm table-striped " style="width:100%">
+            <table id="tabla" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Descripcion</th>
                         <th>Puntaje Max</th>
                         <th>Tipo Pregunta</th>
                         <th>Recurso</th>
-
-                        <th style="width:20px;text-align:center">Acciones</th>
+                        <th>Descripcion</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($tarea->actividades as $actividad)
                         <tr>
                             <td>{{ $actividad->id }}</td>
-                            <td>{{ $actividad->descripcion }}</td>
                             <td>{{ $actividad->puntaje_max }}</td>
 
                             @switch($actividad->tipo)
@@ -128,7 +130,9 @@
                                 <td><strong class="text text-success">Recurso</strong></td>
                             @endif
 
-                            <td style="display: flex">
+                            <td> {{ $actividad->descripcion }}</td>
+
+                            <td>
 
                                 {{-- Editar --}}
 
@@ -144,10 +148,10 @@
 
         @if (!$tarea->actividades->isEmpty())
             <div class="card-header">
-                <form action="{{ route('admin.actividades.destroy', $tarea) }}" method="post" class="formulario-eliminar">
+                <form style="display: inline" action="{{ route('admin.actividades.destroy', $tarea) }}" method="post" class="formulario-eliminar">
                     @csrf
                     @method('DELETE')
-                    <input type="submit" id="delete" value="Eliminar todas las actividades" class="btn btn-danger" style="margin: 0px 0px 0px 5px;">
+                    <input type="submit" id="delete" value="Eliminar todas las actividades" class="btn btn-danger">
                 </form>
             </div>
 
@@ -160,12 +164,6 @@
 @stop
 
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
 @section('js')
-    <script>
-        console.log('Hi!');
-    </script>
-@stop
+    @include('admin.partials_datatables.cdn_js')
+@endsection

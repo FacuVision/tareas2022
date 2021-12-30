@@ -6,6 +6,10 @@
     <h1>Menu de Materias </h1>
 @stop
 
+@section('css')
+    @include('admin.partials_datatables.cdn_css')
+@endsection
+
 @section('content')
     <div class="card">
         @if (session('mensaje'))
@@ -19,13 +23,13 @@
 
 
         <div class="card-body">
-            <table id="grado" class="table table-sm table-striped " style="width:100%">
+            <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
-                        <th style="width:20px;text-align:center">Acciones</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +38,7 @@
                             <td>{{$materia->id}}</td>
                             <td>{{$materia->nombre}}</td>
                             <td>{{$materia->descripcion}}</td>
-                            <td style="display: flex">
+                            <td>
 
                                 {{-- Editar --}}
 
@@ -42,12 +46,11 @@
 
                                 {{-- Eliminar --}}
 
-                                <form action="{{ route('admin.materias.destroy', $materia) }}" method="post"
+                                <form style="display: inline" action="{{ route('admin.materias.destroy', $materia) }}" method="post"
                                     class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger"
-                                        style="margin: 0px 0px 0px 5px;">
+                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                                 </form>
 
                             </td>
@@ -60,3 +63,9 @@
 
     </div>
 @stop
+
+
+@section('js')
+    @include('admin.partials_datatables.cdn_js')
+@endsection
+
