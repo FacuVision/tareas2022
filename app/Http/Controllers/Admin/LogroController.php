@@ -145,8 +145,6 @@ class LogroController extends Controller
      */
     public function destroy(Logro $logro)
     {
-
-
         Storage::disk('public')->delete($logro->image->url);
         $logro->delete();
 

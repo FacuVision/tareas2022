@@ -75,6 +75,9 @@ class CarpetaController extends Controller
      */
     public function show(Carpeta $carpeta)
     {
+        //metodo autorizador de vista
+        $this->authorize("metodo_autorizador_carpetas", $carpeta);
+
         return view("admin.carpetas.show", compact('carpeta'));
     }
 
@@ -86,6 +89,10 @@ class CarpetaController extends Controller
      */
     public function edit(Carpeta $carpeta)
     {
+
+        //metodo autorizador de acceso a la edicion
+        $this->authorize("metodo_autorizador_carpetas", $carpeta);
+
         $docente = Docente::findOrFail(auth()->user()->id);
         //Array de materias del docente
         $materias = $docente->materias;
@@ -118,6 +125,9 @@ class CarpetaController extends Controller
      */
     public function update(Request $request, Carpeta $carpeta)
     {
+        //metodo autorizador de acceso a la actualizacion
+        $this->authorize("metodo_autorizador_carpetas", $carpeta);
+
         $request->validate([
             "titulo" => "required|string|max:200",
             "sesion"=> "required|integer|min:1|max:70",
@@ -152,6 +162,9 @@ class CarpetaController extends Controller
      */
     public function destroy(Carpeta $carpeta)
     {
+        //metodo autorizador de acceso a la eliminacion
+        $this->authorize("metodo_autorizador_carpetas", $carpeta);
+
         $carpeta->delete();
         return redirect()->route('admin.carpetas.index',$carpeta)->with('mensaje','Carpeta elminada correctamente');
 
