@@ -101,8 +101,6 @@ class ActividadController extends Controller
          } else {
              $this->authorize("metodo_desautorizador_asignacion_actividades", $actividad);
          }
-        die();
-
     }
 
     /**

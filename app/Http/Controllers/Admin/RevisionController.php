@@ -8,6 +8,7 @@ use App\Models\Carpeta;
 use App\Models\Docente;
 use App\Models\Respuesta;
 use App\Models\Tarea;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,8 @@ class RevisionController extends Controller
      */
     public function index()
     {
-        $docente = Docente::findOrFail(auth()->user()->id);
+
+        $docente = Docente::findOrFail(Auth::user()->id);
         $materia = $docente->materias->pluck('nombre','id');
 
         return view("admin.revisiones.index", compact('materia', 'docente'));
@@ -58,6 +60,10 @@ class RevisionController extends Controller
      */
     public function show($id)
     {
+        $carpeta = Carpeta::FindOrfail($id);
+        //MUESTRA LAS TAREAS RELACIONADAS CON EL ID DE LA CARPETA Y ADEMAS QUE ESTEN ACTIVAS (IMPORTANTE)
+        $this->authorize("metodo_autorizador_carpetas", $carpeta);
+
         $tareas = Tarea::where("carpeta_id",$id)->where("estado","1")->get();
         return view("admin.revisiones.show", compact("tareas"));
 
@@ -69,9 +75,13 @@ class RevisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) // id de la tarea
     {
+        //REVISION DE LAS TAREAS DE LOS ESTUDIANTES POR PARTE DEL PROFESOR
+
         $tarea = Tarea::findOrFail($id);
+        $this->authorize("update", $tarea); // METODO AUTORIZADOR DE VISUALIZACION DE LAS TAREAS RESPONDIDAS POR LOS ALUMNOS
+
         $tareas_alumnos = Tarea::findOrFail($id)->alumnos;
         $seccion = Tarea::findOrFail($id)->carpeta->seccion;
 
