@@ -53,8 +53,6 @@ class AsignacionController extends Controller
         //     if ($request->logro_id == $logro->pivot->logro_id) {
         //         $mensaje = "El logro ya ha sido asignado, elegir otro";
         //     } else{
-        //
-        //
         //     }
         // }
 

@@ -32,6 +32,7 @@ Route::resource('alumnos', AlumnoController::class)->names('admin.alumnos');
 Route::resource('docentes', DocenteController::class)->names('admin.docentes');
 Route::resource('materias', MateriaController::class)->names('admin.materias');
 
+
 //ASIGNAR LOGROS
 Route::resource('asignaciones', AsignacionController::class)->names('admin.asignaciones')->parameters(['asignaciones' => 'asignacion']);
 

@@ -59,7 +59,18 @@
 
                                 <a href="{{ route('admin.docentes.edit', $docente) }}" class="btn btn-success">Asignar</a>
 
+                                {{-- Eliminar --}}
+
+
+                                <form style="display: inline" action="{{ route('admin.docentes.destroy', $docente) }}" method="post"
+                                    class="formulario-eliminar">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
+                                </form>
+
                             </td>
+
                         </tr>
                     @endforeach
 

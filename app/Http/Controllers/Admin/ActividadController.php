@@ -36,6 +36,9 @@ class ActividadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     //ESTE METODO SE ENCARGA DE LA RECEPCION DE LA CREACION DE LAS ACTIVIDADES POR PARTE DEL DOCENTE
+
     public function store(Request $request)
     {
         $request->validate([
@@ -85,12 +88,15 @@ class ActividadController extends Controller
 
     }
 
+
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Actividad  $actividad
      * @return \Illuminate\Http\Response
      */
+    
     public function show(Tarea $actividad)
     {
         //EDICION DE UNA TAREA - AGREGAR ACTIVIDADES

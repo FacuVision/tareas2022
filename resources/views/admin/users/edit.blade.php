@@ -28,50 +28,77 @@
     <div class="card-body">
 
         {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'PUT']) !!}
-        <div class="form-group">
-            <div class="form-group">
-                {!! Form::label('email', 'Correo Electronico') !!}
-                {!! Form::text('email', $user->email, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('password', 'Contraseña') !!}
-                {!! Form::password('password', ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('nombre', 'Nombres') !!}
-                {!! Form::text('nombre', $user->name, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('apellido', 'Apellidos') !!}
-                {!! Form::text('apellido', $user->perfil->apellido, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('fecha', 'Fecha de Nacimiento') !!}
-                {!! Form::date('fecha', $user->perfil->fecha_nac, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('dni', 'DNI') !!}
-                {!! Form::text('dni', $user->perfil->DNI, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('edad', 'Edad') !!}
-                {!! Form::text('edad', $user->perfil->edad, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('sexo', 'Sexo') !!}
-                {!! Form::select('sexo', $sexo, $user->perfil->sexo, ['placeholder' => 'Elija sexo...', 'class' => 'form-control']); !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('direccion', 'Direccion') !!}
-                {!! Form::text('direccion', $user->perfil->direccion, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('distrito', 'Distrito') !!}
-                {!! Form::select('distrito', $dist, $user->perfil->distrito, ['placeholder' => 'Elija un distrito...', 'class' => 'form-control']); !!}
-            </div>
-        </div>
 
         <div class="form-group">
+
+            <div class="form-group">
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            {!! Form::label('email', 'Correo Electronico') !!}
+                            {!! Form::text('email', $user->email, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col">
+                            {!! Form::label('password', 'Contraseña') !!}
+                            {!! Form::password('password', ['class' => 'form-control']) !!}
+                        </div>
+                      </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            {!! Form::label('nombre', 'Nombres') !!}
+                            {!! Form::text('nombre', $user->name, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col">
+                            {!! Form::label('apellido', 'Apellidos') !!}
+                            {!! Form::text('apellido', $user->perfil->apellido, ['class' => 'form-control']) !!}                    </div>
+                      </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            {!! Form::label('fecha', 'Fecha de Nacimiento') !!}
+                            {!! Form::date('fecha', $user->perfil->fecha_nac, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col">
+                            {!! Form::label('dni', 'DNI') !!}
+                            {!! Form::text('dni', $user->perfil->DNI, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col">
+                            {!! Form::label('edad', 'Edad') !!}
+                            {!! Form::text('edad', $user->perfil->edad, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col">
+                            {!! Form::label('sexo', 'Sexo') !!}
+                            {!! Form::select('sexo', $sexo, $user->perfil->sexo, ['placeholder' => 'Elija sexo...', 'class' => 'form-control']); !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('direccion', 'Direccion') !!}
+                    {!! Form::text('direccion', $user->perfil->direccion, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('distrito', 'Distrito') !!}
+                    {!! Form::select('distrito', $dist, $user->perfil->distrito, ['placeholder' => 'Elija un distrito...', 'class' => 'form-control']); !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('rol', 'Rol: (opcional)') !!} <br>
+                    <label>
+                        {!! Form::checkbox('roles', 1, null, ['class' => 'mr-1']) !!} Admin
+                    </label>
+                </div>
+            </div>
+
+
+
 
         {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
         </div>

@@ -23,40 +23,61 @@
     </div>
     <div class="card-body">
 
+        <div class="col"></div>
+
         {!! Form::open(['method' => 'POST', 'route' => 'admin.users.store']) !!}
         <div class="form-group">
+
             <div class="form-group">
-                {!! Form::label('email', 'Correo Electronico') !!}
-                {!! Form::text('email', null, ['class' => 'form-control']) !!}
+                <div class="row">
+                    <div class="col">
+                        {!! Form::label('email', 'Correo Electronico') !!}
+                        {!! Form::text('email', null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col">
+                        {!! Form::label('password', 'Contraseña') !!}
+                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                    </div>
+                  </div>
             </div>
+
+
+
+
             <div class="form-group">
-                {!! Form::label('password', 'Contraseña') !!}
-                {!! Form::password('password', ['class' => 'form-control']) !!}
+                <div class="row">
+                    <div class="col">
+                        {!! Form::label('nombre', 'Nombres') !!}
+                        {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col">
+                        {!! Form::label('apellido', 'Apellidos') !!}
+                        {!! Form::text('apellido', null, ['class' => 'form-control']) !!}                    </div>
+                  </div>
             </div>
+
+
             <div class="form-group">
-                {!! Form::label('nombre', 'Nombres') !!}
-                {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+                <div class="row">
+                    <div class="col">
+                        {!! Form::label('fecha', 'Fecha de Nacimiento') !!}
+                        {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col">
+                        {!! Form::label('dni', 'DNI') !!}
+                        {!! Form::text('dni', null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col">
+                        {!! Form::label('edad', 'Edad') !!}
+                        {!! Form::text('edad', null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col">
+                        {!! Form::label('sexo', 'Sexo') !!}
+                        {!! Form::select('sexo', $sexo, null, ['placeholder' => 'Elija sexo...', 'class' => 'form-control']); !!}
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                {!! Form::label('apellido', 'Apellidos') !!}
-                {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('fecha', 'Fecha de Nacimiento') !!}
-                {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('dni', 'DNI') !!}
-                {!! Form::text('dni', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('edad', 'Edad') !!}
-                {!! Form::text('edad', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('sexo', 'Sexo') !!}
-                {!! Form::select('sexo', $sexo, null, ['placeholder' => 'Elija sexo...', 'class' => 'form-control']); !!}
-            </div>
+
             <div class="form-group">
                 {!! Form::label('direccion', 'Direccion') !!}
                 {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
@@ -65,11 +86,16 @@
                 {!! Form::label('distrito', 'Distrito') !!}
                 {!! Form::select('distrito', $dist, null, ['placeholder' => 'Elija un distrito...', 'class' => 'form-control']); !!}
             </div>
+            <div class="form-group">
+                {!! Form::label('rol', 'Rol: (opcional)') !!} <br>
+                <label>
+                    {!! Form::checkbox('rol_id', 1 , null, ['class' => 'mr-1']) !!} Admin
+                </label>
+            </div>
         </div>
 
         <div class="form-group">
-
-        {!! Form::submit('Crear', ['class' => 'btn btn-success']) !!}
+            {!! Form::submit('Crear', ['class' => 'btn btn-success']) !!}
         </div>
         {!! Form::close() !!}
 

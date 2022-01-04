@@ -82,8 +82,8 @@ class RevisionController extends Controller
         $tarea = Tarea::findOrFail($id);
         $this->authorize("update", $tarea); // METODO AUTORIZADOR DE VISUALIZACION DE LAS TAREAS RESPONDIDAS POR LOS ALUMNOS
 
-        $tareas_alumnos = Tarea::findOrFail($id)->alumnos;
-        $seccion = Tarea::findOrFail($id)->carpeta->seccion;
+        $tareas_alumnos = $tarea->alumnos;
+        $seccion = $tarea->carpeta->seccion;
 
         return view("admin.revisiones.edit",compact("tareas_alumnos","seccion","tarea"));
 

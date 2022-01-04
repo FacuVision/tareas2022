@@ -52,12 +52,18 @@ class AlumnoController extends Controller
         } elseif($user->docente) {
             return redirect()->route('admin.alumnos.index')->with('alerta','El usuario ya fue asignado como docente');
         } else{
+
+            //si en caso el usuario posee algun rol en especifico
+            foreach ($user->roles as $role) {
+                if($role->id == 1 || $role->id == 2){ // si en caso ya posee el rol de admin
+                    return redirect()->route('admin.alumnos.index')->with('alerta','El usuario seleccionado tiene rol administrador, no se puede asignar');
+                }
+            }
+
+            $user->roles()->sync(3);
             Alumno::create($request->all());
-            return redirect()->route('admin.alumnos.index')->with('mensaje','El alumno fue creado correctamente');
-
         }
-
-
+        return redirect()->route('admin.alumnos.index')->with('mensaje','El alumno fue creado correctamente');
     }
 
     /**
@@ -106,6 +112,10 @@ class AlumnoController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-        //
+
+        $alumno->user->roles()->sync(null);
+        $alumno->delete();
+        return redirect()->route('admin.alumnos.index')->with('mensaje','El alumno se eliminó correctamente');
+
     }
 }

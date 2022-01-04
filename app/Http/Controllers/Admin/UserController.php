@@ -48,8 +48,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        // echo '<pre>' , var_export($request->all(),true) , '</pre>';
-        // die();
         $request->validate([
             "email" =>"required|string|email|max:100|unique:users",
             "password" =>"required|string",
@@ -63,13 +61,14 @@ class UserController extends Controller
             "distrito" => "required|string",
         ]);
 
-        $admin = User::create([
+        $user = User::create([
             "name" => $request->nombre,
             "email" => $request->email,
             "password" => bcrypt($request->password)
         ]);
 
-        $admin->perfil()->create(
+
+        $user->perfil()->create(
             [
                 "nombre" => $request->nombre,
                 "apellido" => $request->apellido,
@@ -81,6 +80,13 @@ class UserController extends Controller
                 "distrito" => $request->distrito
             ]
         );
+
+                //si se marco el rol de admin
+                if($request->rol_id){
+                    // 1 = id admin
+                    $user->roles()->sync(1);
+                }
+
         return redirect()->route('admin.users.index')->with('mensaje','Usuario creado correctamente');
     }
 
@@ -175,6 +181,25 @@ class UserController extends Controller
 
             //actualiza solo el modelo profile
             $user->perfil->update($request->only("nombre","apellido","DNI","fecha_nac","edad","sexo","direccion","distrito"));
+
+            if($request->roles){ // si esta marcado
+                // 1 = id admin
+                foreach ($user->roles as $role) {   // si el usuario a editar era un docente
+                                                    // mantiene el docente y se añade el admin
+                    if ($role->id == 2) {
+                        $user->roles()->sync([2,1]);
+                    }
+                }
+            } else{ // si no esta marcado
+                foreach ($user->roles as $role) {
+                    // si el usuario a editar era un docente
+                    // mantiene el docente y se quita el admin
+                        if ($role->id == 2) {
+                        $user->roles()->sync(2);
+                        }
+
+            }
+        }
 
             return redirect()->route('admin.users.edit',$user)->with('mensaje','El usuario ha sido modificado correctamente');
     }
