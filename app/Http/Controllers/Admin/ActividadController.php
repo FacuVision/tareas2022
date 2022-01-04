@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Actividad;
 use App\Models\Tarea;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ActividadController extends Controller
 {
@@ -35,6 +36,9 @@ class ActividadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     //ESTE METODO SE ENCARGA DE LA RECEPCION DE LA CREACION DE LAS ACTIVIDADES POR PARTE DEL DOCENTE
+
     public function store(Request $request)
     {
         $request->validate([
@@ -84,16 +88,25 @@ class ActividadController extends Controller
 
     }
 
+
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Actividad  $actividad
      * @return \Illuminate\Http\Response
      */
+    
     public function show(Tarea $actividad)
     {
-        $tarea = $actividad;
-        return view("admin.actividades.create", compact('tarea'));
+        //EDICION DE UNA TAREA - AGREGAR ACTIVIDADES
+
+        if ($actividad->carpeta->docente->user->id == Auth::user()->id) {
+            $tarea = $actividad;
+            return view("admin.actividades.create", compact('tarea'));
+         } else {
+             $this->authorize("metodo_desautorizador_asignacion_actividades", $actividad);
+         }
     }
 
     /**
@@ -104,6 +117,7 @@ class ActividadController extends Controller
      */
     public function edit(Actividad $actividad)
     {
+        $this->authorize("metodo_autorizador_actividades", $actividad);
 
         $tipos = ["0"=>"Respuesta corta", "1"=>"Respuesta larga", "2"=>"Link de Video", "3"=>"Link de carpeta de Drive"];
 
@@ -119,6 +133,8 @@ class ActividadController extends Controller
      */
     public function update(Request $request, Actividad $actividad)
     {
+        $this->authorize("metodo_autorizador_actividades", $actividad);
+
         $tipos = ["0"=>"Respuesta corta", "1"=>"Respuesta larga", "2"=>"Link de Video", "3"=>"Link de carpeta de Drive"];
 
         $request->validate([
@@ -142,6 +158,8 @@ class ActividadController extends Controller
      */
     public function destroy(Tarea $actividad)
     {
+        //SE ESTA ENVIANDO UNA TAREA AL METODO AUTORIZADOR
+        $this->authorize("metodo_autorizador_eliminar_actividades", $actividad);
 
         $tarea = $actividad;
         $carpeta = $tarea->carpeta;

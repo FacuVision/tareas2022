@@ -29,7 +29,7 @@ class TareaController extends Controller
      */
     public function create()
     {
-
+        
     }
 
     /**
@@ -67,6 +67,7 @@ class TareaController extends Controller
      */
     public function show(Tarea $tarea)
     {
+        $this->authorize("metodo_autorizador_tareas", $tarea);
         $carpeta = $tarea->carpeta;
         return view("admin.tareas.show",compact('tarea','carpeta'));
 
@@ -80,6 +81,8 @@ class TareaController extends Controller
      */
     public function edit(Tarea $tarea)
     {
+        $this->authorize("metodo_autorizador_tareas", $tarea);
+
         $estados = ["0" => "borrador", "1"=>"publicado"];
         return view("admin.tareas.edit",compact('tarea','estados'));
     }
@@ -93,6 +96,8 @@ class TareaController extends Controller
      */
     public function update(Request $request, Tarea $tarea)
     {
+
+        $this->authorize("metodo_autorizador_tareas", $tarea);
 
         $estados = ["0" => "borrador", "1"=>"publicado"];
 
@@ -123,6 +128,8 @@ class TareaController extends Controller
      */
     public function destroy(Tarea $tarea)
     {
+        $this->authorize("metodo_autorizador_tareas", $tarea);
+
         $carpeta = $tarea->carpeta;
         $tarea->delete();
 

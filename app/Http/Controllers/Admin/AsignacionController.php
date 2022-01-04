@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
 use App\Models\Logro;
+use App\Models\Tarea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -52,8 +53,6 @@ class AsignacionController extends Controller
         //     if ($request->logro_id == $logro->pivot->logro_id) {
         //         $mensaje = "El logro ya ha sido asignado, elegir otro";
         //     } else{
-        //
-        //
         //     }
         // }
 
@@ -72,6 +71,8 @@ class AsignacionController extends Controller
 
         $user_id = $array_nuevo[0];
         $tarea_id = $array_nuevo[1];
+
+        $this->authorize("update", Tarea::findOrfail($tarea_id)); //metodo autorizador
 
         $logros = Alumno::findOrFail($user_id)->logros;
         $alumno = Alumno::findOrFail($user_id);
@@ -93,6 +94,7 @@ class AsignacionController extends Controller
         $user_id = $array_nuevo[0];
         $tarea_id = $array_nuevo[1];
 
+        $this->authorize("update", Tarea::findOrfail($tarea_id));
 
         $logros = Logro::all();
         $alumno = Alumno::findOrFail($user_id);

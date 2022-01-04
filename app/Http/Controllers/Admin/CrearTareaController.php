@@ -10,7 +10,6 @@ class CrearTareaController extends Controller
 {
     public function show(Carpeta $carpeta)
     {
-
         $estados = ["0" => "borrador", "1"=>"publicado"];
         return view("admin.tareas.create", compact("estados", "carpeta"));
 

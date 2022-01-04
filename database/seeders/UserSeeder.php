@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use App\Models\Alumno;
 use App\Models\Perfil;
 use App\Models\User;
 use App\Models\Docente;
-use Illuminate\Support\Facades\DB;
 use DateTime;
-use Illuminate\Database\Seeder;
+
 
 
 class UserSeeder extends Seeder
@@ -24,25 +24,25 @@ class UserSeeder extends Seeder
         //COSAS DE EMMNANUEL
 
             $admin = User::create([
-                "name" => "Emmanuel",
-                "email" => "emma@gmail.com",
+                "name" => "Gino",
+                "email" => "ginosalazar@gmail.com",
                 "password" => bcrypt("12345")
-            ]);
+            ])->assignRole('Admin');
 
-            $date = new DateTime("2001-01-18");
+            $date = new DateTime("1976-01-01");
 
             $admin->perfil()->create(
                 [
-                    "nombre" => "Emmanuel",
-                    "apellido" => "Garayar",
-                    "DNI" => "74741985",
+                    "nombre" => "Gino",
+                    "apellido" => "Salazar",
+                    "DNI" => "12365478",
                     "fecha_nac" => $date,
-                    "edad" => "20",
+                    "edad" => "45",
                     "sexo" => "m",
-                    "direccion" => "En mi casa",
+                    "direccion" => "direccion",
                     "distrito" => "V.E.S"
                 ]
-            );
+                );
 
 
 
@@ -68,18 +68,21 @@ class UserSeeder extends Seeder
                 "user_id" => $d->id
             ]);
 
+
+            $d->assignRole('Docente');
+
                 //ASIGNAMOS MATERIAS RANDOM AL DOCENTE
-                $docID = Docente::find($d->id);
-                $docID->materias()->attach([rand(1,10),rand(1,10)]);
+                //$docID = Docente::find($d->id);
+                //$docID->materias()->attach([rand(1,10),rand(1,10)]);
 
                 //ASIGNAMOS SECCIONES A LOS DOCENTES
-                $docID->secciones()->attach([rand(1,12),rand(1,12),rand(1,12),rand(1,12)]);
+                //$docID->secciones()->attach([rand(1,12),rand(1,12),rand(1,12),rand(1,12)]);
         }
 
 
         //CREACION DE ALUMNOS ****************************************************************************
 
-        $alumnos = User::factory(14)->create();
+        $alumnos = User::factory(5)->create();
         //Selecciona a todos los usuarios asignando a la variable todos
 
         foreach ($alumnos as $al) {
@@ -98,6 +101,8 @@ class UserSeeder extends Seeder
                 "user_id" => $al->id,
                 "seccion_id" => random_int(1,12)
             ]);
+
+            $al->assignRole('Alumno');
 
 
         }
