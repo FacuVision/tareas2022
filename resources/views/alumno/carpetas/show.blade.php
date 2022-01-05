@@ -6,9 +6,8 @@
             </h2>
         </div>
     </x-slot>
-
-    <div class="flex flex-col py-4 max-w-7xl mx-auto sm:px-6">
-        <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
+        <div class="flex flex-col py-4 max-w-7xl mx-auto sm:px-6">
+        <div class="-my-2 overflow-auto hover:overflow-scroll sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -32,16 +31,13 @@
                                     Estado de Revision
                                 </th>
                                 <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Nota Final
+                                </th>
+                                <th scope="col"
                                     class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Acción
                                 </th>
-                                {{-- <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Role
-                                </th> --}}
-                                {{-- <th scope="col" class="relative px-6 py-3">
-                                    <span class="sr-only">Edit</span>
-                                </th> --}}
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -49,7 +45,7 @@
                                 <tr>
                                     @switch($dato->carpeta->id)
                                         @case($carpeta->id)
-                                            {{-- 0: sin responder|| 1: Respondido || 2: Calificado --}}
+
 
                                             @if ($dato->pivot->estado == 0)
                                                 @php
@@ -65,9 +61,10 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">
-                                                        {{ $dato->descripcion }}</div>
+                                                <td class="px-6 py-4 whitespace">
+                                                    <div class="text-sm text-gray-900 break-words">
+                                                        {{ $dato->descripcion }}
+                                                    </div>
                                                 </td>
 
                                                 @switch($dato->estado)
@@ -82,6 +79,11 @@
                                                             <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-300 text-gray-800">
                                                                 Sin responder
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span>
+                                                                -
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
@@ -101,6 +103,11 @@
                                                             <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-300 text-gray-800">
                                                                 Sin responder
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span>
+                                                                -
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
@@ -124,8 +131,8 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">
+                                                <td class="px-6 py-4 whitespace">
+                                                    <div class="text-sm text-gray-900 break-words">
                                                         {{ $dato->descripcion }}</div>
                                                 </td>
 
@@ -141,6 +148,11 @@
                                                             <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-300 text-yellow-800">
                                                                 Respondido
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span>
+                                                                -
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
@@ -160,6 +172,11 @@
                                                             <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-300 text-yellow-800">
                                                                 Respondido
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span>
+                                                                -
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
@@ -182,8 +199,8 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">
+                                                <td class="px-6 py-4 whitespace">
+                                                    <div class="text-sm text-gray-900 break-words">
                                                         {{ $dato->descripcion }}</div>
                                                 </td>
 
@@ -199,6 +216,11 @@
                                                             <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-cyan-300 text-cyan-800">
                                                                 Calificado
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span>
+                                                                {{$dato->pivot->nota_final}}
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
@@ -218,6 +240,11 @@
                                                             <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-cyan-300 text-cyan-800">
                                                                 Calificado
+                                                            </span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                                                            <span>
+                                                                {{$dato->pivot->nota_final}}
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">

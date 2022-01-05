@@ -19,7 +19,7 @@
                     $count = 1;
                 @endphp
                 <form wire:submit.prevent="enviar">
-                {{-- <form wire:submit.prevent="show"> --}}
+                    {{-- <form wire:submit.prevent="show"> --}}
                     @foreach ($dato->actividades as $act)
                         <x-jet-label class="text-left pt-2 pb-2 text-indigo-600"
                             value="Actividad {{ $count }} :" />
@@ -51,7 +51,7 @@
                                 <textarea required id="editor" wire:model.defer="descripcion.{{ $act->id }}"
                                     name="descripcion[]" class="w-full" placeholder="Respuesta">
 
-                                    </textarea>
+                                        </textarea>
 
                             @break
 
@@ -69,7 +69,7 @@
                                     <iframe class="absolute inset-0 w-full h-full pb-2" src="{{ $link }}"
                                         frameborder="0" …></iframe>
                                 </div>
-                                <p class="text-md text-navy-600 font-bold">Respuesta: {{ $act->id }}</p>
+                                <p class="text-md text-navy-600 font-bold">Respuesta:</p>
                                 <textarea required id="editor" wire:model.defer="descripcion.{{ $act->id }}"
                                     name="descripcion[]" class="w-full" placeholder="Respuesta"></textarea>
                             @break
