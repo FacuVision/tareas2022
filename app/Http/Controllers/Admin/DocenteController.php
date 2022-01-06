@@ -148,9 +148,14 @@ class DocenteController extends Controller
             // si el docente a eliminar era un administrador
             // mantiene el admin y se borra el docente
             if ($role->id == 1) {
-            $docente->user->roles()->sync(1);
+                $docente->user->roles()->sync(1);
+                break;
+            } else{
+                $docente->user->roles()->sync(null);
             }
+
             }
+
         $docente->delete();
 
 
