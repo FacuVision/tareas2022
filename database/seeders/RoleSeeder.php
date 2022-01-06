@@ -114,6 +114,13 @@ class RoleSeeder extends Seeder
         //********************* PERMISOS ALUMNO ***************************** */
 
 
+//PERMISO DE MATERIAS
+         Permission::create(["name"=>"alumno.materias.index"])->syncRoles([$alumno]);  //VISUALIZACION DE LAS TAREAS para poder revisarlas
+         Permission::create(["name"=>"alumno.materias.show"])->syncRoles([$alumno]);  //VISUALIZACION DE LAS TAREAS para poder revisarlas
+
+//PERMISO DE CARPETAS
+         Permission::create(["name"=>"alumno.carpetas.show"])->syncRoles([$alumno]);  //VISUALIZACION DE LAS TAREAS para poder revisarlas
+
 
     }
 }
