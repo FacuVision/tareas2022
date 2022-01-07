@@ -18,9 +18,12 @@
   </div>
 
     <div class="card">
+        @can('admin.revisiones.index')
+
         <div class="card-header">
             <a class="btn btn-secondary" href="{{ route('admin.revisiones.index') }}"> Volver</a>
         </div>
+        @endcan
 
         <div class="card-body">
 
@@ -37,7 +40,7 @@
                         <th>fecha_inicio</th>
                         <th>fecha_final</th>
                         <th>Estado</th>
-                        <th style="width:20px;text-align:center">Acciones</th>
+                        <th style="width:20px;text-align:center"> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,9 +62,12 @@
 
                         <td  style="display: flex">
 
+                            @can('admin.revisiones.show')
+
                             {{-- Ver --}}
 
                             <a style="margin: 0px 5px" href="{{route('admin.revisiones.show', $carpeta->id)}}" class="btn btn-primary">Ver</a>
+                            @endcan
 
                         </td>
                     </tr>

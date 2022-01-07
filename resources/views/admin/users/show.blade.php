@@ -33,7 +33,7 @@
                     <th>Sexo</th>
                     <th>Dirección</th>
                     <th>Distrito</th>
-                    <th>Acciones</th>
+                    <th> </th>
                 </tr>
             </thead>
             <tbody>
@@ -55,9 +55,14 @@
                     <td>{{$user->perfil->direccion}}</td>
                     <td>{{$user->perfil->distrito}}</td>
                     <td>
-                        {{-- Editar --}}
 
+                        {{-- Editar --}}
+                        @can('admin.users.edit')
                         <a href="{{route('admin.users.edit', $user)}}" class="btn btn-success">Editar</a>
+
+                        @endcan
+
+                        @can('admin.users.destroy')
 
                         {{-- Eliminar --}}
 
@@ -66,6 +71,7 @@
                             @method('DELETE')
                             <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                         </form>
+                        @endcan
 </td>
                 </tr>
 

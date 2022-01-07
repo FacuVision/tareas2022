@@ -22,9 +22,12 @@
                 <strong>{{ session('warning') }}</strong>
             </div>
         @endif
+        @can('admin.secciones.create')
+
         <div class="card-header">
             <a href="{{ route('admin.secciones.create') }}" class="btn btn-primary"> Crear Sección</a>
         </div>
+        @endcan
 
 
         <div class="card-body">
@@ -34,7 +37,7 @@
                         <th>Id</th>
                         <th>Sección</th>
                         <th>Grado</th>
-                        <th>Acciones</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,9 +49,15 @@
                             <td>{{$seccion->grado->grado. " DE ". $seccion->grado->nivel}}</td>
                             <td>
 
+                                @can('admin.secciones.edit')
+
                                 {{-- Editar --}}
 
                                 <a href="{{ route('admin.secciones.edit', $seccion) }}" class="btn btn-success">Editar</a>
+                                @endcan
+
+
+                                @can('admin.secciones.destroy')
 
                                 {{-- Eliminar --}}
 
@@ -58,6 +67,7 @@
                                     @method('DELETE')
                                     <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                                 </form>
+                                @endcan
 
                             </td>
                         </tr>

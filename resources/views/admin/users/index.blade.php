@@ -17,9 +17,12 @@
         <strong>{{session('mensaje')}}</strong>
     </div>
     @endif
-        <div class="card-header">
-            <a href="{{route('admin.users.create')}}" class="btn btn-primary"> Crear Usuario</a>
-        </div>
+    @can('admin.users.create')
+
+    <div class="card-header">
+        <a href="{{route('admin.users.create')}}" class="btn btn-primary"> Crear Usuario</a>
+    </div>
+    @endcan
 
 
     <div class="card-body">
@@ -30,7 +33,7 @@
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Fecha de Creación</th>
-                    <th>Acciones</th>
+                    <th> </th>
                 </tr>
             </thead>
             <tbody>
@@ -42,15 +45,25 @@
                     <td>{{date('d/m/Y H:m:s', strtotime($user->created_at))}}</td>
                     <td>
                         {{--Mostrar--}}
+                        @can('admin.users.show')
                         <a href="{{route('admin.users.show', $user)}}" class="btn btn-primary">Ver</a>
+                        @endcan
+
                         {{-- Editar --}}
+                        @can('admin.users.edit')
                         <a href="{{route('admin.users.edit', $user)}}" class="btn btn-success">Editar</a>
+
+                        @endcan
+
+                        @can('admin.users.destroy')
+
                         {{-- Eliminar --}}
                         <form style="display: inline" action="{{route('admin.users.destroy', $user)}}" method="post" class="formulario-eliminar">
                             @csrf
                             @method('DELETE')
                             <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                         </form>
+                        @endcan
 
                     </td>
                 </tr>

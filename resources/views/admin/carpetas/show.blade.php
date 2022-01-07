@@ -15,9 +15,12 @@
     <p>Aqui podras añadir, eliminar y ver las tareas que esten dentro de tu carpeta</p>
 
     <div class="card">
-        <div class="card-header">
-            <a href="{{ route('admin.carpetas.index') }}" class="btn btn-primary">Volver a tus Carpetas</a>
-        </div>
+        @can('admin.carpetas.index')
+
+                <div class="card-header">
+                    <a href="{{ route('admin.carpetas.index') }}" class="btn btn-primary">Volver a tus Carpetas</a>
+                </div>
+        @endcan
 
         <div class="card-body">
 
@@ -58,17 +61,26 @@
             </div>
         </div>
 
+
         <div class="card-footer">
 
+            @can('admin.carpetas.edit')
+
             <a href="{{ route('admin.carpetas.edit', $carpeta) }}" class="btn btn-success">Editar esta carpeta</a>
+            @endcan
+
+            @can('admin.carpetas.destroy')
 
             <form style="display: inline-block;" action="{{ route('admin.carpetas.destroy', $carpeta)}}" method="post">
                 @csrf
                 @method('DELETE')
                 <input type="submit" id="delete" value="Eliminar esta carpeta" class="btn btn-danger" style="margin: 0px 0px 0px 5px;">
             </form>
+            @endcan
 
         </div>
+
+
     </div>
     {{-- MI CARPETA - INFORMACION ----------------------------------------------------------------------}}
 
@@ -91,7 +103,10 @@
 
             <h3>Tus Tareas</h3>
             <br>
+            @can('admin.crear_tareas.show')
+
             <a href="{{ route('admin.crear_tareas.show', $carpeta) }}" class="btn btn-warning"> Añadir una nueva tarea</a>
+            @endcan
         </div>
 
 
@@ -103,7 +118,7 @@
                         <th>Id</th>
                         <th>Titulo</th>
                         <th>Estado</th>
-                        <th style="width:20px;text-align:center">Acciones</th>
+                        <th style="width:20px;text-align:center"> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -118,11 +133,13 @@
                             @endif
 
                             <td>
+                                @can('admin.tareas.show')
 
                                 {{-- Ver --}}
 
                                 <a href="{{ route('admin.tareas.show', $tarea) }}"
                                     class="btn btn-primary">Ver</a>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

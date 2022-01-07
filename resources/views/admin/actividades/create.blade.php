@@ -22,7 +22,10 @@
 
             @endif
 
+            @can('admin.tareas.show')
+
             <a class="button is-info" href="{{ route('admin.tareas.show', $tarea) }}"> Volver a tu Tarea</a>
+            @endcan
 
 
         </div>

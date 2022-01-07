@@ -43,8 +43,11 @@
 
 
         <div class="card-body">
+            @can('admin.revisiones.edit')
 
             <a  class="btn btn-secondary" href="{{ route('admin.revisiones.edit', $tarea_id)}}"> Volver a Calificaciones</a>
+            @endcan
+
             <br>
             <hr>
 
@@ -56,7 +59,7 @@
                         <th>Descripcion</th>
                         <th>Tipo</th>
                         <th>Imagen</th>
-                        <th style="width:20px;text-align:center">Acciones</th>
+                        <th style="width:20px;text-align:center"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,6 +117,8 @@
 
                                 {{-- Asignar --}}
 
+                                @can('admin.asignaciones.edit')
+
                                 <form action="{{ route('admin.asignaciones.store') }}" method="post"
                                     class="formulario-eliminar">
                                     @csrf
@@ -124,6 +129,7 @@
                                     <input type="submit" value="Asignar" class="btn btn-info"
                                         style="margin: 0px 0px 0px 5px;">
                                 </form>
+                                @endcan
 
                             </td>
                         </tr>

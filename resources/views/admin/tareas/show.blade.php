@@ -30,8 +30,12 @@
         </div>
     @endif
 
-            <a href="{{ route('admin.carpetas.show', $carpeta) }}" class="btn btn-primary">Volver a tu Carpeta</a>
-        </div>
+        @can('admin.carpetas.show')
+        <a href="{{ route('admin.carpetas.show', $carpeta) }}" class="btn btn-primary">Volver a tu Carpeta</a>
+
+        @endcan
+
+    </div>
 
         <div class="card-body">
 
@@ -55,7 +59,12 @@
         </div>
 
         <div class="card-footer">
-            <a href="{{ route('admin.tareas.edit', $tarea) }}" class="btn btn-success">Editar esta tarea</a>
+            @can('admin.tareas.edit')
+
+                <a href="{{ route('admin.tareas.edit', $tarea) }}" class="btn btn-success">Editar esta tarea</a>
+            @endcan
+
+            @can('admin.tareas.destroy')
 
             <form style="display: inline-block;" action="{{ route('admin.tareas.destroy', $tarea) }}" method="post">
                 @csrf
@@ -63,6 +72,8 @@
                 <input type="submit" id="delete" value="Eliminar esta tarea" class="btn btn-danger"
                     style="margin: 0px 0px 0px 5px;">
             </form>
+            @endcan
+
 
         </div>
 
@@ -70,10 +81,15 @@
 
 
     @if ($tarea->actividades->isEmpty())
-        <div class="card">
-            <a href="{{ route('admin.actividades.show', $tarea) }}" class="btn btn-warning"><strong> Ir al menu de creacion
-                    de actividades</strong></a>
-        </div>
+
+        @can('admin.actividades.show')
+
+            <div class="card">
+                <a href="{{ route('admin.actividades.show', $tarea) }}" class="btn btn-warning"><strong> Ir al menu de creacion
+                        de actividades</strong></a>
+            </div>
+        @endcan
+
     @endif
 
     <div class="card">
@@ -99,7 +115,7 @@
                         <th>Tipo Pregunta</th>
                         <th>Recurso</th>
                         <th>Descripcion</th>
-                        <th>Acciones</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>

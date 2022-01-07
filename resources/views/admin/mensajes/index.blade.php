@@ -19,9 +19,12 @@
             <strong>{{session('mensaje')}}</strong>
         </div>
         @endif
-            <div class="card-header">
-                <a href="{{route('admin.mensajes.create')}}" class="btn btn-primary"> Crear un nuevo mensaje</a>
-            </div>
+        @can('admin.mensajes.create')
+
+        <div class="card-header">
+            <a href="{{route('admin.mensajes.create')}}" class="btn btn-primary"> Crear un nuevo mensaje</a>
+        </div>
+        @endcan
 
 
         <div class="card-body">
@@ -31,7 +34,7 @@
                         <th>Id</th>
                         <th>Mensaje</th>
                         <th>Color</th>
-                        <th>Acciones</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,8 +47,13 @@
                         </td>
                         <td>
 
+                            @can('admin.mensajes.edit')
+
                             {{-- Editar --}}
                             <a href="{{route('admin.mensajes.edit', $men)}}" class="btn btn-success">Editar</a>
+                            @endcan
+
+                            @can('admin.mensajes.destroy')
 
                             {{-- Eliminar --}}
                             <form style="display: inline" action="{{route('admin.mensajes.destroy', $men)}}" method="post">
@@ -53,6 +61,7 @@
                                 @method('DELETE')
                                 <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                             </form>
+                            @endcan
                         </td>
                     </tr>
                     @endforeach

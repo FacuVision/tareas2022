@@ -17,9 +17,13 @@
                 <strong>{{ session('mensaje') }}</strong>
             </div>
         @endif
+
+        @can('admin.grados.create')
+
         <div class="card-header">
             <a href="{{ route('admin.grados.create') }}" class="btn btn-primary"> Crear Grado</a>
         </div>
+        @endcan
 
         <div class="card-body">
             <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
@@ -28,7 +32,7 @@
                         <th>Id</th>
                         <th>Grado</th>
                         <th>Nivel</th>
-                        <th>Acciones</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,8 +44,12 @@
                             <td>
 
                                 {{-- Editar --}}
+                                @can('admin.grados.edit')
 
                                 <a href="{{ route('admin.grados.edit', $grado) }}" class="btn btn-success">Editar</a>
+                                @endcan
+
+                                @can('admin.grados.destroy')
 
                                 {{-- Eliminar --}}
 
@@ -51,6 +59,7 @@
                                     @method('DELETE')
                                     <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                                 </form>
+                                @endcan
 
                             </td>
                         </tr>

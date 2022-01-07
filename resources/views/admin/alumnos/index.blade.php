@@ -25,10 +25,11 @@
                 <strong>{{ session('alerta') }}</strong>
             </div>
         @endif
-
-        <div class="card-header">
-            <a href="{{ route('admin.alumnos.create') }}" class="btn btn-primary"> Crear un Alumno</a>
-        </div>
+    @can('admin.alumnos.create')
+    <div class="card-header">
+        <a href="{{ route('admin.alumnos.create') }}" class="btn btn-primary"> Crear un Alumno</a>
+    </div>
+    @endcan
 
         <div class="card-body">
             <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
@@ -37,11 +38,11 @@
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>DNI</th>
+                        @can('admin.users.show')<th>DNI</th>@endcan
                         <th>Correo</th>
                         <th>Grado</th>
                         <th>Seccion</th>
-                        <th style="width:20px;text-align:center">Acciones</th>
+                        <th style="width:20px;text-align:center"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +52,10 @@
                             <td>{{$alumno->user_id}}</td>
                             <td>{{$alumno->user->perfil->nombre}}</td>
                             <td>{{$alumno->user->perfil->apellido}}</td>
+                            @can('admin.users.show')
                             <td>{{$alumno->user->perfil->DNI}}</td>
+                            @endcan
+
                             <td>{{$alumno->user->email}}</td>
                             <td>{{$alumno->seccion->grado->grado}} - {{$alumno->seccion->grado->nivel}}</td>
                             <td>{{$alumno->seccion->nombre}}</td>
@@ -59,21 +63,30 @@
 
                                 {{-- Ver --}}
 
+                                @can('admin.users.show')
+
                                 <a href="{{ route('admin.users.show', $alumno->user) }}" style="margin: 0px 5px;"class="btn btn-primary">Ver</a>
 
+                                @endcan
+
+
                                 {{-- Editar --}}
+                                @can('admin.alumnos.edit')
 
                                 <a href="{{ route('admin.alumnos.edit', $alumno) }}" class="btn btn-success">Asignar</a>
+                                @endcan
 
+                                @can('admin.docentes.destroy')
                                 {{-- Borrar --}}
-
-
                                 <form style="display: inline" action="{{ route('admin.alumnos.destroy', $alumno) }}" method="post"
                                     class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                                 </form>
+
+                                @endcan
+
 
                             </td>
                         </tr>

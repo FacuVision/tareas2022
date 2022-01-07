@@ -31,7 +31,10 @@
 
         <div class="card-body">
 
+            @can('admin.revisiones.show')
+
             <a class="btn btn-secondary" style="margin-bottom: 20px" href="{{ route('admin.revisiones.show', $tarea->carpeta->id) }}"> Volver a Tareas </a>
+            @endcan
 
             <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
                 <thead>
@@ -43,7 +46,7 @@
                         <th>Correo</th>
                         <th>Nota</th>
                         <th>Estado</th>
-                        <th>Acciones</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,13 +83,20 @@
 
 
                             <td>
+                            @can('admin.revisar_tareas.edit')
 
-                            @switch($tarea_alumno->pivot->estado)
+                                @switch($tarea_alumno->pivot->estado)
 
-                                @case(1)
-                                    <a href="{{ route('admin.revisar_tareas.edit', $tarea_alumno->pivot->tarea_id ."-".$tarea_alumno->pivot->user_id)}}" class="btn btn-primary">Calificar</a>
-                            @endswitch
-                                <a href="{{ route('admin.asignaciones.show', $tarea_alumno->user_id."-".$tarea_alumno->pivot->tarea_id) }}" class="btn btn-success">Asignar Logro</a>
+                                    @case(1)
+                                        <a href="{{ route('admin.revisar_tareas.edit', $tarea_alumno->pivot->tarea_id ."-".$tarea_alumno->pivot->user_id)}}" class="btn btn-primary">Calificar</a>
+                                @endswitch
+                            @endcan
+
+                            @can('admin.asignaciones.show')
+                            <a href="{{ route('admin.asignaciones.show', $tarea_alumno->user_id."-".$tarea_alumno->pivot->tarea_id) }}" class="btn btn-success">Asignar Logro</a>
+
+                            @endcan
+
                             </td>
 
                         </tr>
