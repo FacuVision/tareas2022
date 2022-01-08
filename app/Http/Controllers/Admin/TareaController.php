@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class TareaController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.tareas.edit')->only(['edit','update','store']);
+        $this->middleware('can:admin.tareas.show')->only('show');
+        $this->middleware('can:admin.tareas.destroy')->only('destroy');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +37,7 @@ class TareaController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**

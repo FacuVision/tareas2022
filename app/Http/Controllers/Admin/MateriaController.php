@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class MateriaController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.materias.index')->only('index');
+        $this->middleware('can:admin.materias.edit')->only(['edit','update']);
+        $this->middleware('can:admin.materias.create')->only(['create','store']);
+        $this->middleware('can:admin.materias.destroy')->only('destroy');
+
+    }
     /**
      * Display a listing of the resource.
      *

@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\DB;
 
 class DocenteController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.docentes.index')->only('index');
+        $this->middleware('can:admin.docentes.edit')->only(['edit','update']);
+        $this->middleware('can:admin.docentes.create')->only(['create','store']);
+        $this->middleware('can:admin.docentes.destroy')->only('destroy');
+    }
+    
     /**
      * Display a listing of the resource.
      *

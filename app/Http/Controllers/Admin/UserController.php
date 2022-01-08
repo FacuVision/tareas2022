@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
+    public function __construct() {
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.edit')->only(['edit','update']);
+        $this->middleware('can:admin.users.create')->only(['create','store']);
+        $this->middleware('can:admin.users.show')->only('show');
+        $this->middleware('can:admin.users.destroy')->only('destroy');
+
+    }
+
     public $dist = [
         "Villa Maria del Triunfo" => "Villa Maria del Triunfo",
         "Villa el Salvador" => "Villa el Salvador",
@@ -16,6 +25,7 @@ class UserController extends Controller
         "San Juan de Miraflores" => "San Juan de Miraflores",
         "Pachacamac" => "Pachacamac"
     ];
+
 
     public $sexo = ["m" => "Masculino", "f" => "Femenino"];
     /**

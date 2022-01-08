@@ -88,7 +88,22 @@ class User extends Authenticatable
 
     public function adminlte_desc()
     {
-        return "Rol de Admin";
+
+        // foreach (auth()->user()->roles as $rol) {
+
+        //     //$array = array_push($array, $rol->name);
+        //     return $rol->name;
+        // }
+
+        $roles = auth()->user()->roles;
+
+        if (sizeof($roles)==2) {
+            echo "Rol de ". $roles[0]->name . " y ". $roles[1]->name;
+        } else {
+            echo "Rol de ". $roles[0]->name;
+        }
+
+
     }
 
 }

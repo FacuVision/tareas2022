@@ -21,11 +21,11 @@ class TareaPolicy
         if ($user->docente->carpetas) {
             foreach ($user->docente->carpetas as $folder) {
                 if ($folder->id == $tarea->carpeta_id) {
-                    //echo "si son iguales";
+                    echo "si son iguales";
                     return true;
                 }
                 else{
-                    //echo "no son iguales";
+                    echo "no son iguales";
                     return false;
                 }
             }

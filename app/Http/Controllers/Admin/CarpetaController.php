@@ -11,6 +11,16 @@ use Illuminate\Http\Request;
 
 class CarpetaController extends Controller
 {
+
+
+    public function __construct() {
+        $this->middleware('can:admin.carpetas.index')->only('index');
+        $this->middleware('can:admin.carpetas.edit')->only(['edit','update']);
+        $this->middleware('can:admin.carpetas.create')->only(['create','store']);
+        $this->middleware('can:admin.carpetas.destroy')->only('destroy');
+        $this->middleware('can:admin.carpetas.show')->only('show');
+    }
+
     /**
      * Display a listing of the resource.
      *

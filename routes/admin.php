@@ -18,11 +18,11 @@ use App\Http\Controllers\Admin\RevisarTareaController;
 use App\Http\Controllers\Admin\RevisionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class,'index'])->name('admin.index');
+Route::get('/', [HomeController::class,'index'])->middleware('can:admin.index')->name('admin.index');
 
 //CONTROLADORES DE GESTION DE LA INFORMACION
-Route::resource('grados', GradoController::class)->names('admin.grados');
 Route::resource('users', UserController::class)->names('admin.users');
+Route::resource('grados', GradoController::class)->names('admin.grados');
 Route::resource('carpetas', CarpetaController::class)->names('admin.carpetas');
 Route::resource('mensajes', MensajeController::class)->names('admin.mensajes');
 Route::resource('secciones', SeccionController::class)->names('admin.secciones');
@@ -38,11 +38,11 @@ Route::resource('asignaciones', AsignacionController::class)->names('admin.asign
 
 //CREAR TAREAS CONTROLADOR
 Route::resource('tareas', TareaController::class)->names('admin.tareas');
-Route::get('/crear_tareas/{carpeta}', [CrearTareaController::class,'show'])->name('admin.crear_tareas.show');
+Route::get('/crear_tareas/{carpeta}', [CrearTareaController::class,'show'])->middleware('can:admin.crear_tareas.show')->name('admin.crear_tareas.show');
 
 //CREAR REVISAR TAREAS CONTROLADOR
 Route::resource('revisiones', RevisionController::class)->names('admin.revisiones')->parameters(['revisiones' => 'revision']);
-Route::get('/revisar_tareas/{tarea}', [RevisarTareaController::class,'edit'])->name('admin.revisar_tareas.edit');
+Route::get('/revisar_tareas/{tarea}', [RevisarTareaController::class,'edit'])->middleware('can:admin.revisar_tareas.edit')->name('admin.revisar_tareas.edit');
 
 
 

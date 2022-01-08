@@ -10,6 +10,15 @@ class GradoController extends Controller
 
     public $gr = ['PRIMERO' => 'PRIMERO','SEGUNDO' =>'SEGUNDO','TERCERO' => 'TERCERO','CUARTO' => 'CUARTO','QUINTO'=> 'QUINTO', 'SEXTO'=> 'SEXTO'];
     public $niv = ['PRIMARIA'=> 'PRIMARIA','SECUNDARIA'=> 'SECUNDARIA'];
+
+    public function __construct() {
+        $this->middleware('can:admin.grados.index')->only('index');
+        $this->middleware('can:admin.grados.edit')->only(['edit','update']);
+        $this->middleware('can:admin.grados.create')->only(['store','create']);
+        $this->middleware('can:admin.grados.destroy')->only('destroy');
+
+    }
+
     /**
      * Display a listing of the resource.
      *

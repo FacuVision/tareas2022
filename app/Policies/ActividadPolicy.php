@@ -25,12 +25,16 @@ class ActividadPolicy
     {
 
         if ($actividad->tarea->carpeta->docente->user->id == $user->id) {
-           // echo "la actividad le pertenece al usuario";
+           //echo "la actividad le pertenece al usuario";
            return true;
         } else {
-           // echo "la actividad no le pertenece al usuario";
-            return false;
-    }
+           //echo "la actividad no le pertenece al usuario";
+           return false;
+    }    }
+
+    public function metodo_eliminador_actividades(User $user, Tarea $tarea)
+    {
+        return false;
     }
 
     public function metodo_desautorizador_asignacion_actividades(User $user, Actividad $actividad)
