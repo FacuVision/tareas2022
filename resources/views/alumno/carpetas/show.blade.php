@@ -7,7 +7,7 @@
         </div>
     </x-slot>
         <div class="flex flex-col py-4 max-w-7xl mx-auto sm:px-6">
-        <div class="-my-2 overflow-auto hover:overflow-scroll sm:-mx-6 lg:-mx-8">
+        <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
@@ -52,10 +52,10 @@
                                                     $i = 0;
                                                 @endphp
 
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                <td class="px-6 py-4 whitespace">
                                                     <div class="flex items-center">
                                                         <div class="ml-0">
-                                                            <div class="text-sm font-medium text-gray-900">
+                                                            <div class="text-sm font-medium text-gray-900 break-words">
                                                                 {{ $dato->titulo }}
                                                             </div>
                                                         </div>

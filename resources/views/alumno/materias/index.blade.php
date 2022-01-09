@@ -17,18 +17,18 @@
                 <div class="py-4 bg-white">
                     {{-- ------------------------------------------------- --}}
                     <section>
-                        <div class="grid grid-cols-3 max-w-6xl mx-auto px-5 py-24">
+                        <div class="grid grid-cols-3 max-w-6xl mx-auto px-5 py-8">
 
                             @foreach ($materias as $materia)
 
 
                                 <div class="flex flex-wrap -m-4">
-                                    <div class="xl:w-1/3 md:w-1/2 p-4">
+                                    {{-- <div class="xl:w-1/3 md:w-1/2 p-4"> --}}
                                         <div class="text-center border border-gray-300 p-6 m-2 rounded-lg">
                                             <a href="{{ route('alumno.materias.show', $materia) }}"
                                                 class="text-xl text-indigo-600 font-bold">{{ $materia->nombre }}
                                                 <div
-                                                    class="w-full inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 pb-4">
+                                                    class="w-full inline-flex items-center justify-center text-indigo-500 pb-4">
                                                     <i class="fas fa-book fa-3x"></i>
                                                 </div>
                                             </a>
@@ -45,7 +45,7 @@
                                     40 min
                                   </span>
                                 </div> --}}
-                                    </div>
+                                    {{-- </div> --}}
 
                             @endforeach
 

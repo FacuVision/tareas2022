@@ -18,23 +18,28 @@
                     {{-----------------------------------------------------------------------}}
 
                         <section>
-                          <div class="grid grid-cols-3 max-w-6xl mx-auto px-5 py-24">
+                          <div class="grid grid-cols-3 max-w-6xl mx-auto px-5 py-8">
 
                             @foreach ($datos as $dato)
                                 @if ($materia->id == $dato->materia->id)
 
-                                <div class="flex flex-wrap -m-4">
-                                    <div class="xl:w-1/3 md:w-1/2 p-4">
+                                <div class="flex flex-wrap">
+                                    {{-- <div class="xl:w-1/3 md:w-1/2 p-4"> --}}
                                         <div class="text-center border border-gray-300 p-6 m-2 rounded-lg">
                                             <a href="{{ route('alumno.carpetas.show', $dato) }}"
                                                 class="text-xl text-indigo-600 font-bold">{{$dato->titulo}}
                                                 <div
-                                                    class="w-full inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 pb-4">
+                                                    class="w-full inline-flex items-center justify-center text-indigo-500 pb-4">
                                                     <i class="far fa-folder-open fa-3x" style="color: rgb(255, 200, 19);"></i>
                                                 </div>
                                             </a>
                                             <p class="leading-relaxed text-base text-gray-600"><b>Fecha de inicio:</b> {{$dato->fecha_inicio}}</p>
                                             <p class="leading-relaxed text-base text-gray-600"><b>Fecha de cierre:</b> {{$dato->fecha_final}}</p>
+                                            @if ($dato->estado == 0)
+                                            <p class="text-center text-red-500"><b>Inactivo</b></p>
+                                            @else
+                                            <p class="text-center text-green-500"><b>Activo</b></p>
+                                            @endif
 
 
                                   {{-- <div class="text-center mt-2 leading-none flex justify-between w-full">
@@ -51,7 +56,7 @@
 
                             @endforeach
 
-                              </div>
+                              {{-- </div> --}}
                         </section>
 
 

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Materia;
 use App\Models\Alumno;
+use App\Models\Logro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MateriaController extends Controller
 {
@@ -38,7 +40,9 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        //
+        $alumno = Alumno::findOrFail(Auth::user()->id);
+        $logros = $alumno->logros;
+        return view('alumno.logros.index', compact('logros'));
     }
 
     /**
