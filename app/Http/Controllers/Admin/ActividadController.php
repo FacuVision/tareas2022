@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ActividadController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.actividades.edit')->only(['edit', 'update', 'store']);
+        $this->middleware('can:admin.actividades.show')->only('show');
+        $this->middleware('can:admin.actividades.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +35,6 @@ class ActividadController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -37,7 +44,7 @@ class ActividadController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     //ESTE METODO SE ENCARGA DE LA RECEPCION DE LA CREACION DE LAS ACTIVIDADES POR PARTE DEL DOCENTE
+    //ESTE METODO SE ENCARGA DE LA RECEPCION DE LA CREACION DE LAS ACTIVIDADES POR PARTE DEL DOCENTE
 
     public function store(Request $request)
     {
@@ -51,8 +58,8 @@ class ActividadController extends Controller
 
         $listaActividades = json_decode($request->hiden_json);
 
-        if ($listaActividades==null) {
-            return redirect()->route('admin.actividades.show',$tarea)->with('error', 'Las actividades no pueden estar vacias');
+        if ($listaActividades == null) {
+            return redirect()->route('admin.actividades.show', $tarea)->with('error', 'Las actividades no pueden estar vacias');
         }
 
         $array = [];
@@ -68,8 +75,8 @@ class ActividadController extends Controller
             $sumatotal = $sumatotal + $act->puntaje_max;
         }
 
-        if($sumatotal != 20){
-            return redirect()->route('admin.actividades.show',$tarea)->with('error', 'La suma de los puntajes deben de ser de 20 pts');
+        if ($sumatotal != 20) {
+            return redirect()->route('admin.actividades.show', $tarea)->with('error', 'La suma de los puntajes deben de ser de 20 pts');
         }
 
 
@@ -84,8 +91,7 @@ class ActividadController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje_act', 'Actividades creadas correctamente');
-
+        return redirect()->route('admin.tareas.show', compact("tarea", "carpeta"))->with('mensaje_act', 'Actividades creadas correctamente');
     }
 
 
@@ -96,7 +102,7 @@ class ActividadController extends Controller
      * @param  \App\Models\Actividad  $actividad
      * @return \Illuminate\Http\Response
      */
-    
+
     public function show(Tarea $actividad)
     {
         //EDICION DE UNA TAREA - AGREGAR ACTIVIDADES
@@ -104,9 +110,9 @@ class ActividadController extends Controller
         if ($actividad->carpeta->docente->user->id == Auth::user()->id) {
             $tarea = $actividad;
             return view("admin.actividades.create", compact('tarea'));
-         } else {
-             $this->authorize("metodo_desautorizador_asignacion_actividades", $actividad);
-         }
+        } else {
+            $this->authorize("metodo_desautorizador_asignacion_actividades", $actividad);
+        }
     }
 
     /**
@@ -119,9 +125,9 @@ class ActividadController extends Controller
     {
         $this->authorize("metodo_autorizador_actividades", $actividad);
 
-        $tipos = ["0"=>"Respuesta corta", "1"=>"Respuesta larga", "2"=>"Link de Video", "3"=>"Link de carpeta de Drive"];
+        $tipos = ["0" => "Respuesta corta", "1" => "Respuesta larga", "2" => "Link de Video", "3" => "Link de carpeta de Drive"];
 
-        return view("admin.actividades.index", compact('actividad','tipos'));
+        return view("admin.actividades.index", compact('actividad', 'tipos'));
     }
 
     /**
@@ -135,7 +141,7 @@ class ActividadController extends Controller
     {
         $this->authorize("metodo_autorizador_actividades", $actividad);
 
-        $tipos = ["0"=>"Respuesta corta", "1"=>"Respuesta larga", "2"=>"Link de Video", "3"=>"Link de carpeta de Drive"];
+        $tipos = ["0" => "Respuesta corta", "1" => "Respuesta larga", "2" => "Link de Video", "3" => "Link de carpeta de Drive"];
 
         $request->validate([
             "descripcion" => "required",
@@ -147,7 +153,7 @@ class ActividadController extends Controller
         $tarea = $actividad->tarea;
         $carpeta = $tarea->carpeta;
 
-        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje_act', 'Actividad modificada correctamente');
+        return redirect()->route('admin.tareas.show', compact("tarea", "carpeta"))->with('mensaje_act', 'Actividad modificada correctamente');
     }
 
     /**
@@ -159,18 +165,22 @@ class ActividadController extends Controller
     public function destroy(Tarea $actividad)
     {
         //SE ESTA ENVIANDO UNA TAREA AL METODO AUTORIZADOR
-        $this->authorize("metodo_autorizador_eliminar_actividades", $actividad);
 
         $tarea = $actividad;
-        $carpeta = $tarea->carpeta;
-        $tarea->actividades()->delete();
 
-        $tarea->update([
-            "estado" => "0"
-        ]);
+        if ($tarea->carpeta->docente->user->id == Auth::user()->id) {
+            $carpeta = $tarea->carpeta;
+            $tarea->actividades()->delete();
 
+            $tarea->update([
+                "estado" => "0"
+            ]);
 
-        return redirect()->route('admin.tareas.show', compact("tarea","carpeta"))->with('mensaje_act', 'Actividades eliminadas correctamente');
+            return redirect()->route('admin.tareas.show', compact("tarea", "carpeta"))->with('mensaje_act', 'Actividades eliminadas correctamente');
+        } else {
+            $this->authorize("metodo_eliminador_actividades", $$tarea);
+        }
 
+        die();
     }
 }

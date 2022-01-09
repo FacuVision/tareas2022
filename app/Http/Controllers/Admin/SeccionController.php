@@ -22,6 +22,13 @@ class SeccionController extends Controller
         return view('admin.secciones.index', compact('secciones'));
     }
 
+    public function __construct() {
+        $this->middleware('can:admin.secciones.index')->only('index');
+        $this->middleware('can:admin.secciones.edit')->only(['edit','update']);
+        $this->middleware('can:admin.secciones.create')->only(['create','store']);
+        $this->middleware('can:admin.secciones.destroy')->only('destroy');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

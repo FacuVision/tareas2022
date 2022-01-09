@@ -57,7 +57,9 @@
 
                         <h3>Tus Carpetas</h3>
                         <br>
+                        @can('admin.carpetas.create')
                         <a href="{{ route('admin.carpetas.create')}}" class="btn btn-warning"> Crear una nueva carpeta</a>
+                        @endcan
 
                     </div>
 
@@ -76,7 +78,7 @@
                                 <th>fecha_inicio</th>
                                 <th>fecha_final</th>
                                 <th>Estado</th>
-                                <th>Acciones</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -98,9 +100,12 @@
 
                                 <td>
 
+                                    @can('admin.carpetas.show')
+
                                     {{-- Ver --}}
 
                                     <a href="{{route('admin.carpetas.show', $carpeta)}}" class="btn btn-primary">Ver</a>
+                                    @endcan
 
                                 </td>
                             </tr>

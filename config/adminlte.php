@@ -242,6 +242,7 @@ return [
         [
             'text' => 'Inicio',
             'route' => 'admin.index',
+            'can' => 'admin.index',
             'icon' => 'fas fa-fw fa-home',
 
         ],
@@ -249,6 +250,7 @@ return [
         [
             'text' => 'Crear Tareas',
             'route' => 'admin.carpetas.index',
+            'can' => 'admin.carpetas.index',
             'label' => 'nuevo',
             'label_color' => 'warning',
             'icon' => 'fas fa-apple-alt'
@@ -257,6 +259,7 @@ return [
         [
             'text' => 'Revisar Tareas',
             'route'  => 'admin.revisiones.index',
+            'can'  => 'admin.revisiones.index',
             'label' => 'revision',
             'label_color' => 'primary',
             'icon' => 'fa fa-archive'
@@ -270,17 +273,22 @@ return [
         [
             'text' => 'Docentes',
             'route'  => 'admin.docentes.index',
+            'can'  => 'admin.docentes.index',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'Alumnos',
             'route'  => 'admin.alumnos.index',
+            'can'  => 'admin.alumnos.index',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'Todos los usuarios',
             'route'  => 'admin.users.index',
+            'can'  => 'admin.users.index',
             'icon' => 'fas fa-address-card',
+            'label' => 'todos',
+            'label_color' => 'light',
         ],
 
 
@@ -288,38 +296,36 @@ return [
         [
             'text' => 'Grados',
             'route'  => 'admin.grados.index',
+            'can'  => 'admin.grados.index',
             'icon' => 'fas fa-graduation-cap',
         ],
         [
             'text' => 'Secciones',
-            'url'  => 'admin/secciones',
+            'route'  => 'admin.secciones.index',
+            'can'  => 'admin.secciones.index',
             'icon' => 'fas fa-puzzle-piece',
         ],
         [
             'text' => 'Materias',
-            'url'  => 'admin/materias',
+            'route'  => 'admin.materias.index',
+            'can'  => 'admin.materias.index',
             'icon' => 'fas fa-atlas',
         ],
 
         ['header' => 'MOTIVACION'],
         [
             'text' => 'Logros',
-            'url'  => 'admin/logros',
+            'route'  => 'admin.logros.index',
+            'can'  => 'admin.logros.index',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'Mensajes del Dia',
             'route'  => 'admin.mensajes.index',
+            'can'  => 'admin.mensajes.index',
             'icon' => 'fas fa-fw fa-user',
-        ],
+        ]
 
-
-        ['header' => 'SEGURIDAD'],
-        [
-            'text' => 'Roles',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
     ],
 
     /*

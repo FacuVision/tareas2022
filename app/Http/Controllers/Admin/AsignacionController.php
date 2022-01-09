@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Log;
 
 class AsignacionController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.asignaciones.edit')->only(['edit','update','store']);
+        $this->middleware('can:admin.asignaciones.show')->only('show');
+        $this->middleware('can:admin.asignaciones.destroy')->only('destroy');
+
+    }
     /**
      * Display a listing of the resource.
      *

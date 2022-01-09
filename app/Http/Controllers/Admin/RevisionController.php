@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Auth;
 
 class RevisionController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.revisiones.index')->only('index');
+        $this->middleware('can:admin.revisiones.edit')->only(['edit','update','store']);
+        $this->middleware('can:admin.revisiones.show')->only('show');
+
+    }
     /**
      * Display a listing of the resource.
      *

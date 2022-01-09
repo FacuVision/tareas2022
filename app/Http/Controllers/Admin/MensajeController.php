@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class MensajeController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.mensajes.index')->only('index');
+        $this->middleware('can:admin.mensajes.edit')->only(['edit','update']);
+        $this->middleware('can:admin.mensajes.create')->only(['create','store']);
+        $this->middleware('can:admin.mensajes.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

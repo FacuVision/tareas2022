@@ -18,6 +18,15 @@ class LogroController extends Controller
         4 => 'Muy bueno',
         5 => 'Excelente',
     ];
+
+    public function __construct() {
+        $this->middleware('can:admin.logros.index')->only('index');
+        $this->middleware('can:admin.logros.edit')->only(['edit','update']);
+        $this->middleware('can:admin.logros.create')->only(['create','store']);
+        $this->middleware('can:admin.logros.destroy')->only('destroy');
+
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\DB;
 
 class DocenteController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.docentes.index')->only('index');
+        $this->middleware('can:admin.docentes.edit')->only(['edit','update']);
+        $this->middleware('can:admin.docentes.create')->only(['create','store']);
+        $this->middleware('can:admin.docentes.destroy')->only('destroy');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -148,9 +156,14 @@ class DocenteController extends Controller
             // si el docente a eliminar era un administrador
             // mantiene el admin y se borra el docente
             if ($role->id == 1) {
-            $docente->user->roles()->sync(1);
+                $docente->user->roles()->sync(1);
+                break;
+            } else{
+                $docente->user->roles()->sync(null);
             }
+
             }
+
         $docente->delete();
 
 

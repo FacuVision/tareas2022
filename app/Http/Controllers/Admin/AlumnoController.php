@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class AlumnoController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.alumnos.index')->only('index');
+        $this->middleware('can:admin.alumnos.edit')->only(['edit','update']);
+        $this->middleware('can:admin.alumnos.create')->only(['create','store']);
+        $this->middleware('can:admin.alumnos.destroy')->only('destroy');
+
+    }
+
     /**
      * Display a listing of the resource.
      *

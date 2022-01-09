@@ -17,9 +17,13 @@
                 <strong>{{ session('mensaje') }}</strong>
             </div>
         @endif
-        <div class="card-header">
-            <a href="{{ route('admin.materias.create') }}" class="btn btn-primary"> Crear Materia</a>
-        </div>
+
+        @can('admin.materias.create')
+
+            <div class="card-header">
+                <a href="{{ route('admin.materias.create') }}" class="btn btn-primary"> Crear Materia</a>
+            </div>
+        @endcan
 
 
         <div class="card-body">
@@ -29,29 +33,35 @@
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
-                        <th>Acciones</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($materias as $materia)
                         <tr>
-                            <td>{{$materia->id}}</td>
-                            <td>{{$materia->nombre}}</td>
-                            <td>{{$materia->descripcion}}</td>
+                            <td>{{ $materia->id }}</td>
+                            <td>{{ $materia->nombre }}</td>
+                            <td>{{ $materia->descripcion }}</td>
                             <td>
 
-                                {{-- Editar --}}
+                                @can('admin.materias.edit')
 
-                                <a href="{{ route('admin.materias.edit', $materia) }}" class="btn btn-success">Editar</a>
+                                    {{-- Editar --}}
 
-                                {{-- Eliminar --}}
+                                    <a href="{{ route('admin.materias.edit', $materia) }}" class="btn btn-success">Editar</a>
+                                @endcan
 
-                                <form style="display: inline" action="{{ route('admin.materias.destroy', $materia) }}" method="post"
-                                    class="formulario-eliminar">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
-                                </form>
+                                @can('admin.materias.create')
+
+                                    {{-- Eliminar --}}
+
+                                    <form style="display: inline" action="{{ route('admin.materias.destroy', $materia) }}"
+                                        method="post" class="formulario-eliminar">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
+                                    </form>
+                                @endcan
 
                             </td>
                         </tr>
@@ -68,4 +78,3 @@
 @section('js')
     @include('admin.partials_datatables.cdn_js')
 @endsection
-

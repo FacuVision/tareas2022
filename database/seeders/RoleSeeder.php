@@ -37,21 +37,24 @@ class RoleSeeder extends Seeder
 
 
         //CRUD DE USUARIOS
-        Permission::create(["name"=>"admin.users.index"])->syncRoles([$admin,$docente]);
+        Permission::create(["name"=>"admin.users.index"])->syncRoles([$admin]);
         Permission::create(["name"=>"admin.users.edit"])->syncRoles([$admin]);
         Permission::create(["name"=>"admin.users.show"])->syncRoles([$admin,$docente]);
         Permission::create(["name"=>"admin.users.create"])->syncRoles([$admin]);
         Permission::create(["name"=>"admin.users.destroy"])->syncRoles([$admin]);
 
-        //CRUD DE DOCENTES
+        //CRUD DE ALUMNOS
         Permission::create(["name"=>"admin.alumnos.index"])->syncRoles([$admin,$docente,$alumno]);
         Permission::create(["name"=>"admin.alumnos.edit"])->syncRoles([$admin]);
         Permission::create(["name"=>"admin.alumnos.create"])->syncRoles([$admin]);
+        Permission::create(["name"=>"admin.alumnos.destroy"])->syncRoles([$admin]);
 
-        //CRUD DE ALUMNOS
-        Permission::create(["name"=>"admin.docentes.index"])->syncRoles([$admin,$docente]);
+        //CRUD DE DOCENTES
+        Permission::create(["name"=>"admin.docentes.index"])->syncRoles([$admin,$docente,$alumno]);
         Permission::create(["name"=>"admin.docentes.edit"])->syncRoles([$admin]);
         Permission::create(["name"=>"admin.docentes.create"])->syncRoles([$admin]);
+        Permission::create(["name"=>"admin.docentes.destroy"])->syncRoles([$admin]);
+
 
         //CRUD DE MATERIAS
         Permission::create(["name"=>"admin.materias.index"])->syncRoles([$admin,$docente,$alumno]);
@@ -114,6 +117,14 @@ class RoleSeeder extends Seeder
         //********************* PERMISOS ALUMNO ***************************** */
 
 
+//PERMISO DE MATERIAS
+         Permission::create(["name"=>"alumno.materias.index"])->syncRoles([$alumno]);  //VISUALIZACION DE LAS TAREAS para poder revisarlas
+         Permission::create(["name"=>"alumno.materias.show"])->syncRoles([$alumno]);  //VISUALIZACION DE LAS TAREAS para poder revisarlas
+
+//PERMISO DE CARPETAS
+         Permission::create(["name"=>"alumno.carpetas.show"])->syncRoles([$alumno]);  //VISUALIZACION DE LAS TAREAS para poder revisarlas
+
+//PERMISO PARA VER LOGROS PROPIOS DEL ALUMNO
 
     }
 }

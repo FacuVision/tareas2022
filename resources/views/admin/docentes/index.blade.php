@@ -24,9 +24,13 @@
             </div>
         @endif
 
+
+        @can('admin.docentes.create')
         <div class="card-header">
             <a href="{{ route('admin.docentes.create') }}" class="btn btn-primary"> Crear un Docente</a>
         </div>
+
+        @endcan
 
         <div class="card-body">
             <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
@@ -37,7 +41,7 @@
                         <th>Apellido</th>
                         <th>DNI</th>
                         <th>Correo</th>
-                        <th>Acciones</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,22 +56,27 @@
                             <td>
 
                                 {{-- Ver --}}
-
+                                @can('admin.users.show')
                                 <a href="{{ route('admin.users.show', $docente->user) }}" class="btn btn-primary">Ver</a>
+                                @endcan
 
+                                @can('admin.docentes.edit')
                                 {{-- Editar --}}
 
                                 <a href="{{ route('admin.docentes.edit', $docente) }}" class="btn btn-success">Asignar</a>
 
+                                @endcan
+
+                                @can('admin.docentes.destroy')
+
                                 {{-- Eliminar --}}
-
-
                                 <form style="display: inline" action="{{ route('admin.docentes.destroy', $docente) }}" method="post"
                                     class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                                 </form>
+                                @endcan
 
                             </td>
 

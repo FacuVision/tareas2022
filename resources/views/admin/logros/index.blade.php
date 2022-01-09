@@ -17,9 +17,13 @@
                 <strong>{{ session('mensaje') }}</strong>
             </div>
         @endif
+
+        @can('admin.logros.create')
+
         <div class="card-header">
             <a href="{{ route('admin.logros.create') }}" class="btn btn-primary"> Crear Logro</a>
         </div>
+        @endcan
 
         <div class="card-body">
             <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
@@ -30,7 +34,7 @@
                         <th>Descripcion</th>
                         <th>Tipo</th>
                         <th>Imagen</th>
-                        <th>Acciones</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,9 +87,15 @@
                                 4 = muy bueno
                                 5 = excelente --}}
 
-                                {{-- Editar --}}
+                                @can('admin.logros.edit')
 
-                                <a href="{{ route('admin.logros.edit', $logro) }}" class="btn btn-success">Editar</a>
+                                    {{-- Editar --}}
+
+                                    <a href="{{ route('admin.logros.edit', $logro) }}" class="btn btn-success">Editar</a>
+                                @endcan
+
+
+                                @can('admin.logros.destroy')
 
                                 {{-- Eliminar --}}
 
@@ -95,6 +105,7 @@
                                     @method('DELETE')
                                     <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                                 </form>
+                                @endcan
 
                             </td>
                         </tr>
