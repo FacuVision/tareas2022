@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Materia;
 use App\Models\Alumno;
-use App\Models\Logro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +14,13 @@ class MateriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('can:alumno.materias.index')->only('index');
+        $this->middleware('can:alumno.materias.create')->only('index');
+        $this->middleware('can:alumno.materias.show')->only('show');
+    }
+
     public function index()
     {
         $alumno = Alumno::findOrFail(auth()->user()->id);
@@ -64,6 +70,8 @@ class MateriaController extends Controller
      */
     public function show(Materia $materia)
     {
+        /*--METODO AUTORIZADOR DE MATERIAS POR ALUMNO-- */
+        $this->authorize("metodo_autorizador_materias_alumno", $materia);
         $alumno = Alumno::findOrFail(auth()->user()->id);
         $datos = $alumno->seccion->carpetas;
         return view('alumno.materias.show', compact('materia','datos'));

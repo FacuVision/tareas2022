@@ -14,11 +14,15 @@ class CarpetaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $listeners = ['render' => 'show'];
+
     /**
      *
      */
-
+    public function __construct()
+    {
+        // $this->middleware('can:alumno.carpeta.show')->only(['edit','storage']);
+        $this->middleware('can:alumno.carpeta.show')->only(['edit']);
+    }
 
     public function index()
     {
@@ -54,6 +58,9 @@ class CarpetaController extends Controller
      */
     public function show(Carpeta $carpeta)
     {
+        /* --METODO DE AUTORIZACION DE TAREAS SEGUN ALUMNO */
+        $this->authorize("metodo_autorizador_carpetas_alumno", $carpeta);
+
         $alumno = Alumno::findOrFail(auth()->user()->id);
         $datos = $alumno->tareas;
         return view('alumno.carpetas.show', compact('carpeta', 'datos'));

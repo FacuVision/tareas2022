@@ -30,4 +30,15 @@ class CarpetaPolicy
         }
     }
 
+    public function metodo_autorizador_carpetas_alumno(User $user, Carpeta $carpeta)
+    {
+        //solo permitirá a alumnos de una determinada seccion acceder a una carpeta asignada a la misma
+        if ($user->alumno->seccion_id == $carpeta->seccion_id) {
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+
 }
