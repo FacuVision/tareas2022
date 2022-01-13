@@ -51,12 +51,12 @@
                                                     </span>
                                                 @break
                                                 @case(3)
-                                                    <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-blue-100 rounded-full">
+                                                    <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none bg-blue-100 rounded-full">
                                                         Bueno
                                                     </span>
                                                 @break
                                                 @case(4)
-                                                    <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-green-100 rounded-full">
+                                                    <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none bg-green-100 rounded-full">
                                                         Muy bueno
                                                     </span>
                                                 @break

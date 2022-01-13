@@ -95,7 +95,7 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                                 <!-- Active: "bg-gray-100", Not Active: "" -->
                                 <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700"
-                                    role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                                    role="menuitem" tabindex="-1" id="user-menu-item-0">Tu Perfil</a>
                                 @can('admin.index')
 
                                     <a href="{{ route('admin.index') }}" class="block px-4 py-2 text-sm text-gray-700"
@@ -107,7 +107,7 @@
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         this.closest('form').submit();" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
                                         tabindex="-1" id="user-menu-item-2">
-                                        Log out
+                                        Cerrar Sesión
                                     </a>
 
                                 </form>

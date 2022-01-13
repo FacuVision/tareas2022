@@ -54,26 +54,56 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
+            <x-jet-label for="name" value="Nombre"/>
+            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" disabled/>
+            <x-jet-input-error for="name" class="mt-2" />
+        </div>
+
+
+        <!-- apellidos -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="apellidos" value="Apellidos"/>
+            <x-jet-input id="apellidos" type="text" class="mt-1 block w-full" value="{{Auth::user()->perfil->apellido}}" disabled/>
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('Email') }}" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
+            <x-jet-label for="email" value="Correo electrónico" />
+            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" disabled/>
             <x-jet-input-error for="email" class="mt-2" />
+        </div>
+
+        <!-- Grado y seccion -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="grado" value="Grado" />
+            <x-jet-input id="grado" type="text" class="mt-1 block w-full"  value="{{Auth::user()->alumno->seccion->grado->grado}} {{Auth::user()->alumno->seccion->grado->nivel}}  - {{Auth::user()->alumno->seccion->nombre}}" disabled/>
+            <x-jet-input-error for="email" class="mt-2" />
+        </div>
+
+            <!--  -->
+               <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="dni" value="DNI"/>
+                <x-jet-input id="name" type="text" class="mt-1 block w-full" value="{{Auth::user()->perfil->DNI}}" disabled/>
+                <x-jet-input-error for="name" class="mt-2" />
+            </div>
+
+                   <!--  -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="Fecha_nac" value="Fecha de Nacimiento"/>
+            <x-jet-input id="name" type="text" class="mt-1 block w-full"  value="{{Auth::user()->perfil->fecha_nac}}" disabled/>
+            <x-jet-input-error for="name" class="mt-2" />
         </div>
     </x-slot>
 
     <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
+        {{-- <x-jet-action-message class="mr-3" on="saved">
             {{ __('Saved.') }}
-        </x-jet-action-message>
+        </x-jet-action-message> --}}
 
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+        {{-- <x-jet-button wire:loading.attr="disabled" wire:target="photo">
             {{ __('Save') }}
-        </x-jet-button>
+        </x-jet-button> --}}
+
     </x-slot>
 </x-jet-form-section>
