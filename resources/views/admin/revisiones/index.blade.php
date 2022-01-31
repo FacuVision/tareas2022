@@ -71,7 +71,27 @@
                         </select>
                     </div>
                 </div>
+
             </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {!! Form::label('Periodo', 'Periodo') !!}
+                        <input type="month" name="periodo" class="form-control">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {!! Form::label('estado', 'Estado') !!}
+                        <select required name="estado" class="form-control">
+                            <option selected="selected" value="1">Activo</option>
+                                <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
 
             {!! Form::submit('Buscar carpetas', ['class' => 'btn btn-primary']) !!}
 

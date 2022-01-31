@@ -42,10 +42,10 @@
                     {!! Form::textarea('descripcion', null, ['rows' => 5, 'required' => true, 'placeholder' => 'Ingrese una descripcion...', 'class' => 'form-control']) !!}
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     {!! Form::label('sesion', 'Sesion') !!}
                     {!! Form::number('sesion', null, ['required' => true, 'class' => 'form-control', 'min' => 1, 'max' => 70]) !!}
-                </div>
+                </div> --}}
 
                 <div class="form-group">
                     {!! Form::label('fecha_inicio', 'Fecha Inicio') !!}

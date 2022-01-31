@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <p>Aqui podras añadir, eliminar y ver las actividades que esten dentro de tu tarea</p>
+    <p>Aqui podras añadir, eliminar y ver las actividades que esten dentro de tu tarea (Recuerda que tu tarea debe de estar activa para que tus estudiantes puedan responderla, puedes desactivarla en cualquier momento y dejar de recibir respuestas)</p>
 
     {{-- TAREAS DE MI CARPETA --}}
 
@@ -45,9 +45,9 @@
             <div class="card" style="width: 18rem; display:inline-block; margin: 0px 10px">
 
                 @if ($tarea->estado == 0)
-                    <div class="card-header bg bg-secondary"> <strong>Tu tarea esta en borrador </strong></div>
+                    <div class="card-header bg bg-secondary"> <strong>Tu tarea esta en Inactiva </strong></div>
                 @else
-                    <div class="card-header bg bg-success"> <strong>Tu tarea esta publicada </strong></div>
+                    <div class="card-header bg bg-success"> <strong>Tu tarea esta Activa </strong></div>
                 @endif
 
                 <ul class="list-group list-group-flush">

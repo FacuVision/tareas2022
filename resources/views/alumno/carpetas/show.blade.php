@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="pt-16">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Mis tareas en: {{ $carpeta->titulo }} // Sesion : {{ $carpeta->sesion }}
+                Mis tareas en: {{ $carpeta->titulo }}
             </h2>
         </div>
     </x-slot>
@@ -267,7 +267,7 @@
                         <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 text-center"
                             role="alert">
                             <p class="font-bold">¡Ohh Vaya!</p>
-                            <p class="text-sm">No tienes tareas pendientes en esta carpeta</p>
+                            <p class="text-sm">No tienes tareas pendientes en esta carpeta o has superado la fecha de entrega de tu tarea.</p>
                             <i class="far fa-surprise fa-7x"></i>
                         </div>
                     @endif

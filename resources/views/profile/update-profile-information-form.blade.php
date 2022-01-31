@@ -1,10 +1,10 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{ __('Informacion del Perfil') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('') }}
     </x-slot>
 
     <x-slot name="form">
@@ -74,12 +74,14 @@
             <x-jet-input-error for="email" class="mt-2" />
         </div>
 
-        <!-- Grado y seccion -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="grado" value="Grado" />
-            <x-jet-input id="grado" type="text" class="mt-1 block w-full"  value="{{Auth::user()->alumno->seccion->grado->grado}} {{Auth::user()->alumno->seccion->grado->nivel}}  - {{Auth::user()->alumno->seccion->nombre}}" disabled/>
-            <x-jet-input-error for="email" class="mt-2" />
-        </div>
+        @if (Auth::user()->alumno)
+            <!-- Grado y seccion -->
+            <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="grado" value="Grado" />
+                <x-jet-input id="grado" type="text" class="mt-1 block w-full"  value="{{Auth::user()->alumno->seccion->grado->grado}} {{Auth::user()->alumno->seccion->grado->nivel}}  - {{Auth::user()->alumno->seccion->nombre}}" disabled/>
+                <x-jet-input-error for="email" class="mt-2" />
+            </div>
+        @endif
 
             <!--  -->
                <div class="col-span-6 sm:col-span-4">

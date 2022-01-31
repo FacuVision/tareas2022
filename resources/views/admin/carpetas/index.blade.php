@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-<p>Es primordial conocer las materia, grado y seccion a la cual va a pertenecer tu carpeta de tareas</p>
+<p>Es primordial conocer las materia, grado y seccion a la cual va a pertenecer tu carpeta de tareas (Puedes colocar tareas dentro de tus carpetas y organizarlas como tu veas conveniente. Puedes intentar crear una a mas carpetas por mes)</p>
 
 <div class="card">
     <div class="card-body">
@@ -72,7 +72,6 @@
                                 <th>Id</th>
                                 <th>Titulo</th>
                                 <th>Materia</th>
-                                <th>Sesion</th>
                                 <th>grado</th>
                                 <th>seccion</th>
                                 <th>fecha_inicio</th>
@@ -87,7 +86,6 @@
                                 <td>{{$carpeta->id}}</td>
                                 <td>{{$carpeta->titulo}}</td>
                                 <td>{{$carpeta->materia->nombre}}</td>
-                                <td>{{$carpeta->sesion}}</td>
                                 <td>{{$carpeta->seccion->grado->grado}} DE {{$carpeta->seccion->grado->nivel}}</td>
                                 <td>{{$carpeta->seccion->nombre}}</td>
                                 <td>{{$carpeta->fecha_inicio}}</td>

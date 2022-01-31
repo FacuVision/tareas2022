@@ -34,7 +34,7 @@
                         <th>Id</th>
                         <th>Titulo</th>
                         <th>Materia</th>
-                        <th>Sesion</th>
+                        {{-- <th>Sesion</th> --}}
                         <th>grado</th>
                         <th>seccion</th>
                         <th>fecha_inicio</th>
@@ -49,7 +49,7 @@
                         <td>{{$carpeta->id}}</td>
                         <td>{{$carpeta->titulo}}</td>
                         <td>{{$carpeta->materia->nombre}}</td>
-                        <td>{{$carpeta->sesion}}</td>
+                        {{-- <td>{{$carpeta->sesion}}</td> --}}
                         <td>{{$carpeta->seccion->grado->grado}} DE {{$carpeta->seccion->grado->nivel}}</td>
                         <td>{{$carpeta->seccion->nombre}}</td>
                         <td>{{$carpeta->fecha_inicio}}</td>

@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Revision de Tareas')
 
 @section('content_header')
     <h1>Revision de Tareas de {{ $seccion->grado->grado }}  {{ $seccion->grado->nivel }} - {{ $seccion->nombre}}</h1>
 @stop
 
 @section('css')
-    @include('admin.partials_datatables.cdn_css')
+    @include('admin.partials_datatables.cdn_css_impresion')
 @endsection
 
 
@@ -111,5 +111,5 @@
 
 
 @section('js')
-    @include('admin.partials_datatables.cdn_js')
+    @include('admin.partials_datatables.cdn_js_impresion')
 @endsection

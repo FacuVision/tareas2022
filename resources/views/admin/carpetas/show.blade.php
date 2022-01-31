@@ -38,7 +38,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>Titulo</strong><br>{{ $carpeta->titulo }}</li>
                     <li class="list-group-item"><strong>Descripcion</strong><br>{{ $carpeta->descripcion }}</li>
-                    <li class="list-group-item"><strong>N° Sesion</strong><br>{{ $carpeta->sesion }}</li>
+                    {{-- <li class="list-group-item"><strong>N° Sesion</strong><br>{{ $carpeta->sesion }}</li> --}}
                     <li class="list-group-item"><strong>Materia</strong><br>{{ $carpeta->materia->nombre }}</li>
                 </ul>
             </div>
@@ -127,9 +127,9 @@
                             <td>{{ $tarea->id }}</td>
                             <td>{{ $tarea->titulo }}</td>
                             @if ($tarea->estado == 1)
-                                <td><strong class="text text-success">Publicado</strong></td>
+                                <td><strong class="text text-success">Activo</strong></td>
                             @else
-                                <td><strong class="text text-secondary">Borrador</strong></td>
+                                <td><strong class="text text-secondary">Inactivo</strong></td>
                             @endif
 
                             <td>

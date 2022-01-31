@@ -48,7 +48,13 @@
 
                         <ul class="list-group list-group-flush">
 
-                            <li class="list-group-item text-center"><strong class="text text-success">Publicado</strong></li>
+                            @if ($tarea->estado==1)
+                                <li class="list-group-item text-center"><strong class="text text-success">Activo</strong></li>
+                            @else
+                                <li class="list-group-item text-center"><strong class="text text-secondary">Inactivo</strong></li>
+                            @endif
+
+
                             <li class="list-group-item text-justify font-weight-light text-sm">{{$tarea->descripcion}}</li>
                             <li class="list-group-item text-center">
                                 @can('admin.revisiones.edit')

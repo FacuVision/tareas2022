@@ -20,8 +20,8 @@ class CreateTareasTable extends Migration
             $table->enum('estado',[0,1]);
 
             /**
-             * 0 = borrador (por el docente)
-             * 1 = publicado (por el docente)
+             * 0 = inactivo (por el docente)
+             * 1 = activo (por el docente)
              *
              */
 

@@ -53,10 +53,18 @@ class RevisionController extends Controller
      */
     public function store(Request $request)
     {
-        $carpetas = Carpeta::where("materia_id",$request->materia_id)->where("seccion_id",$request->seccion_id)->where("user_id",Auth::user()->id)->where("estado","1")->get();
+        $carpetas = Carpeta::where("materia_id",$request->materia_id)
+                            ->where("seccion_id",$request->seccion_id)
+                            ->where("user_id",Auth::user()->id)
+                            ->where("estado","$request->estado")
+                            ->where("fecha_inicio","like","%$request->periodo%")
+                            ->get();
+
+        //return $carpetas;
 
         return view("admin.revisiones.create", compact("carpetas"));
 
+        //return $request->all();
     }
 
     /**
@@ -71,7 +79,7 @@ class RevisionController extends Controller
         //MUESTRA LAS TAREAS RELACIONADAS CON EL ID DE LA CARPETA Y ADEMAS QUE ESTEN ACTIVAS (IMPORTANTE)
         $this->authorize("metodo_autorizador_carpetas", $carpeta);
 
-        $tareas = Tarea::where("carpeta_id",$id)->where("estado","1")->get();
+        $tareas = Tarea::where("carpeta_id",$id)->get();
         return view("admin.revisiones.show", compact("tareas"));
 
     }

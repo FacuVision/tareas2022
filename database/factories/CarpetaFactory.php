@@ -23,7 +23,6 @@ class CarpetaFactory extends Factory
 
         return [
             'titulo' => $this->faker->unique()->word(10),
-            'sesion' => rand(1,12),
             'descripcion' => $this->faker->text(100),
             'fecha_inicio' => $date1,
             'fecha_final' => $date2,

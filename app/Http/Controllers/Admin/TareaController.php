@@ -91,7 +91,7 @@ class TareaController extends Controller
     {
         $this->authorize("metodo_autorizador_tareas", $tarea);
 
-        $estados = ["0" => "borrador", "1"=>"publicado"];
+        $estados = ["0" => "Inactivo", "1"=>"Activo"];
         return view("admin.tareas.edit",compact('tarea','estados'));
     }
 
@@ -107,7 +107,7 @@ class TareaController extends Controller
 
         $this->authorize("metodo_autorizador_tareas", $tarea);
 
-        $estados = ["0" => "borrador", "1"=>"publicado"];
+        $estados = ["0" => "Inactivo", "1"=>"Activo"];
 
         $request->validate([
             "titulo" => "required|string|max:200",

@@ -61,7 +61,6 @@ class CarpetaController extends Controller
 
         $request->validate([
             "titulo" => "required|string|max:200",
-            "sesion"=> "required|integer|min:1|max:70",
             "descripcion" => "required|string|max:200",
             "fecha_inicio"=> "required|date",
             "fecha_final"=> "required|date|after:fecha_inicio",
@@ -140,7 +139,6 @@ class CarpetaController extends Controller
 
         $request->validate([
             "titulo" => "required|string|max:200",
-            "sesion"=> "required|integer|min:1|max:70",
             "descripcion" => "required|string|max:200",
             "fecha_inicio"=> "required|date",
             "fecha_final"=> "required|date|after:fecha_inicio",
