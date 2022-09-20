@@ -49,4 +49,9 @@ class Alumno extends Model
         return $this->hasMany(Respuesta::class,'user_id');
     }
 
+    //un alumno pertenece a un nivel
+    public function level(){
+        return $this->hasOne(Level::class, 'user_id');
+    }
+
 }

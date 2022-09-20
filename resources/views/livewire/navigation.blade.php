@@ -1,4 +1,4 @@
-<div class="w-full fixed">
+<div class="w-full absolute">
 
 
     <nav class="bg-gray-800" x-data="{open:false}">
@@ -33,10 +33,11 @@
                     {{-- Logotipo --}}
                     <div class="flex-shrink-0 flex items-center">
                         <img class="block lg:hidden h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
+                            src="{{asset('vendor/adminlte/dist/img/JoseJesusLogo.jpg')}}" alt="José Jesús">
                         <img class="hidden lg:block h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                            alt="Workflow">
+                            src="{{asset('vendor/adminlte/dist/img/JoseJesusLogo.jpg')}}"
+                            alt="José Jesús">
+                            <span class="text-xl pl-2 text-white">I.E.P José Jesús</span>
                     </div>
                     {{-- Logotipo --}}
 
@@ -135,17 +136,17 @@
                         class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                         aria-current="page">Dashboard</a>
 
-                    @can('alumno.materias.show')
-                        <a href="#"
+                    @can('alumno.materias.index')
+                        <a href="{{ route('alumno.materias.index') }}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Mis
                             Materias y Tareas</a>
 
                     @endcan
-
-                    <a href="#"
+                    @can('alumno.materias.create')
+                    <a href="{{ route('alumno.materias.create') }}"
                         class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Mis
                         Logros</a>
-
+                    @endcan
                     {{-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"></a> --}}
                 </div>
             </div>

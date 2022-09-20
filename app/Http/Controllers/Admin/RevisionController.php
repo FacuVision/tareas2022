@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Actividad;
 use App\Models\Carpeta;
 use App\Models\Docente;
+use App\Models\Level;
 use App\Models\Respuesta;
 use App\Models\Tarea;
 use Illuminate\Auth\Access\Gate;
@@ -130,6 +131,27 @@ class RevisionController extends Controller
 
             $notal_final = $notal_final + $puntaje_en_orden;
         }
+
+        $userlvl = Level::where('user_id',$request->id_usuario)->first();
+
+        $exp_ac= $userlvl->exp_ac+$notal_final;
+        $limite = ( $userlvl->level * 100 );
+        if($limite > ($userlvl->exp + $notal_final)){
+            $exp = $userlvl->exp + $notal_final;
+            $lvl = $userlvl->level;
+        }elseif($limite == ($userlvl->exp + $notal_final)){
+            $lvl = $userlvl->level +1;
+            $exp = 0;
+        }else{
+            $sobra = ($userlvl->exp + $notal_final) - $limite;
+            $lvl = $userlvl->level +1;
+            $exp = $sobra;
+        }
+        $userlvl->update([
+            'level' => $lvl,
+            'exp' => $exp,
+            'exp_ac' => $exp_ac,
+        ]);
 
         //$respuesta->alumno->tareas()->detach($tarea_id);
         // $respuesta->alumno->tareas()->sync([$tarea_id => ["nota_final"=>$notal_final,"estado"=>"2"]]);

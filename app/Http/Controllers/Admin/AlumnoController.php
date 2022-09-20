@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Alumno;
+use App\Models\Level;
 use App\Models\Seccion;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -71,6 +72,12 @@ class AlumnoController extends Controller
 
             $user->roles()->sync(3);
             Alumno::create($request->all());
+            Level::create([
+                "user_id" => $request->user_id,
+                "level" => 1,
+                "exp" => 0,
+                "exp_ac" => 0
+            ]);
         }
         return redirect()->route('admin.alumnos.index')->with('mensaje','El alumno fue creado correctamente');
     }

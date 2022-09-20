@@ -7,6 +7,7 @@ use App\Models\Alumno;
 use App\Models\Perfil;
 use App\Models\User;
 use App\Models\Docente;
+use App\Models\Level;
 use DateTime;
 
 
@@ -101,7 +102,12 @@ class UserSeeder extends Seeder
                 "user_id" => $al->id,
                 "seccion_id" => random_int(1,12)
             ]);
-
+            Level::create([
+                "user_id" => $al->id,
+                "level" => 1,
+                "exp" => 0,
+                "exp_ac" => 0
+            ]);
             $al->assignRole('Alumno');
 
 

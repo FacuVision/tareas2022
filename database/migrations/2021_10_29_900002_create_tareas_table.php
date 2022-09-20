@@ -17,6 +17,11 @@ class CreateTareasTable extends Migration
             $table->id();
             $table->string('titulo',100);
             $table->text('descripcion');
+            $table->enum('tipo',[0,1]);
+            /*
+                0 = tarea normal
+                1 = reto
+             */
             $table->enum('estado',[0,1]);
 
             /**

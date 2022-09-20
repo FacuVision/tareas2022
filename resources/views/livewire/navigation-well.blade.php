@@ -32,10 +32,11 @@
                     {{-- Logotipo --}}
                     <div class="flex-shrink-0 flex items-center">
                         <img class="block lg:hidden h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
+                            src="{{asset('vendor/adminlte/dist/img/JoseJesusLogo.jpg')}}" alt="José Jesús">
                         <img class="hidden lg:block h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                            alt="Workflow">
+                            src="{{asset('vendor/adminlte/dist/img/JoseJesusLogo.jpg')}}"
+                            alt="José Jesús">
+                            <span class="text-xl pl-2 text-white">I.E.P José Jesús</span>
                     </div>
                     {{-- Logotipo --}}
 

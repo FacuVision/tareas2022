@@ -19,7 +19,7 @@ class CreateLogrosTable extends Migration
             $table->string('nombre');
             $table->text('descripcion');
             $table->enum('tipo',[0,1,2,3,4,5]);
-
+            $table->integer('exp_req')->nullable();
             /*
                 0 = basico
                 1 = regular

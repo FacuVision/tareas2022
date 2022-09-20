@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                
+
                                 @if ($actividad->tipo==3)
                                 <strong> Carpeta de Drive:</strong>
 
@@ -106,7 +106,7 @@
                     @endforeach
 
                     <input type="hidden" name="id_respuestas" value="@php echo implode("_",$id_respuestas) @endphp">
-
+                    <input type="hidden" name="id_usuario" value="{{$user_id}}">
             </div>
 
             <div class="card-footer">
