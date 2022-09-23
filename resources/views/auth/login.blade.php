@@ -1,7 +1,10 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <a href="/">
+                <img class="block h-20 w-20"
+                            src="{{asset('vendor/adminlte/dist/img/JoseJesusLogo.jpg')}}" alt="José Jesús">
+            </a>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

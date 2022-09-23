@@ -6,7 +6,7 @@
             </h2>
         </div>
     </x-slot>
-        <div class="flex flex-col py-4 max-w-7xl mx-auto sm:px-6">
+    <div class="flex flex-col py-4 max-w-7xl mx-auto sm:px-6">
         <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -45,8 +45,6 @@
                                 <tr>
                                     @switch($dato->carpeta->id)
                                         @case($carpeta->id)
-
-
                                             @if ($dato->pivot->estado == 0)
                                                 @php
                                                     $i = 0;
@@ -89,7 +87,6 @@
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
 
                                                         </td>
-
                                                     @break
 
                                                     @case(1)
@@ -113,7 +110,6 @@
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                                             @livewire('show-tarea', ['dato' => $dato])
                                                         </td>
-
                                                     @break
                                                 @endswitch
                                             @endif
@@ -156,9 +152,8 @@
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                                            @livewire('show-respuesta',['dato' => $dato])
+                                                            @livewire('show-respuesta', ['dato' => $dato])
                                                         </td>
-
                                                     @break
 
                                                     @case(1)
@@ -180,7 +175,7 @@
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                                            @livewire('show-respuesta',['dato' => $dato])
+                                                            @livewire('show-respuesta', ['dato' => $dato])
                                                         </td>
                                                     @break
                                                 @endswitch
@@ -220,13 +215,12 @@
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
                                                             <span>
-                                                                {{$dato->pivot->nota_final}}
+                                                                {{ $dato->pivot->nota_final }}
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                                            @livewire('show-respuesta',['dato' => $dato])
+                                                            @livewire('show-respuesta', ['dato' => $dato])
                                                         </td>
-
                                                     @break
 
                                                     @case(1)
@@ -244,17 +238,15 @@
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
                                                             <span>
-                                                                {{$dato->pivot->nota_final}}
+                                                                {{ $dato->pivot->nota_final }}
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                                            @livewire('show-respuesta',['dato' => $dato])
+                                                            @livewire('show-respuesta', ['dato' => $dato])
                                                         </td>
                                                     @break
                                                 @endswitch
                                             @endif
-
-
                                         @break
 
                                     @endswitch
@@ -267,7 +259,8 @@
                         <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 text-center"
                             role="alert">
                             <p class="font-bold">¡Ohh Vaya!</p>
-                            <p class="text-sm">No tienes tareas pendientes en esta carpeta o has superado la fecha de entrega de tu tarea.</p>
+                            <p class="text-sm">No tienes tareas pendientes en esta carpeta o has superado la fecha de
+                                entrega de tu tarea.</p>
                             <i class="far fa-surprise fa-7x"></i>
                         </div>
                     @endif

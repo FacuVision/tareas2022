@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Tarea;
 use App\Models\Respuesta;
 use App\Models\Alumno;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class ShowTarea extends Component
@@ -27,7 +28,10 @@ class ShowTarea extends Component
     {
 
         $this->showtarea = true;
+        //$this->emit('timenow');
+
     }
+
 
     public function enviar()
     {

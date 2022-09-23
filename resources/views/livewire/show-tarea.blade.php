@@ -1,5 +1,5 @@
 <div>
-    <x-jet-button class="py-1 px-2" wire:click="showtarea({{ $dato }})">
+    <x-jet-button class="py-1 px-2" onclick="visto({{$dato->id}})" wire:click="showtarea({{ $dato }})">
         Responder
     </x-jet-button>
 
@@ -112,7 +112,7 @@
 
         <x-slot name="footer">
 
-            <x-jet-secondary-button wire:click="$set('showtarea',false)">
+            <x-jet-secondary-button wire:click="$toggle('showtarea')">
                 Cancelar
             </x-jet-secondary-button>
 

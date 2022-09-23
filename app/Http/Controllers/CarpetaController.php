@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carpeta;
 use App\Models\Alumno;
 use App\Models\Respuesta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CarpetaController extends Controller
@@ -47,7 +48,18 @@ class CarpetaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //VISTO POR EL ALUMNO
+        $alumno = Alumno::find(Auth()->user()->id);
+        $tarea = $alumno->tareas->find($request->id);
+        $pivot = $tarea->pivot;
+
+        if($pivot->hora_inicio == null){
+            $alumno->tareas()->updateExistingPivot($request->id,['hora_inicio' => Carbon::now()]);
+            return response()->json(['Si salio']);
+        }else{
+           return response()->json(['No salio']);
+        }
+
     }
 
     /**
