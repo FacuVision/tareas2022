@@ -38,7 +38,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        $users = User::select()->orderBy("name")->get();
+        $users = User::doesntHave('docente')->doesntHave('alumno')->orderBy("name")->get();
         $secciones = Seccion::all();
         return view("admin.alumnos.create", compact("secciones","users"));
     }

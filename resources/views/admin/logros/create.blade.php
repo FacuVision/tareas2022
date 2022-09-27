@@ -43,16 +43,25 @@
                             {!! Form::select('tipo', $tipo, null, ['placeholder' => 'Elija un tipo...', 'class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('exp_req', 'Puntos Necesarios') !!}
+                            {!! Form::number('exp_req', null, ['required' => true, 'class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('tipo', 'Subir Imagen') !!}
                             <div class="custom-file">
-                                {!! Form::file('file', ['class' => 'custom-file-input', 'accept' => 'image/*', 'id' => 'validatedCustomFile', 'required' => true]) !!}
+                                {!! Form::file('file', [
+                                    'class' => 'custom-file-input',
+                                    'accept' => 'image/*',
+                                    'id' => 'validatedCustomFile',
+                                    'required' => true,
+                                ]) !!}
                                 {!! Form::label('file', 'Subir Imagen', ['class' => 'custom-file-label']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div>
-                            <img src="{{asset('img/file.jpeg')}}" id="picture" class="img-thumbnail">
+                            <img src="{{ asset('img/file.jpeg') }}" id="picture" class="img-thumbnail">
                         </div>
                     </div>
 

@@ -59,7 +59,7 @@
                         <p class="text-md text-navy-600 font-bold">Respuesta: </p>
                         @foreach ($res as $re)
                             @if ($re->actividad_id == $act->id)
-                                <textarea id="editor" disabled class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full w-full">{{ $re->descripcion }}</textarea>
+                                <textarea id="editor" disabled class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">{{ $re->descripcion }}</textarea>
                             @endif
                         @endforeach
                         {{-- <textarea required id="editor" wire:model.defer="descripcion.{{ $act->id }}"
@@ -86,7 +86,7 @@
                         <p class="text-md text-navy-600 font-bold">Respuesta: {{ $act->id }}</p>
                         @foreach ($res as $re)
                             @if ($re->actividad_id == $act->id)
-                                <textarea id="editor" disabled class="w-full">{{ $re->descripcion }}</textarea>
+                                <textarea id="editor" disabled class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full h-full">{{ $re->descripcion }}</textarea>
                             @endif
                         @endforeach
                         {{-- <textarea required id="editor" wire:model.defer="descripcion.{{ $act->id }}"

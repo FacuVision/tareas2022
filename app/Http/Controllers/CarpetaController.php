@@ -54,7 +54,7 @@ class CarpetaController extends Controller
         $pivot = $tarea->pivot;
 
         if($pivot->hora_inicio == null){
-            $alumno->tareas()->updateExistingPivot($request->id,['hora_inicio' => Carbon::now()]);
+            $alumno->tareas()->updateExistingPivot($request->id,['hora_inicio' => Carbon::now('America/Lima')]);
             return response()->json(['Si salio']);
         }else{
            return response()->json(['No salio']);

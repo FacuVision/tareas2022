@@ -19,7 +19,7 @@ class DocenteController extends Controller
         $this->middleware('can:admin.docentes.create')->only(['create','store']);
         $this->middleware('can:admin.docentes.destroy')->only('destroy');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +38,7 @@ class DocenteController extends Controller
      */
     public function create()
     {
-        $users = User::select()->orderBy("name")->get();
+        $users = User::doesntHave('alumno')->doesntHave('docente')->orderBy("name")->get();
         $secciones = Seccion::all();
         $materias = Materia::all();
         return view('admin.docentes.create', compact('users', 'secciones', 'materias'));

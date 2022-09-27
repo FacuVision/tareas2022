@@ -48,7 +48,7 @@
                                     </p>
                                 </div>
                                 <p class="text-md text-navy-600 font-bold">Respuesta: </p>
-                                <textarea required id="editor" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full w-full" wire:model.defer="descripcion.{{ $act->id }}"
+                                <textarea required id="editor" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full h-full" wire:model.defer="descripcion.{{ $act->id }}"
                                     name="descripcion[]" class="w-full" placeholder="Respuesta">
 
                                         </textarea>
@@ -70,7 +70,7 @@
                                         frameborder="0" …></iframe>
                                 </div>
                                 <p class="text-md text-navy-600 font-bold">Respuesta:</p>
-                                <textarea required id="editor" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full w-full" wire:model.defer="descripcion.{{ $act->id }}"
+                                <textarea required id="editor" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full h-full" wire:model.defer="descripcion.{{ $act->id }}"
                                     name="descripcion[]" class="w-full" placeholder="Respuesta"></textarea>
                             @break
 

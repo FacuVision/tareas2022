@@ -47,6 +47,10 @@
                             {!! Form::select('tipo', $tipo, $logro->tipo, ['placeholder' => 'Elija un tipo...', 'class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('exp_req', 'Puntos Necesarios') !!}
+                            {!! Form::number('exp_req', $logro->exp_req, ['required' => true, 'class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('tipo', 'Subir Imagen') !!}
                             <div class="custom-file">
                                 {!! Form::file('file', ['class' => 'custom-file-input', 'accept' => 'image/*', 'id' => 'validatedCustomFile']) !!}

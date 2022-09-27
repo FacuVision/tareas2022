@@ -64,6 +64,7 @@ class LogroController extends Controller
             'nombre' => 'required|string',
             'descripcion' => 'required|string',
             'tipo' => 'required|string',
+            'exp_req' => 'required|integer',
             'file' => 'required|image',
         ]);
 
@@ -71,6 +72,7 @@ class LogroController extends Controller
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'tipo' => $request->tipo,
+            'exp_req' => $request->exp_req,
         ]);
 
 
@@ -121,12 +123,15 @@ class LogroController extends Controller
             'nombre' => 'required|string',
             'descripcion' => 'required|string',
             'tipo' => 'required|string',
+            'exp_req' => 'required|integer',
+
         ]);
 
         $logro->update([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
-            'tipo' => $request->tipo
+            'tipo' => $request->tipo,
+            'exp_req' => $request->exp_req,
         ]);
 
         if ($request->file('file')) {

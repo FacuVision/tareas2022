@@ -40,7 +40,7 @@ class Alumno extends Model
     //Muchos alumnos tienen muchas tareas
     public function tareas()
     {
-        return $this->belongsToMany(Tarea::class, 'alumno_tarea', 'user_id', 'tarea_id')->withPivot('nota_final', 'estado','hora_inicio','hora_final','time_elapsed');
+        return $this->belongsToMany(Tarea::class, 'alumno_tarea', 'user_id', 'tarea_id')->withPivot('nota_final', 'estado','hora_inicio','hora_final','segundos_pasados');
     }
 
     //un alumno puede tener muchas respuestas
