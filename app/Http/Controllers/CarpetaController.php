@@ -7,6 +7,7 @@ use App\Models\Alumno;
 use App\Models\Respuesta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarpetaController extends Controller
 {
@@ -73,7 +74,7 @@ class CarpetaController extends Controller
         /* --METODO DE AUTORIZACION DE TAREAS SEGUN ALUMNO */
         $this->authorize("metodo_autorizador_carpetas_alumno", $carpeta);
 
-        $alumno = Alumno::findOrFail(auth()->user()->id);
+        $alumno = Alumno::findOrFail(Auth::user()->id);
         $datos = $alumno->tareas;
         return view('alumno.carpetas.show', compact('carpeta', 'datos'));
     }

@@ -53,6 +53,13 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>Titulo</strong><br>{{ $tarea->titulo }}</li>
                     <li class="list-group-item"><strong>Descripcion</strong><br>{{ $tarea->descripcion }}</li>
+                    <li class="list-group-item"><strong>Tipo</strong><br>
+                    @if ($tarea->tipo == 0)
+                        Tarea Normal
+                    @else
+                        Reto
+                    @endif
+                </li>
                 </ul>
             </div>
 

@@ -21,7 +21,7 @@ class CreateAlumnoTareaTable extends Migration
             $table->integer('nota_final')->nullable();
             $table->timestamp('hora_inicio')->nullable();
             $table->timestamp('hora_final')->nullable();
-            $table->text('segundos_pasados')->nullable();
+            $table->text('tiempo_transcurrido')->nullable();
             $table->enum('estado',[0,1,2])->default(0);
 
             /*

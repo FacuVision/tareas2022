@@ -43,8 +43,8 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($datos as $dato)
                                 <tr>
-                                    @switch($dato->carpeta->id)
-                                        @case($carpeta->id)
+                                    {{-- @switch($dato->carpeta->id)
+                                        @case($carpeta->id) --}}
                                             @if ($dato->pivot->estado == 0)
                                                 @php
                                                     $i = 0;
@@ -247,9 +247,9 @@
                                                     @break
                                                 @endswitch
                                             @endif
-                                        @break
+                                        {{-- @break
 
-                                    @endswitch
+                                    @endswitch --}}
                                 </tr>
                             @endforeach
                         </tbody>

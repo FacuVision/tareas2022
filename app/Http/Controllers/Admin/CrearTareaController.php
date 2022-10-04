@@ -10,8 +10,8 @@ class CrearTareaController extends Controller
 {
     public function show(Carpeta $carpeta)
     {
-        $estados = ["0" => "Inactivo", "1"=>"Activo"];
-        return view("admin.tareas.create", compact("estados", "carpeta"));
+        $tipos = ["0" => "Tarea Normal", "1"=>"Reto"];
+        return view("admin.tareas.create", compact("tipos", "carpeta"));
 
     }
 }

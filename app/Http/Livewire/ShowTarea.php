@@ -8,6 +8,7 @@ use App\Models\Tarea;
 use App\Models\Respuesta;
 use App\Models\Alumno;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Auth;
 
 class ShowTarea extends Component
@@ -55,12 +56,12 @@ class ShowTarea extends Component
             $start = $tarea->pivot->hora_inicio;
             $end = Carbon::now('America/Lima');
             //$elap = $end->diffInHours($start, false);
-            $elap = $end->diffInSeconds($start);
+            $elap = CarbonInterval::seconds($end->diffInSeconds($start))->cascade()->forHumans();
             //$alumno->sync([$this->dato->id =>['estado' => '1']]);   NO FUNKO
             //$alumno->tareas()->detach($this->dato->id);                   X2
             //$alumno->tareas()->attach($this->dato->id,['estado' => '1']); X3
 
-            $alumno->tareas()->updateExistingPivot($this->dato->id,['estado' => '1','hora_final' => $end, "segundos_pasados" => $elap ]);
+            $alumno->tareas()->updateExistingPivot($this->dato->id,['estado' => '1','hora_final' => $end, "tiempo_transcurrido" => $elap ]);
 
             //ENVIAR UN NUEVO MODELO DONDE LLEVA LA CARPETA DONDE ESTA EL ALUMNO ACTUALMENTE.
 

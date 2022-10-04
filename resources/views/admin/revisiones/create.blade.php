@@ -6,6 +6,10 @@
     <h1>Seleccion de carpetas para la revision </h1>
 @stop
 
+@section('css')
+    @include('admin.partials_datatables.cdn_css')
+@endsection
+
 @section('content')
 
 
@@ -28,7 +32,7 @@
         <div class="card-body">
 
 
-            <table id="carpetas" class="table table-sm table-striped " style="width:100%">
+            <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -81,3 +85,6 @@
 
     </div>
 @stop
+@section('js')
+    @include('admin.partials_datatables.cdn_js')
+@endsection

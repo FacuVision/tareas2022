@@ -51,7 +51,8 @@ class TareaController extends Controller
         $request->validate([
             "titulo" => "required|string|max:200",
             "descripcion"=> "required",
-            "carpeta_id"=> "required"
+            "carpeta_id"=> "required",
+            "tipo" => "required"
         ]);
 
 
@@ -90,9 +91,9 @@ class TareaController extends Controller
     public function edit(Tarea $tarea)
     {
         $this->authorize("metodo_autorizador_tareas", $tarea);
-
+        $tipos = ["0" => "Tarea Normal", "1"=>"Reto"];
         $estados = ["0" => "Inactivo", "1"=>"Activo"];
-        return view("admin.tareas.edit",compact('tarea','estados'));
+        return view("admin.tareas.edit",compact('tarea','estados','tipos'));
     }
 
     /**
@@ -112,6 +113,7 @@ class TareaController extends Controller
         $request->validate([
             "titulo" => "required|string|max:200",
             "descripcion"=> "required",
+            "tipo" => 'required',
         ]);
 
         if ($request->estado == 1 && $tarea->actividades->isEmpty()) {

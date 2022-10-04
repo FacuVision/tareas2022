@@ -36,78 +36,80 @@
             <a class="btn btn-secondary" style="margin-bottom: 20px" href="{{ route('admin.revisiones.show', $tarea->carpeta->id) }}"> Volver a Tareas </a>
             @endcan
 
-            <table id="tabla" class="table table-striped dt-responsive nowrap" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre Alumno</th>
-                        <th>Apellido Alumno</th>
-                        <th>DNI N°</th>
-                        <th>Correo</th>
-                        <th>Nota</th>
-                        <th>Estado</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tareas_alumnos as $tarea_alumno)
+            {{-- <div class="table table-responsive"> --}}
+
+                <table id="tabla" class="table table-striped dt-responsive nowrap" style="width: 100%">
+                    <thead>
                         <tr>
-                            <td>{{ $tarea_alumno->user_id }}</td>
-                            <td>{{ $tarea_alumno->user->perfil->nombre }}</td>
-                            <td>{{ $tarea_alumno->user->perfil->apellido }}</td>
-                            <td>{{ $tarea_alumno->user->perfil->DNI }}</td>
-                            <td>{{ $tarea_alumno->user->email}}</td>
+                            <th>Id</th>
+                            <th>Nombre Alumno</th>
+                            <th>Apellido Alumno</th>
+                            <th>Tiempo Transcurrido</th>
+                            <th>Correo</th>
+                            <th>Nota</th>
+                            <th>Estado</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($tareas_alumnos as $tarea_alumno)
+                            <tr>
+                                <td>{{ $tarea_alumno->user_id }}</td>
+                                <td>{{ $tarea_alumno->user->perfil->nombre }}</td>
+                                <td>{{ $tarea_alumno->user->perfil->apellido }}</td>
+                                <td>{{ $tarea_alumno->pivot->tiempo_transcurrido}}</td>
+                                <td>{{ $tarea_alumno->user->email}}</td>
 
-                            <td>
-                            @if ($tarea_alumno->pivot->nota_final == null)
-                                <span class="badge badge-secondary">Sin Nota</span>
-                            @else
-                                <span class="badge badge-light">{{ $tarea_alumno->pivot->nota_final }}</span>
-                            @endif
-                            </td>
-                            <td>
-                            @switch($tarea_alumno->pivot->estado)
-                                @case(0)
-                                    <span class="badge badge-danger">Sin Responder</span>
-                                @break
-
-                                @case(1)
-                                    <span class="badge badge-success">Respondido</span>
-                                @break
-
-                                @case(2)
-                                    <span class="badge badge-primary">Calificado</span>
-                                @break
-                            @endswitch
-                            </td>
-
-
-                            <td>
-                            @can('admin.revisar_tareas.edit')
-
+                                <td>
+                                @if ($tarea_alumno->pivot->nota_final == null)
+                                    <span class="badge badge-secondary">Sin Nota</span>
+                                @else
+                                    <span class="badge badge-light">{{ $tarea_alumno->pivot->nota_final }}</span>
+                                @endif
+                                </td>
+                                <td>
                                 @switch($tarea_alumno->pivot->estado)
+                                    @case(0)
+                                        <span class="badge badge-danger">Sin Responder</span>
+                                    @break
 
                                     @case(1)
-                                        <a href="{{ route('admin.revisar_tareas.edit', $tarea_alumno->pivot->tarea_id ."-".$tarea_alumno->pivot->user_id)}}" class="btn btn-primary">Calificar</a>
+                                        <span class="badge badge-success">Respondido</span>
+                                    @break
+
+                                    @case(2)
+                                        <span class="badge badge-primary">Calificado</span>
+                                    @break
                                 @endswitch
-                            @endcan
+                                </td>
 
-                            @can('admin.asignaciones.show')
-                            <a href="{{ route('admin.asignaciones.show', $tarea_alumno->user_id."-".$tarea_alumno->pivot->tarea_id) }}" class="btn btn-success">Asignar Logro</a>
 
-                            @endcan
+                                <td>
+                                @can('admin.revisar_tareas.edit')
 
-                            </td>
+                                    @switch($tarea_alumno->pivot->estado)
 
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                        @case(1)
+                                            <a href="{{ route('admin.revisar_tareas.edit', $tarea_alumno->pivot->tarea_id ."-".$tarea_alumno->pivot->user_id)}}" class="btn btn-primary">Calificar</a>
+                                    @endswitch
+                                @endcan
+
+                                @can('admin.asignaciones.show')
+                                <a href="{{ route('admin.asignaciones.show', $tarea_alumno->user_id."-".$tarea_alumno->pivot->tarea_id) }}" class="btn btn-success">Asignar Logro</a>
+
+                                @endcan
+
+                                </td>
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            {{-- </div> --}}
+
         </div>
     </div>
 @stop
-
-
 
 
 @section('js')

@@ -37,10 +37,10 @@
                     {!! Form::textarea('descripcion', null, ['rows' => 5, 'required' => true, 'placeholder' => 'Ingrese una descripcion...', 'class' => 'form-control']) !!}
                 </div>
 
-                {{-- <div class="form-group">
-                    {!! Form::label('estado', 'Estado') !!}
-                    {!! Form::select('estado', $estados, $estados[0], ['required' => true,  'class' => 'form-control']) !!}
-                </div> --}}
+                <div class="form-group">
+                    {!! Form::label('tipo', 'Tipo de Tarea') !!}
+                    {!! Form::select('tipo', $tipos, null, ['required' => true, 'placeholder' =>'Elija un tipo de tarea...',  'class' => 'form-control']) !!}
+                </div>
 
                 {!! Form::hidden("carpeta_id", $carpeta->id) !!}
 

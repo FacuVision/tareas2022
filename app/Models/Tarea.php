@@ -18,7 +18,7 @@ class Tarea extends Model
     //Muchas tareas son asignadas a muchos alumnos
     public function alumnos()
     {
-        return $this->belongsToMany(Alumno::class, 'alumno_tarea', 'tarea_id', 'user_id')->withPivot('nota_final', 'estado','hora_inicio','hora_final','segundos_pasados');
+        return $this->belongsToMany(Alumno::class, 'alumno_tarea', 'tarea_id', 'user_id')->withPivot('nota_final', 'estado','hora_inicio','hora_final','tiempo_transcurrido');
     }
 
     //UNA TAREA POSEE MUCHAS ACTIVIDADES

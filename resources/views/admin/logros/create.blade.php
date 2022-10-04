@@ -9,7 +9,9 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-
+            <p class="text-sm text-dark">Puedes usar las siguientes herramientas online para mejorar la calidad de tus logros</p>
+            <p class="text-sm text-secondary">Remueve el fondo en blanco: <a class="text-sm text-info" target="_blank" href="https://www.remove.bg/es">Remove BG</a></p>
+            <p class="text-sm text-secondary">Consigue iconos con licencia gratuita para tus logros: <a class="text-sm text-info" target="_blank" href="https://www.flaticon.es/">Flaticon </a></p>
             @if (count($errors) > 0)
                 <div class="text-danger">
 

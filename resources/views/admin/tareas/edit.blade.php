@@ -43,6 +43,12 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('tipo', 'Tipo de Tarea') !!}
+                    {!! Form::select('tipo', $tipos, $tarea->tipo, ['required' => true, 'placeholder' =>'Elija un tipo de tarea...',  'class' => 'form-control']) !!}
+                </div>
+
+
+                <div class="form-group">
                     {!! Form::label('estado', 'Estado') !!}
                     {!! Form::select('estado', $estados, $tarea->estado, ['required' => true,  'class' => 'form-control']) !!}
                 </div>
