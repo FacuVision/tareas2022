@@ -16,26 +16,26 @@ class CarpetaSeeder extends Seeder
      */
     public function run()
     {
-        Carpeta::factory(10)->create();
-        $carpetas = Carpeta::all();
+    //     Carpeta::factory(10)->create();
+    //     $carpetas = Carpeta::all();
 
-        foreach ($carpetas as $c) {
-            Tarea::factory(2)->create(
-                [
-                    'carpeta_id' => $c->id
-                ]
-            );
-        }
+    //     foreach ($carpetas as $c) {
+    //         Tarea::factory(2)->create(
+    //             [
+    //                 'carpeta_id' => $c->id
+    //             ]
+    //         );
+    //     }
 
-       $tarea =  Tarea::all();
+    //    $tarea =  Tarea::all();
 
-        foreach ($tarea as $t) {
-            Actividad::factory(5)->create(
-                [
-                    'tarea_id' => $t->id
-                ]
-            );
-        }
+    //     foreach ($tarea as $t) {
+    //         Actividad::factory(5)->create(
+    //             [
+    //                 'tarea_id' => $t->id
+    //             ]
+    //         );
+    //     }
 
     }
 }

@@ -17,14 +17,14 @@ class LogroSeeder extends Seeder
      */
     public function run()
     {
-        $logros = Logro::factory(10)->create();
+        // $logros = Logro::factory(10)->create();
 
-        foreach ($logros as $l) {
-            Image::factory(1)->create([
-                'imageable_id' => $l->id,
-                'imageable_type' => Logro::class,
-            ]);
-        }
+        // foreach ($logros as $l) {
+        //     Image::factory(1)->create([
+        //         'imageable_id' => $l->id,
+        //         'imageable_type' => Logro::class,
+        //     ]);
+        // }
 
     }
 }

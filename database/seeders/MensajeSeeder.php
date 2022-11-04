@@ -14,6 +14,6 @@ class MensajeSeeder extends Seeder
      */
     public function run()
     {
-        Mensaje::factory(25)->create();
+        // Mensaje::factory(25)->create();
     }
 }

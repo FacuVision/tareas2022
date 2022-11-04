@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
 
-        $this->call(LogroSeeder::class);
+        //$this->call(LogroSeeder::class);
         $this->call(GradoSeeder::class);
-        $this->call(MateriaSeeder::class);
+        //$this->call(MateriaSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(MensajeSeeder::class);
+        //$this->call(MensajeSeeder::class);
 
         //$this->call(CarpetaSeeder::class);
 
