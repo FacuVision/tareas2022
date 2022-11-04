@@ -42,7 +42,9 @@
 
                 <div class="form-group">
                     {!! Form::label('descripcion', 'Descripcion') !!}
-                    {!! Form::text('descripcion', $actividad->descripcion, ['required' => true, 'class' => 'form-control']) !!}
+
+                    {!! Form::textarea('descripcion',  $actividad->descripcion, ['required' => true, 'class' => 'form-control'])  !!}
+                    </div>
                 </div>
 
                 <div class="form-group">

@@ -49,7 +49,9 @@
 
                 <div class="columns">
                     <div class="column">
-                        {!! Form::text('descripcion', null, ['placeholder' => 'Ingrese la descripcion', 'autocomplete' => 'off', 'class' => 'form-control']) !!}
+                        {!! Form::textarea('descripcion', null, ['required'=>'required','placeholder' => 'Ingrese la descripcion', 'autocomplete' => 'off', 'class' => 'form-control']) !!}
+
+                        {{-- {!! Form::text('descripcion', null, ) !!} --}}
                     </div>
 
                 </div>

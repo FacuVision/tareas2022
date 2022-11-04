@@ -28,9 +28,7 @@
                             @case(0)
                                 {{-- PREGUNTA CORTA --}}
                                 <div class="overflow-auto break-words text-left pb-2 md:break-all  md:text-left">
-                                    <p>
-                                        {{ $act->descripcion }}
-                                    </p>
+                                    <textarea disabled style="height:200px" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full bg-gray-100">{{ $act->descripcion }}</textarea>
                                 </div>
 
                                 <p class="text-left text-md text-navy-600  font-bold">Respuesta: </p>
@@ -43,9 +41,7 @@
                                 {{-- PREGUNTA LARGA --}}
                                 <div
                                     class="overflow-auto justify-start pb-2 break-words md:break-all text-left md:text-left">
-                                    <p>
-                                        {{ $act->descripcion }}
-                                    </p>
+                                    <textarea disabled class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full bg-gray-100">{{ $act->descripcion }}</textarea>
                                 </div>
                                 <p class="text-md text-navy-600 font-bold">Respuesta: </p>
                                 <textarea required class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full h-full" wire:model.defer="descripcion.{{ $act->id }}"
