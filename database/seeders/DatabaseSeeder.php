@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GradoSeeder::class);
         //$this->call(MateriaSeeder::class);
         $this->call(UserSeeder::class);
-        //$this->call(MensajeSeeder::class);
+        $this->call(MensajeSeeder::class);
 
         //$this->call(CarpetaSeeder::class);
 

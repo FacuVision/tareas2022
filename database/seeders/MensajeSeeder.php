@@ -14,6 +14,8 @@ class MensajeSeeder extends Seeder
      */
     public function run()
     {
-        // Mensaje::factory(25)->create();
+        Mensaje::create([
+            "color" => "#D7C954",
+            "mensaje" => "Al que madruga, Dios lo ayuda"]);
     }
 }
