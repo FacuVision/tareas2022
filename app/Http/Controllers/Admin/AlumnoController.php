@@ -17,7 +17,6 @@ class AlumnoController extends Controller
         $this->middleware('can:admin.alumnos.edit')->only(['edit','update']);
         $this->middleware('can:admin.alumnos.create')->only(['create','store']);
         $this->middleware('can:admin.alumnos.destroy')->only('destroy');
-
     }
 
     /**
@@ -72,6 +71,7 @@ class AlumnoController extends Controller
 
             $user->roles()->sync(3);
             Alumno::create($request->all());
+
             Level::create([
                 "user_id" => $request->user_id,
                 "level" => 1,

@@ -9,14 +9,19 @@ use App\Models\Seccion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+
 
 class DocenteController extends Controller
 {
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('can:admin.docentes.index')->only('index');
-        $this->middleware('can:admin.docentes.edit')->only(['edit','update']);
-        $this->middleware('can:admin.docentes.create')->only(['create','store']);
+        $this->middleware('can:admin.docentes.edit')->only(['edit', 'update']);
+        $this->middleware('can:admin.docentes.create')->only(['create', 'store']);
         $this->middleware('can:admin.docentes.destroy')->only('destroy');
     }
 
@@ -53,12 +58,14 @@ class DocenteController extends Controller
     public function store(Request $request)
     {
 
+
+
         $request->validate([
             "user_id" => "required",
             "materias" => "required",
             "secciones" => "required",
         ]);
-        //return $request;
+
         $user = User::findOrFail($request->user_id);
         if ($user->alumno) {
             return redirect()
@@ -71,33 +78,47 @@ class DocenteController extends Controller
         } else {
 
 
-            foreach ($user->roles as $role) {
-                if ($role->id == 3) { // si en el usuario es un alumno
-                    return redirect()->route('admin.docentes.index')->with('alerta', 'El usuario seleccionado tiene rol alumno, no se puede asignar');
-
-                } elseif ($role->id == 1){ // si estamos hablando de un usuario admin si se puede asignar el rol de docente
-                    $user->roles()->sync([1,2]);
-
-                }  else { // en caso no sea ni alumno ni admin, es decir no tiene rol aun
-                    $user->roles()->sync(2);
+//VERIFICAR SI UN USUARIO SE LE ASIGNA UN ROL POR PRIMERA VEZ
+            if (count($user->roles) > 0) {
+                //lleno
+                foreach ($user->roles as $role) {
+                    if ($role->id == 1) { // si estamos hablando de un usuario admin si se puede asignar el rol de docente
+                        $user->roles()->sync([1,2]);
+                    }
                 }
+            } else {
+                //vacio
+                $user->roles()->sync(2);
             }
 
-              //CREACION DE DATOS EXTERNOS AL USUARIO (DOCENTE, SECCIONES Y MATERIAS)
-                    $user->docente()->create();
+            //die();
+            // foreach ($user->roles as $role) {
+            //     if ($role->id == 3) { // si en el usuario es un alumno
+            //         return redirect()->route('admin.docentes.index')->with('alerta', 'El usuario seleccionado tiene rol alumno, no se puede asignar');
+            //     } elseif ($role->id == 1) { // si estamos hablando de un usuario admin si se puede asignar el rol de docente
+            //         $user->roles()->sync([1, 2]);
+            //     } else { // en caso no sea ni alumno ni admin, es decir no tiene rol aun
+            //         $user->roles()->sync(2);
+            //     }
+            // }
+            //return $user->roles;
 
-                        foreach ($request->secciones as $seccion) {
-                                DB::table("docente_seccion")->insert([
-                                    "user_id" => $user->id,
-                                    "seccion_id" => $seccion
-                                ]);
-                            }
-                        foreach ($request->materias as $materia) {
-                                DB::table("docente_materia")->insert([
-                                    "user_id" => $user->id,
-                                    "materia_id" => $materia
-                                ]);
-                            }
+
+            //CREACION DE DATOS EXTERNOS AL USUARIO (DOCENTE, SECCIONES Y MATERIAS)
+            $user->docente()->create();
+
+            foreach ($request->secciones as $seccion) {
+                DB::table("docente_seccion")->insert([
+                    "user_id" => $user->id,
+                    "seccion_id" => $seccion
+                ]);
+            }
+            foreach ($request->materias as $materia) {
+                DB::table("docente_materia")->insert([
+                    "user_id" => $user->id,
+                    "materia_id" => $materia
+                ]);
+            }
 
             return redirect()->route('admin.docentes.index')->with('mensaje', 'El Docente fue creado correctamente');
         }
@@ -158,11 +179,10 @@ class DocenteController extends Controller
             if ($role->id == 1) {
                 $docente->user->roles()->sync(1);
                 break;
-            } else{
+            } else {
                 $docente->user->roles()->sync(null);
             }
-
-            }
+        }
 
         $docente->delete();
 
