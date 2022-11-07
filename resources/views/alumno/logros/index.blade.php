@@ -105,8 +105,6 @@
                             </div>
                         @endif
 
-
-
                     </section>
                     {{-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --}}
                     <p class="pl-8 py-4 text-left text-xl text-red-500">Logros Bloqueados</p>
@@ -125,7 +123,13 @@
                                     <p class="text-2xl text-gray-800">{{ $logro->nombre }}</p>
                                     {{-- <p class="text-md text-gray-600">Tipo</p> --}}
                                     <p class="text-md text-gray-500">{{ $logro->descripcion }}</p>
-                                    <p class="text-sm text-gray-300">Puntos Necesarios: {{ $logro->exp_req }}</p>
+                                    <p class="text-sm text-gray-300">Puntos Necesarios:
+                                        @if ($logro->exp_req == 0)
+                                            ¿¿??
+                                        @else
+                                        {{ $logro->exp_req }}
+                                        @endif
+                                    </p>
                                     @switch($logro->tipo)
                                         @case(0)
                                             <span
@@ -169,17 +173,28 @@
                                             </span>
                                         @break
                                     @endswitch
-
-                                    {!! Form::open(['method' => 'POST', 'route' => ['alumno.materias.store', 'logro_id' => $logro->id]]) !!}
-                                    <button type="submit"
-                                    class="mt-4 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                                    Desbloquear
-                                    </button>
-                                    {!! Form::close() !!}
+                                    @if ($logro->exp_req == 0)
+                                        <form>
+                                            <button disabled type="submit"
+                                                class="mt-4 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                                <div class="inline-flex">
+                                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd">
+                                                            </path>
+                                                        </svg>
+                                                </div>
+                                            </button>
+                                        </form>
+                                    @else
+                                        {!! Form::open(['method' => 'POST', 'route' => ['alumno.materias.store', 'logro_id' => $logro->id]]) !!}
+                                            <button type="submit"
+                                                class="mt-4 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                                Desbloquear
+                                            </button>
+                                        {!! Form::close() !!}
+                                    @endif
                                 </div>
                             @endforeach
-
-
                     </section>
 
                 </div>
